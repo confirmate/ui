@@ -1,13 +1,6 @@
 "use client";
+import { icons } from "@/components/icons";
 import { classNames } from "@/lib/util";
-import {
-  AdjustmentsHorizontalIcon,
-  ArchiveBoxIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  HomeIcon,
-  RectangleGroupIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -24,22 +17,6 @@ export interface SidebarItemData {
 interface SidebarItemProps {
   item: SidebarItemData;
 }
-
-type IconType = React.ForwardRefExoticComponent<
-  Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-    title?: string;
-    titleId?: string;
-  } & React.RefAttributes<SVGSVGElement>
->;
-
-let icons = new Map<string, IconType>([
-  ["home", HomeIcon],
-  ["rectangle-group", RectangleGroupIcon],
-  ["adjustments-horizontal", AdjustmentsHorizontalIcon],
-  ["archive-box", ArchiveBoxIcon],
-  ["chart-pie", ChartPieIcon],
-  ["calendar", CalendarIcon],
-]);
 
 /**
  * An individual navigation item in the sidebar.

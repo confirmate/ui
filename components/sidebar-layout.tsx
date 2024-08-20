@@ -15,6 +15,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 interface NavProps {
@@ -49,6 +50,7 @@ export default function SidebarLayout({
   children,
 }: NavProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const session = useSession();
 
   return (
     <>
@@ -155,7 +157,7 @@ export default function SidebarLayout({
                         aria-hidden="true"
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                       >
-                        Tom Cook
+                        {session.data?.user?.name}
                       </span>
                       <ChevronDownIcon
                         aria-hidden="true"

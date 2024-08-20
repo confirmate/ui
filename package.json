@@ -21,7 +21,7 @@
     "next-intl": "^3.17.3",
     "openapi-fetch": "^0.11.1",
     "react": "^19.0.0-rc",
-    "react-dom": "^18",
+    "react-dom": "^19.0.0-rc",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {

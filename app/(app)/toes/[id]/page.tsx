@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 interface PageProps {
   params: {
     id: string;
@@ -5,5 +7,5 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  return <>{params.id}</>;
+  redirect(`/toes/${params.id}/activity`);
 }

@@ -1,19 +1,22 @@
 import Sidebar from "@/components/sidebar";
 import SidebarLayout from "@/components/sidebar-layout";
+import { SessionProvider } from "next-auth/react";
 
-export default function AppLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <>
-      <SidebarLayout
-        mobileSidebar={<Sidebar isMobile={true} />}
-        desktopSidebar={<Sidebar />}
-      >
-        {children}
-      </SidebarLayout>
+      <SessionProvider>
+        <SidebarLayout
+          mobileSidebar={<Sidebar isMobile={true} />}
+          desktopSidebar={<Sidebar />}
+        >
+          {children}
+        </SidebarLayout>
+      </SessionProvider>
     </>
   );
 }
