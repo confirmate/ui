@@ -23,20 +23,20 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
       disabled: true,
     },
     {
-      name: "Targets of Evaluation",
-      href: "/toes",
+      name: "Certification Targets",
+      href: "/certification-targets",
       icon: "rectangle-group",
       children: [
         ...targets.map((s) => {
           return {
             name: s.name,
-            href: "/toes/" + s.id,
+            href: "/certification-targets/" + s.id,
             isSub: true,
           };
         }),
         {
           name: "New...",
-          href: "/toes/new",
+          href: "/certification-targets/new",
           isSub: true,
           isNew: true,
         },
@@ -61,7 +61,7 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
     >
       <div className="flex h-16 shrink-0 items-center border-b border-gray-200">
         <Image
-          className="h-10 w-auto"
+          className="h-8 w-auto"
           width={103}
           height={105}
           //style="transform: scaleX(-1);"

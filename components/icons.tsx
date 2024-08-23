@@ -4,6 +4,7 @@ import {
   CalendarIcon,
   ChartPieIcon,
   CheckBadgeIcon,
+  CloudIcon,
   Cog6ToothIcon,
   HomeIcon,
   QueueListIcon,
@@ -32,5 +33,6 @@ export const icons = new Map<string, IconType>([
   ["squares2x2", Squares2X2Icon],
   ["sun", SunIcon],
   ["queue-list", QueueListIcon],
+  ["cloud", CloudIcon],
   ["check-badge", CheckBadgeIcon],
 ]);

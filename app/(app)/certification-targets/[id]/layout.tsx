@@ -42,33 +42,33 @@ export default async function Layout({ params, children }: LayoutProps) {
     const tabs = [
       {
         name: "Activity",
-        href: "/toes/" + toe.id + "/activity",
+        href: "/certification-targets/" + toe.id + "/activity",
         icon: "user",
         current: false,
       },
       {
         name: "Discovered Resources",
-        href: "/toes/" + toe.id + "/resources",
+        href: "/certification-targets/" + toe.id + "/resources",
         icon: "squares2x2",
       },
       {
         name: "Resource Graph",
-        href: "/toes/" + toe.id + "/graph",
+        href: "/certification-targets/" + toe.id + "/graph",
         icon: "sun",
       },
       {
         name: "Assessment Results",
-        href: "/toes/" + toe.id + "/assessments",
+        href: "/certification-targets/" + toe.id + "/assessments",
         icon: "queue-list",
       },
       {
         name: "Compliance",
-        href: "/toes/" + toe.id + "/compliance",
+        href: "/certification-targets/" + toe.id + "/compliance",
         icon: "check-badge",
       },
       {
         name: "Settings",
-        href: "/toes/" + toe.id + "/settings",
+        href: "/certification-targets/" + toe.id + "/settings",
         icon: "cog6-tooth",
         disabled: true,
       },

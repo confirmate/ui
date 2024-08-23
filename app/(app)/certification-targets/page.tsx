@@ -10,14 +10,14 @@ export default async function Page() {
 
   return (
     <>
-      <Header name="Targets of Evaluation" buttons={false} icon={false}>
+      <Header name="Certification Targets" buttons={false} icon={false}>
         {toes.length} target(s) configured
       </Header>
 
       <BelowHeader>
-        This page provides an overview of all configured targets of evaluation
-        within Confirmate. Click on the name of a target to display more
-        information about it.
+        This page provides an overview of all certification targets within
+        Confirmate. Click on the name of a target to display more information
+        about it.
       </BelowHeader>
 
       <ul className="divide-y divide-gray-100">
@@ -30,7 +30,7 @@ export default async function Page() {
                 alt=""
               />
               <div className="min-w-0 flex-auto">
-                <Link href={`/toes/${toe.id}/`}>
+                <Link href={`/certification-targets/${toe.id}/`}>
                   <p className="text-sm font-semibold leading-6 text-gray-900">
                     {toe.name}
                   </p>
