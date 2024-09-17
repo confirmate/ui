@@ -636,16 +636,16 @@ export interface components {
          *      certain metrics. */
         AssessmentTool: {
             id?: string;
-            name?: string;
+            name: string;
             description?: string;
             /** @description a list of metrics that this tool can assess, referred by their ids */
-            availableMetrics?: string[];
+            availableMetrics: string[];
         };
         Catalog: {
             id: string;
             name: string;
             description?: string;
-            categories?: components["schemas"]["Category"][];
+            categories: components["schemas"]["Category"][];
             /** @description Certain security catalogs do not allow to select the scope of the controls,
              *      but all controls are automatically "in scope", however they can be set to a
              *      DELEGATED status. */
@@ -667,13 +667,13 @@ export interface components {
             /** @description Reference to the catalog this category belongs to. */
             catalogId: string;
             description?: string;
-            controls?: components["schemas"]["Control"][];
+            controls: components["schemas"]["Control"][];
         };
         /** @description An ISO17021-based certificate */
         Certificate: {
-            id?: string;
-            name?: string;
-            cloudServiceId?: string;
+            id: string;
+            name: string;
+            cloudServiceId: string;
             issueDate?: string;
             expirationDate?: string;
             standard?: string;
@@ -687,8 +687,8 @@ export interface components {
             id: string;
             name: string;
             description?: string;
-            catalogsInScope?: components["schemas"]["Catalog"][];
-            configuredMetrics?: components["schemas"]["Metric"][];
+            catalogsInScope: components["schemas"]["Catalog"][];
+            configuredMetrics: components["schemas"]["Metric"][];
             /**
              * Format: date-time
              * @description creation time of the cloud_service
@@ -726,11 +726,11 @@ export interface components {
             description?: string;
             /** @description List of sub - controls -
              *          this is in accordance with the OSCAL model. */
-            controls?: components["schemas"]["Control"][];
+            controls: components["schemas"]["Control"][];
             /** @description metrics contains either a list of reference to metrics - in this case only
              *      the id field of the metric is populated - or a list of populated metric
              *      meta-data, most likely returned by the database. */
-            metrics?: components["schemas"]["Metric"][];
+            metrics: components["schemas"]["Metric"][];
             /** @description Reference to the parent category this control belongs to. */
             parentControlId?: string;
             parentControlCategoryName?: string;
@@ -793,7 +793,7 @@ export interface components {
             };
         };
         ListMetricsResponse: {
-            metrics?: components["schemas"]["Metric"][];
+            metrics: components["schemas"]["Metric"][];
             nextPageToken?: string;
         };
         ListPublicCertificatesResponse: {
