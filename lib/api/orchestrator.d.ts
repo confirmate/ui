@@ -94,6 +94,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orchestrator/auditScopes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lists all Targets of Evaluation */
+        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        put?: never;
+        /** @description Creates a new Audit Scope */
+        post: operations["Orchestrator_CreateAuditScope"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/orchestrator/catalogs": {
         parameters: {
             query?: never;
@@ -144,6 +162,23 @@ export interface paths {
         post?: never;
         /** @description Removes a catalog */
         delete: operations["Orchestrator_RemoveCatalog"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/catalogs/{catalogId}/auditScopes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lists all Targets of Evaluation */
+        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        put?: never;
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -207,23 +242,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/catalogs/{catalogId}/toes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/orchestrator/certificates": {
         parameters: {
             query?: never;
@@ -277,33 +295,33 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services": {
+    "/v1/orchestrator/certification_targets": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all target cloud services */
-        get: operations["Orchestrator_ListCloudServices"];
+        /** @description Lists all target certification targets */
+        get: operations["Orchestrator_ListCertificationTargets"];
         put?: never;
-        /** @description Registers a new target cloud service */
-        post: operations["Orchestrator_RegisterCloudService"];
+        /** @description Registers a new target certification target */
+        post: operations["Orchestrator_RegisterCertificationTarget"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/statistics": {
+    "/v1/orchestrator/certification_targets/statistics": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves target cloud service statistics */
-        get: operations["Orchestrator_GetCloudServiceStatistics"];
+        /** @description Retrieves target certification target statistics */
+        get: operations["Orchestrator_GetCertificationTargetStatistics"];
         put?: never;
         post?: never;
         delete?: never;
@@ -312,25 +330,76 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/{cloudServiceId}": {
+    "/v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/auditScopes/{audit_scope.catalog_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a target cloud service */
-        get: operations["Orchestrator_GetCloudService"];
-        put?: never;
+        get?: never;
+        /** @description Updates an existing Audit Scope */
+        put: operations["Orchestrator_UpdateAuditScope"];
         post?: never;
-        /** @description Removes a target cloud service */
-        delete: operations["Orchestrator_RemoveCloudService"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/{cloudServiceId}/metric_configurations": {
+    "/v1/orchestrator/certification_targets/{certificationTargetId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves a target certification target */
+        get: operations["Orchestrator_GetCertificationTarget"];
+        put?: never;
+        post?: never;
+        /** @description Removes a target certification target */
+        delete: operations["Orchestrator_RemoveCertificationTarget"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lists all Targets of Evaluation */
+        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes/{catalogId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves a Audit Scope */
+        get: operations["Orchestrator_GetAuditScope"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations": {
         parameters: {
             query?: never;
             header?: never;
@@ -348,7 +417,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/{cloudServiceId}/metric_configurations/{metricId}": {
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations/{metricId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -368,42 +437,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/{cloudServiceId}/toes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/cloud_services/{cloudServiceId}/toes/{catalogId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Retrieves a Target of Evaluation */
-        get: operations["Orchestrator_GetTargetOfEvaluation"];
-        put?: never;
-        post?: never;
-        /** @description Removes a Target of Evaluation */
-        delete: operations["Orchestrator_RemoveTargetOfEvaluation"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/cloud_services/{cloud_service.id}": {
+    "/v1/orchestrator/certification_targets/{certification_target.id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -411,8 +445,8 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** @description Registers a new target cloud service */
-        put: operations["Orchestrator_UpdateCloudService"];
+        /** @description Registers a new target certification target */
+        put: operations["Orchestrator_UpdateCertificationTarget"];
         post?: never;
         delete?: never;
         options?: never;
@@ -420,7 +454,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/cloud_services/{target_of_evaluation.cloud_service_id}/toes/{target_of_evaluation.catalog_id}": {
+    "/v1/orchestrator/cloud_services/{certificationTargetId}/toes/{catalogId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -428,10 +462,10 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** @description Updates an existing Target of Evaluation */
-        put: operations["Orchestrator_UpdateTargetOfEvaluation"];
+        put?: never;
         post?: never;
-        delete?: never;
+        /** @description Removes a Audit Scope */
+        delete: operations["Orchestrator_RemoveAuditScope"];
         options?: never;
         head?: never;
         patch?: never;
@@ -577,24 +611,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/toes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
-        put?: never;
-        /** @description Creates a new Target of Evaluation */
-        post: operations["Orchestrator_CreateTargetOfEvaluation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -627,8 +643,8 @@ export interface components {
             resourceTypes?: string[];
             /** @description Some comments on the reason for non-compliance */
             nonComplianceComments?: string;
-            /** @description The cloud service which this assessment result belongs to */
-            cloudServiceId?: string;
+            /** @description The certification target which this assessment result belongs to */
+            certificationTargetId?: string;
             /** @description Reference to the tool which provided the assessment result */
             toolId?: string;
         };
@@ -640,6 +656,15 @@ export interface components {
             description?: string;
             /** @description a list of metrics that this tool can assess, referred by their ids */
             availableMetrics: string[];
+        };
+        /** @description A Audit Scope binds a certification target to a catalog, so the service is
+         *      evaluated regarding this catalog's controls */
+        AuditScope: {
+            certificationTargetId: string;
+            catalogId: string;
+            /** @description an assurance level is not offered by every catalog, therefore it is
+             *      optional */
+            assuranceLevel?: string;
         };
         Catalog: {
             id: string;
@@ -659,7 +684,7 @@ export interface components {
             metadata?: components["schemas"]["Catalog_Metadata"];
         };
         Catalog_Metadata: {
-            /** @description a color for the cloud service used by the UI */
+            /** @description a color for the certification target used by the UI */
             color?: string;
         };
         Category: {
@@ -673,7 +698,7 @@ export interface components {
         Certificate: {
             id: string;
             name: string;
-            cloudServiceId: string;
+            certificationTargetId: string;
             issueDate?: string;
             expirationDate?: string;
             standard?: string;
@@ -683,7 +708,7 @@ export interface components {
             /** @description A list of states at specific times */
             states?: components["schemas"]["State"][];
         };
-        CloudService: {
+        CertificationTarget: {
             id: string;
             name: string;
             description?: string;
@@ -691,23 +716,29 @@ export interface components {
             configuredMetrics: components["schemas"]["Metric"][];
             /**
              * Format: date-time
-             * @description creation time of the cloud_service
+             * @description creation time of the certification_target
              */
             createdAt?: string;
             /**
              * Format: date-time
-             * @description last update time of the cloud_service
+             * @description last update time of the certification_target
              */
             updatedAt?: string;
-            /** @description additional metadata of the cloud service, mostly used for the UI */
-            metadata?: components["schemas"]["CloudService_Metadata"];
+            /** @description additional metadata of the certification target, mostly used for the UI */
+            metadata?: components["schemas"]["CertificationTarget_Metadata"];
+            /**
+             * Format: enum
+             * @description type of the target to be evaluated: cloud, product or organization
+             * @enum {string}
+             */
+            targetType: "TARGET_TYPE_UNSPECIFIED" | "TARGET_TYPE_CLOUD" | "TARGET_TYPE_PRODUCT" | "TARGET_TYPE_ORGANIZATION";
         };
-        CloudService_Metadata: {
+        CertificationTarget_Metadata: {
             /** @description a map of key/value pairs, e.g., env:prod */
             labels?: {
                 [key: string]: string;
             };
-            /** @description an icon for the cloud service used by the UI */
+            /** @description an icon for the certification target used by the UI */
             icon?: string;
         };
         /** @description Control represents a certain Control that needs to be fulfilled. It could be
@@ -743,14 +774,14 @@ export interface components {
             path?: string;
             version?: string;
         };
-        GetCloudServiceStatisticsResponse: {
-            /** @description number of discovered resources per cloud service */
+        GetCertificationTargetStatisticsResponse: {
+            /** @description number of discovered resources per certification target */
             numberOfDiscoveredResources?: string;
-            /** @description number of assessment results per cloud service */
+            /** @description number of assessment results per certification target */
             numberOfAssessmentResults?: string;
-            /** @description number of evidences per cloud service */
+            /** @description number of evidences per certification target */
             numberOfEvidences?: string;
-            /** @description number of selected catalogs per cloud service */
+            /** @description number of selected catalogs per certification target */
             numberOfSelectedCatalogs?: string;
         };
         /** @description Contains an arbitrary serialized message along with a @type that describes the type of the serialized message. */
@@ -778,8 +809,8 @@ export interface components {
             certificates?: components["schemas"]["Certificate"][];
             nextPageToken?: string;
         };
-        ListCloudServicesResponse: {
-            services: components["schemas"]["CloudService"][];
+        ListCertificationTargetsResponse: {
+            services: components["schemas"]["CertificationTarget"][];
             nextPageToken?: string;
         };
         ListControlsResponse: {
@@ -801,7 +832,7 @@ export interface components {
             nextPageToken?: string;
         };
         ListTargetsOfEvaluationResponse: {
-            targetOfEvaluation?: components["schemas"]["TargetOfEvaluation"][];
+            auditScope?: components["schemas"]["AuditScope"][];
             nextPageToken?: string;
         };
         /** @description A metric resource */
@@ -851,7 +882,7 @@ export interface components {
             /** @description The metric this configuration belongs to */
             metricId?: string;
             /** @description The service this configuration belongs to */
-            cloudServiceId?: string;
+            certificationTargetId?: string;
         };
         /** @description MetricImplementation defines the implementation of an individual metric. */
         MetricImplementation: {
@@ -935,15 +966,6 @@ export interface components {
          *      custom unary RPC and therefore requires a response message according to the
          *      style convention. Since no return values are required, this is empty. */
         StoreAssessmentResultResponse: Record<string, never>;
-        /** @description A Target of Evaluation binds a cloud service to a catalog, so the service is
-         *      evaluated regarding this catalog's controls */
-        TargetOfEvaluation: {
-            cloudServiceId: string;
-            catalogId: string;
-            /** @description an assurance level is not offered by every catalog, therefore it is
-             *      optional */
-            assuranceLevel?: string;
-        };
     };
     responses: never;
     parameters: never;
@@ -951,13 +973,48 @@ export interface components {
     headers: never;
     pathItems: never;
 }
+export type SchemaAllowedValues = components['schemas']['AllowedValues'];
+export type SchemaAssessmentResult = components['schemas']['AssessmentResult'];
+export type SchemaAssessmentTool = components['schemas']['AssessmentTool'];
+export type SchemaAuditScope = components['schemas']['AuditScope'];
+export type SchemaCatalog = components['schemas']['Catalog'];
+export type SchemaCatalogMetadata = components['schemas']['Catalog_Metadata'];
+export type SchemaCategory = components['schemas']['Category'];
+export type SchemaCertificate = components['schemas']['Certificate'];
+export type SchemaCertificationTarget = components['schemas']['CertificationTarget'];
+export type SchemaCertificationTargetMetadata = components['schemas']['CertificationTarget_Metadata'];
+export type SchemaControl = components['schemas']['Control'];
+export type SchemaDependency = components['schemas']['Dependency'];
+export type SchemaGetCertificationTargetStatisticsResponse = components['schemas']['GetCertificationTargetStatisticsResponse'];
+export type SchemaGoogleProtobufAny = components['schemas']['GoogleProtobufAny'];
+export type SchemaGoogleProtobufValue = components['schemas']['GoogleProtobufValue'];
+export type SchemaListAssessmentResultsResponse = components['schemas']['ListAssessmentResultsResponse'];
+export type SchemaListAssessmentToolsResponse = components['schemas']['ListAssessmentToolsResponse'];
+export type SchemaListCatalogsResponse = components['schemas']['ListCatalogsResponse'];
+export type SchemaListCertificatesResponse = components['schemas']['ListCertificatesResponse'];
+export type SchemaListCertificationTargetsResponse = components['schemas']['ListCertificationTargetsResponse'];
+export type SchemaListControlsResponse = components['schemas']['ListControlsResponse'];
+export type SchemaListMetricConfigurationResponse = components['schemas']['ListMetricConfigurationResponse'];
+export type SchemaListMetricsResponse = components['schemas']['ListMetricsResponse'];
+export type SchemaListPublicCertificatesResponse = components['schemas']['ListPublicCertificatesResponse'];
+export type SchemaListTargetsOfEvaluationResponse = components['schemas']['ListTargetsOfEvaluationResponse'];
+export type SchemaMetric = components['schemas']['Metric'];
+export type SchemaMetricConfiguration = components['schemas']['MetricConfiguration'];
+export type SchemaMetricImplementation = components['schemas']['MetricImplementation'];
+export type SchemaMinMax = components['schemas']['MinMax'];
+export type SchemaOrder = components['schemas']['Order'];
+export type SchemaRange = components['schemas']['Range'];
+export type SchemaRuntime = components['schemas']['Runtime'];
+export type SchemaState = components['schemas']['State'];
+export type SchemaStatus = components['schemas']['Status'];
+export type SchemaStoreAssessmentResultResponse = components['schemas']['StoreAssessmentResultResponse'];
 export type $defs = Record<string, never>;
 export interface operations {
     Orchestrator_ListAssessmentResults: {
         parameters: {
             query?: {
-                /** @description Optional. List only assessment results of a specific cloud service. */
-                "filter.cloudServiceId"?: string;
+                /** @description Optional. List only assessment results of a specific certification target. */
+                "filter.certificationTargetId"?: string;
                 /** @description Optional. List only compliant assessment results. */
                 "filter.compliant"?: boolean;
                 /** @description Optional. List only assessment results of a specific metric id. */
@@ -1224,6 +1281,81 @@ export interface operations {
             };
         };
     };
+    Orchestrator_ListTargetsOfEvaluation: {
+        parameters: {
+            query?: {
+                /** @description We cannot create additional bindings when the parameter is optional so we
+                 *      check for != "" in the method to see if it is set when the service is
+                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      for any catalog */
+                certificationTargetId?: string;
+                /** @description when the catalog is specified, return all Targets of Evaluation that
+                 *      evaluate the given catalog for any service */
+                catalogId?: string;
+                pageSize?: number;
+                pageToken?: string;
+                orderBy?: string;
+                asc?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_CreateAuditScope: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AuditScope"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuditScope"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
     Orchestrator_ListCatalogs: {
         parameters: {
             query?: {
@@ -1386,6 +1518,49 @@ export interface operations {
             };
         };
     };
+    Orchestrator_ListTargetsOfEvaluation: {
+        parameters: {
+            query?: {
+                /** @description We cannot create additional bindings when the parameter is optional so we
+                 *      check for != "" in the method to see if it is set when the service is
+                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      for any catalog */
+                certificationTargetId?: string;
+                pageSize?: number;
+                pageToken?: string;
+                orderBy?: string;
+                asc?: boolean;
+            };
+            header?: never;
+            path: {
+                /** @description when the catalog is specified, return all Targets of Evaluation that
+                 *      evaluate the given catalog for any service */
+                catalogId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
     Orchestrator_ListControls: {
         parameters: {
             query?: {
@@ -1478,49 +1653,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Category"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_ListTargetsOfEvaluation: {
-        parameters: {
-            query?: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
-                 *      for any catalog */
-                cloudServiceId?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path: {
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
                 };
             };
             /** @description Default error response */
@@ -1696,7 +1828,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListCloudServices: {
+    Orchestrator_ListCertificationTargets: {
         parameters: {
             query?: {
                 pageSize?: number;
@@ -1716,7 +1848,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListCloudServicesResponse"];
+                    "application/json": components["schemas"]["ListCertificationTargetsResponse"];
                 };
             };
             /** @description Default error response */
@@ -1730,7 +1862,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_RegisterCloudService: {
+    Orchestrator_RegisterCertificationTarget: {
         parameters: {
             query?: never;
             header?: never;
@@ -1739,7 +1871,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CloudService"];
+                "application/json": components["schemas"]["CertificationTarget"];
             };
         };
         responses: {
@@ -1749,7 +1881,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CloudService"];
+                    "application/json": components["schemas"]["CertificationTarget"];
                 };
             };
             /** @description Default error response */
@@ -1763,10 +1895,10 @@ export interface operations {
             };
         };
     };
-    Orchestrator_GetCloudServiceStatistics: {
+    Orchestrator_GetCertificationTargetStatistics: {
         parameters: {
             query?: {
-                cloudServiceId?: string;
+                certificationTargetId?: string;
             };
             header?: never;
             path?: never;
@@ -1780,7 +1912,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetCloudServiceStatisticsResponse"];
+                    "application/json": components["schemas"]["GetCertificationTargetStatisticsResponse"];
                 };
             };
             /** @description Default error response */
@@ -1794,12 +1926,48 @@ export interface operations {
             };
         };
     };
-    Orchestrator_GetCloudService: {
+    Orchestrator_UpdateAuditScope: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
+                "audit_scope.certification_target_id": string;
+                "audit_scope.catalog_id": string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AuditScope"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuditScope"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetCertificationTarget: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                certificationTargetId: string;
             };
             cookie?: never;
         };
@@ -1811,7 +1979,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CloudService"];
+                    "application/json": components["schemas"]["CertificationTarget"];
                 };
             };
             /** @description Default error response */
@@ -1825,12 +1993,12 @@ export interface operations {
             };
         };
     };
-    Orchestrator_RemoveCloudService: {
+    Orchestrator_RemoveCertificationTarget: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
+                certificationTargetId: string;
             };
             cookie?: never;
         };
@@ -1854,12 +2022,87 @@ export interface operations {
             };
         };
     };
+    Orchestrator_ListTargetsOfEvaluation: {
+        parameters: {
+            query?: {
+                /** @description when the catalog is specified, return all Targets of Evaluation that
+                 *      evaluate the given catalog for any service */
+                catalogId?: string;
+                pageSize?: number;
+                pageToken?: string;
+                orderBy?: string;
+                asc?: boolean;
+            };
+            header?: never;
+            path: {
+                /** @description We cannot create additional bindings when the parameter is optional so we
+                 *      check for != "" in the method to see if it is set when the service is
+                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      for any catalog */
+                certificationTargetId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetAuditScope: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                certificationTargetId: string;
+                catalogId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuditScope"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
     Orchestrator_ListMetricConfigurations: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
+                certificationTargetId: string;
             };
             cookie?: never;
         };
@@ -1890,7 +2133,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
+                certificationTargetId: string;
                 metricId: string;
             };
             cookie?: never;
@@ -1922,7 +2165,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
+                certificationTargetId: string;
                 metricId: string;
             };
             cookie?: never;
@@ -1953,28 +2196,20 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListTargetsOfEvaluation: {
+    Orchestrator_UpdateCertificationTarget: {
         parameters: {
-            query?: {
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
-                catalogId?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
+            query?: never;
             header?: never;
             path: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
-                 *      for any catalog */
-                cloudServiceId: string;
+                "certification_target.id": string;
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CertificationTarget"];
+            };
+        };
         responses: {
             /** @description OK */
             200: {
@@ -1982,7 +2217,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                    "application/json": components["schemas"]["CertificationTarget"];
                 };
             };
             /** @description Default error response */
@@ -1996,44 +2231,12 @@ export interface operations {
             };
         };
     };
-    Orchestrator_GetTargetOfEvaluation: {
+    Orchestrator_RemoveAuditScope: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                cloudServiceId: string;
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_RemoveTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                cloudServiceId: string;
+                certificationTargetId: string;
                 catalogId: string;
             };
             cookie?: never;
@@ -2046,77 +2249,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_UpdateCloudService: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                "cloud_service.id": string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CloudService"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CloudService"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_UpdateTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                "target_of_evaluation.cloud_service_id": string;
-                "target_of_evaluation.catalog_id": string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TargetOfEvaluation"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
-                };
             };
             /** @description Default error response */
             default: {
@@ -2447,81 +2579,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Runtime"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_ListTargetsOfEvaluation: {
-        parameters: {
-            query?: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
-                 *      for any catalog */
-                cloudServiceId?: string;
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
-                catalogId?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_CreateTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TargetOfEvaluation"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
                 };
             };
             /** @description Default error response */

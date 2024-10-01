@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "openapi-typescript openapi/orchestrator.yaml -o lib/api/orchestrator.d.ts",
+    "generate:types": "openapi-typescript openapi/orchestrator.yaml -o lib/api/orchestrator.d.ts --root-types",
     "predev": "npm run generate:types",
     "prebuild": "npm run generate:types"
   },
@@ -19,7 +19,7 @@
     "next": "^15.0.0-rc.0",
     "next-auth": "^5.0.0-beta.20",
     "next-intl": "^3.17.3",
-    "openapi-fetch": "^0.11.1",
+    "openapi-fetch": "^0.12.2",
     "react": "^19.0.0-rc",
     "react-dom": "^19.0.0-rc",
     "tailwindcss": "^3.4.1"
@@ -31,7 +31,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "^9.1.0",
-    "openapi-typescript": "^7.3.0",
+    "openapi-typescript": "^7.4.1",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-classnames": "^0.7.2",

@@ -2,7 +2,7 @@ import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import createClient, { Middleware } from "openapi-fetch";
 import type { paths } from "./orchestrator";
-export * from "./types";
+export * from "./orchestrator.d";
 
 const authMiddleware: Middleware = {
   async onRequest({ request }) {
