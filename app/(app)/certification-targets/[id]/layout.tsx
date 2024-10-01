@@ -17,22 +17,22 @@ export async function removeToe() {
 
 export default async function Layout({ params, children }: LayoutProps) {
   const { data: toe } = await client.GET(
-    "/v1/orchestrator/cloud_services/{cloudServiceId}",
+    "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
         path: {
-          cloudServiceId: params.id,
+          certificationTargetId: params.id,
         },
       },
     },
   );
 
   const { data: statistics } = await client.GET(
-    "/v1/orchestrator/cloud_services/statistics",
+    "/v1/orchestrator/certification_targets/statistics",
     {
       params: {
         query: {
-          cloudServiceId: params.id,
+          certificationTargetId: params.id,
         },
       },
     },

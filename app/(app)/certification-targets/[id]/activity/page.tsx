@@ -1,5 +1,8 @@
 import ActivityItem, { ActivityItemData } from "@/components/activity-item";
-import client, { AssessmentResult, CertificationTarget } from "@/lib/api";
+import client, {
+  SchemaAssessmentResult,
+  SchemaCertificationTarget,
+} from "@/lib/api";
 import { shortResourceId } from "@/lib/util";
 
 interface PageProps {
@@ -10,11 +13,11 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { data: target } = await client.GET(
-    "/v1/orchestrator/cloud_services/{cloudServiceId}",
+    "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
         path: {
-          cloudServiceId: params.id,
+          certificationTargetId: params.id,
         },
       },
     },
@@ -23,7 +26,7 @@ export default async function Page({ params }: PageProps) {
   const { data } = await client.GET("/v1/orchestrator/assessment_results", {
     params: {
       query: {
-        "filter.cloudServiceId": params.id,
+        "filter.certificationTargetId": params.id,
       },
     },
   });
@@ -47,11 +50,11 @@ export default async function Page({ params }: PageProps) {
 }
 
 function buildTimeline(
-  results: AssessmentResult[],
-  target: CertificationTarget,
+  results: SchemaAssessmentResult[],
+  target: SchemaCertificationTarget,
 ): ActivityItemData[] {
   const timeline: ActivityItemData[] = [];
-  let groupedResult = new Map<string, AssessmentResult[]>();
+  let groupedResult = new Map<string, SchemaAssessmentResult[]>();
   // First, group resources together
   // TODO: group according to interval
   for (const result of results) {
