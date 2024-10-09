@@ -52,12 +52,7 @@ export default async function Layout({ params, children }: LayoutProps) {
         icon: "squares2x2",
       },
       {
-        name: "Resource Graph",
-        href: "/certification-targets/" + target.id + "/graph",
-        icon: "sun",
-      },
-      {
-        name: "Assessment Results",
+        name: "Security Assessment",
         href: "/certification-targets/" + target.id + "/assessments",
         icon: "queue-list",
       },

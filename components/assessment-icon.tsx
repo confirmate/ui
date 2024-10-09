@@ -1,5 +1,5 @@
 import { SchemaAssessmentResult } from "@/lib/api/orchestrator";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 interface AssessmentIconProps {
   result: SchemaAssessmentResult;
