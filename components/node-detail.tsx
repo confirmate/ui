@@ -1,7 +1,7 @@
 import NodeAssessmentResultsDetail from "@/components/node-assessment-results-detail";
 import { SchemaResource } from "@/lib/api/discovery";
 import { SchemaAssessmentResult, SchemaMetric } from "@/lib/api/orchestrator";
-import { classNames } from "@/lib/util";
+import { classNames, truncate } from "@/lib/util";
 import { useState } from "react";
 import NodePropertiesDetail from "./node-properties-detail";
 
@@ -67,7 +67,7 @@ export default function NodeDetail({
         <div className="px-4 py-6 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="... truncate text-base font-semibold leading-6 text-confirmate">
-              {name(resource.id)}
+              {truncate(name(resource.id), 50)}
             </div>
           </div>
           <div className="mt-1">

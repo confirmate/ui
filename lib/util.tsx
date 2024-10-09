@@ -49,6 +49,10 @@ export function humanProperties(resource: SchemaResource) {
           });
           node = <time dateTime={v}>{dtf.format(new Date(v))}</time>;
           break;
+        case "@type":
+          const parts = v.split(".");
+          node = parts[parts.length - 1];
+          break;
         default:
           if (typeof v === "string") {
             node = truncate(v, 50);
@@ -61,7 +65,7 @@ export function humanProperties(resource: SchemaResource) {
     });
 }
 
-function truncate(str: string, maxLength = 80) {
+export function truncate(str: string, maxLength = 80) {
   if (str.length > maxLength) {
     return str.substring(0, maxLength - 3) + "...";
   }

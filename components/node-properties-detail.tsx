@@ -1,5 +1,5 @@
 import { SchemaResource } from "@/lib/api/discovery";
-import { humanProperties } from "@/lib/util";
+import { humanProperties, truncate } from "@/lib/util";
 
 interface NodePropertiesDetailProps {
   resource: SchemaResource;
@@ -20,22 +20,16 @@ export default function NodePropertiesDetail({
 
   return (
     <div className="mt-2">
-      <div className="flex space-x-2">
-        <div className="px-4 pt-5 sm:px-0 sm:pt-0">
-          <dl className="space-y-2">
-            {humanProperties(resource).map(({ key, value }) => (
-              <div key={key}>
-                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                  {key}
-                </dt>
-                <dd className="text-gray-900 sm:col-span-2 mt-1 w-96 text-sm">
-                  {value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
+      <table className="w-full table-auto border-collapse border-gray-300">
+        <tbody>
+          {humanProperties(resource).map(({ key, value }) => (
+            <tr key={key} className="border-b border-gray-300">
+              <td className="px-4 py-2 text-sm">{truncate(key, 20)}</td>
+              <td className="px-4 py-2 text-sm text-gray-900">{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
