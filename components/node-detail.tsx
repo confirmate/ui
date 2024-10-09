@@ -3,9 +3,10 @@ import { SchemaResource } from "@/lib/api/discovery";
 import { SchemaAssessmentResult, SchemaMetric } from "@/lib/api/orchestrator";
 import { classNames } from "@/lib/util";
 import { useState } from "react";
+import NodePropertiesDetail from "./node-properties-detail";
 
 interface NodeDetailProps {
-  resource: SchemaResource;
+  resource?: SchemaResource | undefined;
   results: SchemaAssessmentResult[];
   metrics: Map<string, SchemaMetric>;
 }
@@ -22,8 +23,8 @@ function name(id: string | undefined) {
 }
 
 const tabs = [
-  { name: "Assessment Results", id: "results", href: "#", current: true },
-  { name: "Properties", id: "properties", href: "#", current: false },
+  { name: "Assessment Results", id: "results", href: "#" },
+  { name: "Properties", id: "properties", href: "#" },
 ];
 
 export default function NodeDetail({
@@ -33,20 +34,36 @@ export default function NodeDetail({
 }: NodeDetailProps) {
   const [tab, setTab] = useState("results");
 
+  if (resource == undefined || resource == null) {
+    return (
+      <div className="flex flex-col">
+        <div className="px-4 py-6 sm:px-6">
+          <div className="mt-1">
+            <p className="text-sm text-gray-600">
+              Select a node to view additional information
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const renderNodeDetail = () => {
     switch (tab) {
       case "results":
         return (
           <NodeAssessmentResultsDetail results={results} metrics={metrics} />
         );
+      case "properties":
+        return <NodePropertiesDetail resource={resource} />;
       default:
-        return tab === "properties" ? null : "";
+        return null;
     }
   };
 
   return (
     <>
-      <div className="flex flex-col bg-white shadow-xl">
+      <div className="flex flex-col">
         <div className="px-4 py-6 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="... truncate text-base font-semibold leading-6 text-confirmate">
@@ -67,22 +84,22 @@ export default function NodeDetail({
             <select
               id="tabs"
               name="tabs"
-              defaultValue={tabs.find((tab) => tab.current)?.name}
+              defaultValue={tabs.find((t) => t.id == tab)?.name}
               className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-confirmate focus:outline-none focus:ring-confirmate sm:text-sm"
               onChange={(e) => setTab(e.target.value)}
             >
-              {tabs.map((tab) => (
+              {tabs.map((t) => (
                 <option
-                  key={tab.name}
-                  value={tab.id}
+                  key={t.name}
+                  value={t.id}
                   className={classNames(
-                    tab.current
+                    t.id == tab
                       ? "border-confirmate text-confirmate"
                       : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
                     "whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium",
                   )}
                 >
-                  {tab.name}
+                  {t.name}
                 </option>
               ))}
             </select>
@@ -90,20 +107,20 @@ export default function NodeDetail({
           <div className="hidden sm:block">
             <div className="border-b border-gray-200">
               <nav aria-label="Tabs" className="-mb-px flex space-x-8">
-                {tabs.map((tab) => (
+                {tabs.map((t) => (
                   <a
-                    key={tab.name}
-                    href={tab.href}
-                    aria-current={tab.current ? "page" : undefined}
+                    key={t.name}
+                    href={t.href}
+                    aria-current={t.id == tab ? "page" : undefined}
                     className={classNames(
-                      tab.current
+                      t.id == tab
                         ? "border-confirmate text-confirmate"
                         : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
                       "whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium",
                     )}
-                    onClick={() => setTab(tab.id)}
+                    onClick={() => setTab(t.id)}
                   >
-                    {tab.name}
+                    {t.name}
                   </a>
                 ))}
               </nav>

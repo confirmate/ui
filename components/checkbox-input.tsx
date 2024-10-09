@@ -1,28 +1,10 @@
-import { useState } from "react";
-
-interface Props {
+interface InputCheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   children: React.ReactNode;
-  onClick?: () => void;
 }
 
-type HTMLInputElementProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "onChange" | "value"
->;
-
-interface InputCheckboxProps extends Props {
-  inputProps?: HTMLInputElementProps;
-}
-
-const CheckboxInput = ({
-  name,
-  children,
-  onClick,
-  inputProps,
-}: InputCheckboxProps) => {
-  const [checked, setChecked] = useState(false);
-
+const CheckboxInput = ({ name, children, ...rest }: InputCheckboxProps) => {
   return (
     <div className="flex items-center">
       <input
@@ -30,13 +12,8 @@ const CheckboxInput = ({
         aria-describedby={name + "-description"}
         name={name}
         type="checkbox"
-        className="h-4 w-4 rounded border-gray-300 text-clouditor focus:ring-clouditor"
-        checked={checked}
-        onChange={(e) => {
-          setChecked(e.target.checked);
-          onClick && onClick();
-        }}
-        {...inputProps} // spread any additional props to the input element
+        className="h-4 w-4 rounded border-gray-300 text-confirmate focus:ring-confirmate"
+        {...rest}
       />
       <label
         id={name + "-description"}

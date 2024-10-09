@@ -59,7 +59,7 @@ type Icon = ForwardRefExoticComponent<
 Cytoscape.use(cola);
 
 interface Selection {
-  resource: SchemaResource;
+  resource?: SchemaResource | undefined;
   results: SchemaAssessmentResult[];
   metrics: Map<string, SchemaMetric>;
 }
@@ -71,7 +71,7 @@ export default function DiscoveryGraph({
   results,
   metrics,
 }: DiscoveryGraphProps) {
-  let [overlay, setOverlay] = useState(false);
+  let [overlay, setOverlay] = useState(true);
   let [shouldCenter, setShouldCenter] = useState(false);
   let [selected, setSelected] = useState<Selection | undefined>(undefined);
 
@@ -103,53 +103,70 @@ export default function DiscoveryGraph({
           </div>
         </div>
 
-        <div className="relative left-4 z-10 mt-4 flex items-start">
-          <CheckboxInput name="overlay" onClick={() => setOverlay(!overlay)}>
-            <span className="text-gray-500">
-              <span className="font-medium text-gray-900">
-                Show overlay&nbsp;
-              </span>
-              of assessment results
-            </span>
-          </CheckboxInput>
-        </div>
+        <div className="relative flex items-start"></div>
 
-        <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-          <CytoscapeComponent
-            className="graph h-[calc(100vh-25rem)] max-w-7xl"
-            stylesheet={style(overlay)}
-            elements={elements}
-            layout={layout}
-            minZoom={0.5}
-            maxZoom={2}
-            wheelSensitivity={0.6}
-            cy={(cy) => {
-              myCy = cy;
-              cy.on("tap", function (e) {
-                let target = e.target;
+        <div
+          className=" 
+   items-start 
+   gap-4
+   md:grid
+   md:grid-cols-3
+   md:divide-x
+   border-gray-300
+   "
+        >
+          <div id="graph-container" className="gap-4 md:col-span-2 md:grid-col">
+            <div className="ml-4 mt-4">
+              <CheckboxInput
+                name="overlay"
+                checked={overlay}
+                onChange={() => setOverlay(!overlay)}
+              >
+                <span className="text-gray-500">
+                  <span className="font-medium text-gray-900">
+                    Show overlay&nbsp;
+                  </span>
+                  of assessment results
+                </span>
+              </CheckboxInput>
+            </div>
 
-                if (target === cy) {
-                  setSelected(undefined);
-                } else {
-                  const resource = resources.find((r) => r.id == target.id());
-                  if (resource) {
-                    setSelected({
-                      resource: resource,
-                      results: results.filter(
-                        (r) => r.resourceId == resource.id,
-                      ),
-                      metrics: metrics,
-                    });
+            <CytoscapeComponent
+              className="graph h-[calc(100vh-25rem)] px-6 py-4 text-sm leading-6 w-full"
+              stylesheet={style(overlay)}
+              elements={elements}
+              layout={layout}
+              minZoom={0.5}
+              maxZoom={2}
+              wheelSensitivity={0.6}
+              cy={(cy) => {
+                myCy = cy;
+                cy.on("tap", function (e) {
+                  let target = e.target;
+
+                  if (target === cy) {
+                    setSelected(undefined);
+                  } else {
+                    const resource = resources.find((r) => r.id == target.id());
+                    if (resource) {
+                      setSelected({
+                        resource: resource,
+                        results: results.filter(
+                          (r) => r.resourceId == resource.id,
+                        ),
+                        metrics: metrics,
+                      });
+                    }
                   }
-                }
-              });
-            }}
-          />
-        </dl>
-      </div>
+                });
+              }}
+            />
+          </div>
 
-      <div className="absolute right-8 top-64 z-20 max-w-md">
-        {selected ? <NodeDetail {...selected} /> : <></>}
+          <div className="flex items-start gap-2 md:grid-col h-full">
+            <NodeDetail {...selected} />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -20,6 +20,7 @@
     "crypto": "^1.0.1",
     "cytoscape": "^3.30.2",
     "cytoscape-cola": "^2.5.1",
+    "flat": "^6.0.1",
     "inter-ui": "^4.0.2",
     "next": "^15.0.0-rc.0",
     "next-auth": "^5.0.0-beta.22",
