@@ -1,8 +1,6 @@
-import Button from "@/components/button";
 import DiscoveryGraph from "@/components/discovery-graph";
 import discoveryClient from "@/lib/api/discovery";
 import orchestratorClient from "@/lib/api/orchestrator";
-import { ViewfinderCircleIcon } from "@heroicons/react/24/outline";
 import { EdgeDefinition, NodeDefinition } from "cytoscape";
 
 interface PageProps {
@@ -96,23 +94,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl border border-gray-200">
-        <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-4">
-          <div className="text-sm text-gray-500">
-            This graph provides an overview over all discovered resources of the
-            Cloud service, infrastructure as well as application source-code.
-          </div>
-          <div className="flex gap-x-1.5">
-            <Button>
-              <ViewfinderCircleIcon className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-
-        <DiscoveryGraph edges={edges} nodes={nodes} />
-      </div>
-
-      <div className="absolute right-8 top-64 z-20 max-w-md">TODO</div>
+      <DiscoveryGraph edges={edges} nodes={nodes} resources={resources} />
     </>
   );
 }

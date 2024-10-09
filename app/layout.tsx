@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { classNames } from "@/lib/util";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = localFont({
+  src: "../node_modules/inter-ui/variable/interVariable.woff2",
+  variable: "--sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
