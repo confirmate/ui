@@ -101,8 +101,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        /** @description Lists all Audit Scopes */
+        get: operations["Orchestrator_ListAuditScopes"];
         put?: never;
         /** @description Creates a new Audit Scope */
         post: operations["Orchestrator_CreateAuditScope"];
@@ -174,8 +174,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        /** @description Lists all Audit Scopes */
+        get: operations["Orchestrator_ListAuditScopes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -372,8 +372,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all Targets of Evaluation */
-        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        /** @description Lists all Audit Scopes */
+        get: operations["Orchestrator_ListAuditScopes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -399,6 +399,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** @description Removes a Audit Scope */
+        delete: operations["Orchestrator_RemoveAuditScope"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations": {
         parameters: {
             query?: never;
@@ -406,8 +423,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all a metric configurations (target value and operator) for a
-         *      specific service ID */
+        /** @description Lists all metric configurations (target value and operator) for a
+         *      specific certification target ID */
         get: operations["Orchestrator_ListMetricConfigurations"];
         put?: never;
         post?: never;
@@ -425,10 +442,10 @@ export interface paths {
             cookie?: never;
         };
         /** @description Retrieves a metric configuration (target value and operator) for a specific
-         *      service and metric ID. */
+         *      certification target and metric ID. */
         get: operations["Orchestrator_GetMetricConfiguration"];
         /** @description Updates a metric configuration (target value and operator) for a specific
-         *      service and metric ID */
+         *      certification target and metric ID */
         put: operations["Orchestrator_UpdateMetricConfiguration"];
         post?: never;
         delete?: never;
@@ -449,23 +466,6 @@ export interface paths {
         put: operations["Orchestrator_UpdateCertificationTarget"];
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/cloud_services/{certificationTargetId}/toes/{catalogId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** @description Removes a Audit Scope */
-        delete: operations["Orchestrator_RemoveAuditScope"];
         options?: never;
         head?: never;
         patch?: never;
@@ -657,7 +657,7 @@ export interface components {
             /** @description a list of metrics that this tool can assess, referred by their ids */
             availableMetrics: string[];
         };
-        /** @description A Audit Scope binds a certification target to a catalog, so the service is
+        /** @description A Audit Scope binds a certification target to a catalog, so the certification target is
          *      evaluated regarding this catalog's controls */
         AuditScope: {
             certificationTargetId: string;
@@ -801,6 +801,10 @@ export interface components {
             tools?: components["schemas"]["AssessmentTool"][];
             nextPageToken?: string;
         };
+        ListAuditScopesResponse: {
+            auditScope?: components["schemas"]["AuditScope"][];
+            nextPageToken?: string;
+        };
         ListCatalogsResponse: {
             catalogs?: components["schemas"]["Catalog"][];
             nextPageToken?: string;
@@ -810,7 +814,7 @@ export interface components {
             nextPageToken?: string;
         };
         ListCertificationTargetsResponse: {
-            services: components["schemas"]["CertificationTarget"][];
+            targets: components["schemas"]["CertificationTarget"][];
             nextPageToken?: string;
         };
         ListControlsResponse: {
@@ -829,10 +833,6 @@ export interface components {
         };
         ListPublicCertificatesResponse: {
             certificates?: components["schemas"]["Certificate"][];
-            nextPageToken?: string;
-        };
-        ListTargetsOfEvaluationResponse: {
-            auditScope?: components["schemas"]["AuditScope"][];
             nextPageToken?: string;
         };
         /** @description A metric resource */
@@ -881,7 +881,7 @@ export interface components {
             updatedAt?: string;
             /** @description The metric this configuration belongs to */
             metricId?: string;
-            /** @description The service this configuration belongs to */
+            /** @description The certification target this configuration belongs to */
             certificationTargetId?: string;
         };
         /** @description MetricImplementation defines the implementation of an individual metric. */
@@ -990,6 +990,7 @@ export type SchemaGoogleProtobufAny = components['schemas']['GoogleProtobufAny']
 export type SchemaGoogleProtobufValue = components['schemas']['GoogleProtobufValue'];
 export type SchemaListAssessmentResultsResponse = components['schemas']['ListAssessmentResultsResponse'];
 export type SchemaListAssessmentToolsResponse = components['schemas']['ListAssessmentToolsResponse'];
+export type SchemaListAuditScopesResponse = components['schemas']['ListAuditScopesResponse'];
 export type SchemaListCatalogsResponse = components['schemas']['ListCatalogsResponse'];
 export type SchemaListCertificatesResponse = components['schemas']['ListCertificatesResponse'];
 export type SchemaListCertificationTargetsResponse = components['schemas']['ListCertificationTargetsResponse'];
@@ -997,7 +998,6 @@ export type SchemaListControlsResponse = components['schemas']['ListControlsResp
 export type SchemaListMetricConfigurationResponse = components['schemas']['ListMetricConfigurationResponse'];
 export type SchemaListMetricsResponse = components['schemas']['ListMetricsResponse'];
 export type SchemaListPublicCertificatesResponse = components['schemas']['ListPublicCertificatesResponse'];
-export type SchemaListTargetsOfEvaluationResponse = components['schemas']['ListTargetsOfEvaluationResponse'];
 export type SchemaMetric = components['schemas']['Metric'];
 export type SchemaMetricConfiguration = components['schemas']['MetricConfiguration'];
 export type SchemaMetricImplementation = components['schemas']['MetricImplementation'];
@@ -1281,16 +1281,16 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListTargetsOfEvaluation: {
+    Orchestrator_ListAuditScopes: {
         parameters: {
             query?: {
                 /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      check for != "" in the method to see if it is set when the certification target is
+                 *      specified, return all Audit Scopes that evaluate the given certification target
                  *      for any catalog */
                 certificationTargetId?: string;
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
+                /** @description when the catalog is specified, return all Audit Scopes that
+                 *      evaluate the given catalog for any certificationtarget */
                 catalogId?: string;
                 pageSize?: number;
                 pageToken?: string;
@@ -1309,7 +1309,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                    "application/json": components["schemas"]["ListAuditScopesResponse"];
                 };
             };
             /** @description Default error response */
@@ -1518,12 +1518,12 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListTargetsOfEvaluation: {
+    Orchestrator_ListAuditScopes: {
         parameters: {
             query?: {
                 /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      check for != "" in the method to see if it is set when the certification target is
+                 *      specified, return all Audit Scopes that evaluate the given certification target
                  *      for any catalog */
                 certificationTargetId?: string;
                 pageSize?: number;
@@ -1533,8 +1533,8 @@ export interface operations {
             };
             header?: never;
             path: {
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
+                /** @description when the catalog is specified, return all Audit Scopes that
+                 *      evaluate the given catalog for any certificationtarget */
                 catalogId: string;
             };
             cookie?: never;
@@ -1547,7 +1547,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                    "application/json": components["schemas"]["ListAuditScopesResponse"];
                 };
             };
             /** @description Default error response */
@@ -2022,11 +2022,11 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListTargetsOfEvaluation: {
+    Orchestrator_ListAuditScopes: {
         parameters: {
             query?: {
-                /** @description when the catalog is specified, return all Targets of Evaluation that
-                 *      evaluate the given catalog for any service */
+                /** @description when the catalog is specified, return all Audit Scopes that
+                 *      evaluate the given catalog for any certificationtarget */
                 catalogId?: string;
                 pageSize?: number;
                 pageToken?: string;
@@ -2036,8 +2036,8 @@ export interface operations {
             header?: never;
             path: {
                 /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the service is
-                 *      specified, return all Targets of Evaluation that evaluate the given service
+                 *      check for != "" in the method to see if it is set when the certification target is
+                 *      specified, return all Audit Scopes that evaluate the given certification target
                  *      for any catalog */
                 certificationTargetId: string;
             };
@@ -2051,7 +2051,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                    "application/json": components["schemas"]["ListAuditScopesResponse"];
                 };
             };
             /** @description Default error response */
@@ -2085,6 +2085,36 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["AuditScope"];
                 };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_RemoveAuditScope: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                certificationTargetId: string;
+                catalogId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Default error response */
             default: {
@@ -2219,36 +2249,6 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["CertificationTarget"];
                 };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_RemoveAuditScope: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                certificationTargetId: string;
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
             };
             /** @description Default error response */
             default: {

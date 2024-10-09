@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Tabs from "@/components/tabs";
-import client from "@/lib/api";
+import client from "@/lib/api/orchestrator";
 
 interface LayoutProps
   extends Readonly<{
@@ -16,7 +16,7 @@ export async function removeToe() {
 }
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { data: toe } = await client.GET(
+  const { data: target } = await client.GET(
     "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
@@ -38,37 +38,37 @@ export default async function Layout({ params, children }: LayoutProps) {
     },
   );
 
-  if (toe) {
+  if (target) {
     const tabs = [
       {
         name: "Activity",
-        href: "/certification-targets/" + toe.id + "/activity",
+        href: "/certification-targets/" + target.id + "/activity",
         icon: "user",
         current: false,
       },
       {
         name: "Discovered Resources",
-        href: "/certification-targets/" + toe.id + "/resources",
+        href: "/certification-targets/" + target.id + "/resources",
         icon: "squares2x2",
       },
       {
         name: "Resource Graph",
-        href: "/certification-targets/" + toe.id + "/graph",
+        href: "/certification-targets/" + target.id + "/graph",
         icon: "sun",
       },
       {
         name: "Assessment Results",
-        href: "/certification-targets/" + toe.id + "/assessments",
+        href: "/certification-targets/" + target.id + "/assessments",
         icon: "queue-list",
       },
       {
         name: "Compliance",
-        href: "/certification-targets/" + toe.id + "/compliance",
+        href: "/certification-targets/" + target.id + "/compliance",
         icon: "check-badge",
       },
       {
         name: "Settings",
-        href: "/certification-targets/" + toe.id + "/settings",
+        href: "/certification-targets/" + target.id + "/settings",
         icon: "cog6-tooth",
         disabled: true,
       },
@@ -76,8 +76,8 @@ export default async function Layout({ params, children }: LayoutProps) {
 
     return (
       <>
-        <Header name={toe?.name} remove={removeToe}>
-          {toe.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
+        <Header name={target?.name} remove={removeToe}>
+          {target.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
           discovered resources
         </Header>
 

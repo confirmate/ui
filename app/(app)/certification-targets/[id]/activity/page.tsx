@@ -2,7 +2,7 @@ import ActivityItem, { ActivityItemData } from "@/components/activity-item";
 import client, {
   SchemaAssessmentResult,
   SchemaCertificationTarget,
-} from "@/lib/api";
+} from "@/lib/api/orchestrator";
 import { shortResourceId } from "@/lib/util";
 
 interface PageProps {

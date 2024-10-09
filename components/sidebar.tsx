@@ -1,5 +1,5 @@
 import { SidebarItem } from "@/components/sidebar-item";
-import client from "@/lib/api";
+import client from "@/lib/api/orchestrator";
 import { classNames } from "@/lib/util";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";

@@ -1,17 +1,17 @@
 import BelowHeader from "@/components/below-header";
 import FormattedDate from "@/components/formatted-date";
 import Header from "@/components/header";
-import client from "@/lib/api";
+import client from "@/lib/api/orchestrator";
 import Link from "next/link";
 
 export default async function Page() {
-  const res = await client.GET("/v1/orchestrator/cloud_services");
-  const toes = res.data?.services ?? [];
+  const res = await client.GET("/v1/orchestrator/certification_targets");
+  const targets = res.data?.targets ?? [];
 
   return (
     <>
       <Header name="Certification Targets" buttons={false} icon={false}>
-        {toes.length} target(s) configured
+        {targets.length} target(s) configured
       </Header>
 
       <BelowHeader>
@@ -21,8 +21,8 @@ export default async function Page() {
       </BelowHeader>
 
       <ul className="divide-y divide-gray-100">
-        {toes.map((toe) => (
-          <li className="flex justify-between gap-x-6 py-5" key={toe.id}>
+        {targets.map((target) => (
+          <li className="flex justify-between gap-x-6 py-5" key={target.id}>
             <div className="flex gap-x-4">
               <img
                 className="h-12 w-12 flex-none rounded-full bg-gray-50"
@@ -30,20 +30,20 @@ export default async function Page() {
                 alt=""
               />
               <div className="min-w-0 flex-auto">
-                <Link href={`/certification-targets/${toe.id}/`}>
+                <Link href={`/certification-targets/${target.id}/`}>
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {toe.name}
+                    {target.name}
                   </p>
                 </Link>
                 <p className="mt-1 truncate text-sm leading-5 text-gray-500">
-                  {toe.description}
+                  {target.description}
                 </p>
               </div>
             </div>
             <div className="hidden sm:flex sm:flex-col sm:items-end">
               <p className="text-sm leading-6 text-gray-900" />
               <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last updated <FormattedDate value={toe.updatedAt} />
+                Last updated <FormattedDate value={target.updatedAt} />
               </p>
             </div>
           </li>

@@ -1,10 +1,8 @@
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
-import createClient, { Middleware } from "openapi-fetch";
-import type { paths } from "./orchestrator";
-export * from "./orchestrator.d";
+import { Middleware } from "openapi-fetch";
 
-const authMiddleware: Middleware = {
+export const authMiddleware: Middleware = {
   async onRequest({ request }) {
     // Build the cookie name
     const cookieName =
@@ -27,8 +25,3 @@ const authMiddleware: Middleware = {
     return request;
   },
 };
-
-const client = createClient<paths>({ baseUrl: "http://localhost:8080" });
-client.use(authMiddleware);
-
-export default client;
