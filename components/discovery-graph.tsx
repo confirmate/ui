@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/components/button";
 import { SchemaResource } from "@/lib/api/discovery";
+import { SchemaAssessmentResult, SchemaMetric } from "@/lib/api/orchestrator";
 import {
   BuildingLibraryIcon,
   CircleStackIcon,
@@ -44,6 +45,8 @@ interface DiscoveryGraphProps {
   edges: EdgeDefinition[];
   nodes: NodeDefinition[];
   resources: SchemaResource[];
+  results: SchemaAssessmentResult[];
+  metrics: Map<string, SchemaMetric>;
 }
 
 type Icon = ForwardRefExoticComponent<
@@ -55,14 +58,22 @@ type Icon = ForwardRefExoticComponent<
 
 Cytoscape.use(cola);
 
+interface Selection {
+  resource: SchemaResource;
+  results: SchemaAssessmentResult[];
+  metrics: Map<string, SchemaMetric>;
+}
+
 export default function DiscoveryGraph({
   edges,
   nodes,
   resources,
+  results,
+  metrics,
 }: DiscoveryGraphProps) {
   let [overlay, setOverlay] = useState(false);
   let [shouldCenter, setShouldCenter] = useState(false);
-  let [selected, setSelected] = useState<SchemaResource | undefined>(undefined);
+  let [selected, setSelected] = useState<Selection | undefined>(undefined);
 
   var elements: ElementDefinition[] = [];
   elements = elements.concat(edges, nodes);
@@ -120,7 +131,16 @@ export default function DiscoveryGraph({
                 if (target === cy) {
                   setSelected(undefined);
                 } else {
-                  setSelected(resources.find((r) => r.id == target.id()));
+                  const resource = resources.find((r) => r.id == target.id());
+                  if (resource) {
+                    setSelected({
+                      resource: resource,
+                      results: results.filter(
+                        (r) => r.resourceId == resource.id,
+                      ),
+                      metrics: metrics,
+                    });
+                  }
                 }
               });
             }}
@@ -129,7 +149,7 @@ export default function DiscoveryGraph({
       </div>
 
       <div className="absolute right-8 top-64 z-20 max-w-md">
-        {selected ? <NodeDetail resource={selected} /> : <></>}
+        {selected ? <NodeDetail {...selected} /> : <></>}
       </div>
     </>
   );

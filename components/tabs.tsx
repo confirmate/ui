@@ -21,7 +21,7 @@ export default function Tabs({ items }: TabsProps) {
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-clouditor focus:ring-clouditor"
+          className="block w-full rounded-md border-gray-300 focus:border-confirmate focus:ring-confirmate"
           value={currentItem?.href}
           onChange={(e) => router.push(e.target.value)}
         >

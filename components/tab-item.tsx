@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 export interface TabItemData {
   name: string;
-  icon: string;
+  icon?: string;
   href: string;
   disabled?: boolean;
 }
@@ -21,7 +21,7 @@ interface TabItemProps {
 export default function TabItem({ item, mobile }: TabItemProps) {
   const pathname = usePathname();
   const current = pathname.startsWith(item.href);
-  const Icon = icons.get(item.icon);
+  const Icon = icons.get(item.icon ?? "");
 
   if (mobile) {
     return (

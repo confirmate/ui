@@ -1,6 +1,9 @@
 import DiscoveryGraph from "@/components/discovery-graph";
 import discoveryClient from "@/lib/api/discovery";
-import orchestratorClient from "@/lib/api/orchestrator";
+import orchestratorClient, {
+  listMetrics,
+  SchemaMetric,
+} from "@/lib/api/orchestrator";
 import { EdgeDefinition, NodeDefinition } from "cytoscape";
 
 interface PageProps {
@@ -58,6 +61,12 @@ export default async function Page({ params }: PageProps) {
 
   const resources = resResources.data?.results ?? [];
 
+  const allMetrics = await listMetrics();
+  const metrics = new Map<string, SchemaMetric>();
+  allMetrics.forEach((m) => {
+    metrics.set(m.id ?? "", m);
+  });
+
   enum Status {
     WAITING,
     GOOD,
@@ -94,7 +103,13 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <DiscoveryGraph edges={edges} nodes={nodes} resources={resources} />
+      <DiscoveryGraph
+        edges={edges}
+        nodes={nodes}
+        resources={resources}
+        results={assessmentResults}
+        metrics={metrics}
+      />
     </>
   );
 }
