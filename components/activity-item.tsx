@@ -1,5 +1,6 @@
 import FormattedDate from "@/components/formatted-date";
 import { icons } from "@/components/icons";
+import Link from "next/link";
 
 export interface ActivityItemData {
   content: string;
@@ -39,9 +40,9 @@ export default function ActivityItem({ item, last }: ActivityItemProps) {
             <div>
               <p className="text-sm text-gray-500">
                 {item.content}{" "}
-                <a href={item.href} className="font-medium text-gray-900">
+                <Link href={item.href} className="font-medium text-gray-900">
                   {item.target}
-                </a>
+                </Link>
               </p>
             </div>
             <div className="whitespace-nowrap text-right text-sm text-gray-500">

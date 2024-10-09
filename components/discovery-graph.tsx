@@ -276,6 +276,5 @@ function svg(Icon: Icon, color: string): string {
   let icon = renderToString(
     <Icon width={24} height={24} style={{ color: color }} />,
   );
-  console.log(icon);
   return "data:image/svg+xml;utf8," + encodeURIComponent(icon);
 }

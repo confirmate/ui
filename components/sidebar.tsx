@@ -13,7 +13,7 @@ interface SidebarProps {
 
 export default async function Sidebar({ isMobile = false }: SidebarProps) {
   const { data } = await client.GET("/v1/orchestrator/certification_targets");
-  const targets = data?.services ?? [];
+  const targets = data?.targets ?? [];
 
   const navigation = [
     {
