@@ -8,9 +8,9 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { auditScope: auditScopes } = await client
+  const { auditScopes } = await client
     .GET(
-      "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes",
+      "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
       {
         params: {
           query: {
@@ -19,8 +19,7 @@ export default async function Page({ params }: PageProps) {
         },
       },
     )
-    .then((res) => res.data ?? { auditScope: [] });
-  auditScopes;
+    .then((res) => res.data ?? { auditScopes: [] });
 
   const { catalogs } = await client
     .GET("/v1/orchestrator/catalogs")

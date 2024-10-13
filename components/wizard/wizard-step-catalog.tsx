@@ -58,7 +58,7 @@ export default function WizardStepCatalog({
   return (
     <ul className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2">
       {catalogs?.map((catalog) => (
-        <li className="col-span-1 flex rounded-md shadow-sm">
+        <li className="col-span-1 flex rounded-md shadow-sm" key={catalog.id}>
           {(catalog.assuranceLevels?.length ??
           (0 > 0 && !selected.get(catalog.id))) ? (
             <AssuranceLevelPopover catalog={catalog}>

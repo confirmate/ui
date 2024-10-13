@@ -9,6 +9,7 @@ import { EdgeDefinition, NodeDefinition } from "cytoscape";
 interface PageProps {
   params: {
     id: string;
+    resourceId?: string[];
   };
 }
 
@@ -101,6 +102,14 @@ export default async function Page({ params }: PageProps) {
     } satisfies NodeDefinition;
   });
 
+  // Put together the ID for an initial selection, if specified
+  const id =
+    params?.resourceId !== undefined
+      ? params?.resourceId.length > 0
+        ? params?.resourceId.join("/")
+        : undefined
+      : undefined;
+  const initialSelect = resources.find((r) => r.id === id);
   return (
     <>
       <DiscoveryGraph
@@ -109,6 +118,7 @@ export default async function Page({ params }: PageProps) {
         resources={resources}
         results={assessmentResults}
         metrics={metrics}
+        initialSelect={initialSelect}
       />
     </>
   );

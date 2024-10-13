@@ -16,7 +16,7 @@ export default function NodeAssessmentResultDetail({
         <div>
           <div className="space-y-4">
             {results.map((result) => (
-              <div className="relative flex items-start">
+              <div className="relative flex items-start" key={result.id}>
                 <div className="absolute flex h-6 items-center">
                   <AssessmentIcon result={result} />
                 </div>

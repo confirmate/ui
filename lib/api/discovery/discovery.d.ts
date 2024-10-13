@@ -91,17 +91,17 @@ export interface components {
             [key: string]: unknown;
         };
         GraphEdge: {
-            id?: string;
-            source?: string;
-            target?: string;
-            type?: string;
+            id: string;
+            source: string;
+            target: string;
+            type: string;
         };
         ListGraphEdgesResponse: {
-            edges?: components["schemas"]["GraphEdge"][];
+            edges: components["schemas"]["GraphEdge"][];
             nextPageToken?: string;
         };
         ListResourcesResponse: {
-            results?: components["schemas"]["Resource"][];
+            results: components["schemas"]["Resource"][];
             nextPageToken?: string;
         };
         /** @description Resource is a wrapper around google.protobuf.Value that is needed for
@@ -110,18 +110,18 @@ export interface components {
             /** @description Id contains a unique ID for each resource. This is specific for the cloud
              *      provider this resource was gathered for and can for example be a resource
              *      URL. */
-            id?: string;
+            id: string;
             /** @description CertificationTargetId is the UUID for the certification target to which this resource
              *      belongs to. */
-            certificationTargetId?: string;
+            certificationTargetId: string;
             /** @description ResourceType contains a comma separated string of resource types according
              *      to our ontology. */
-            resourceType?: string;
+            resourceType: string;
             /** @description Reference to the tool which provided the resource */
-            toolId?: string;
+            toolId: string;
             /** @description Properties contains a protobuf message that describe the resource in the
              *      terms of our Clouditor ontology. */
-            properties?: components["schemas"]["GoogleProtobufAny"];
+            properties: components["schemas"]["GoogleProtobufAny"];
         };
         StartDiscoveryRequest: {
             resourceGroup?: string;
@@ -143,7 +143,7 @@ export interface components {
             details?: components["schemas"]["GoogleProtobufAny"][];
         };
         UpdateResourceRequest: {
-            resource?: components["schemas"]["Resource"];
+            resource: components["schemas"]["Resource"];
         };
     };
     responses: never;

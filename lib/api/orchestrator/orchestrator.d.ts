@@ -94,7 +94,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/auditScopes": {
+    "/v1/orchestrator/audit_scopes": {
         parameters: {
             query?: never;
             header?: never;
@@ -167,7 +167,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/catalogs/{catalogId}/auditScopes": {
+    "/v1/orchestrator/catalogs/{catalogId}/audit_scopes": {
         parameters: {
             query?: never;
             header?: never;
@@ -330,7 +330,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/auditScopes/{audit_scope.catalog_id}": {
+    "/v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/audit_scopes/{audit_scope.catalog_id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -365,7 +365,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes": {
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes": {
         parameters: {
             query?: never;
             header?: never;
@@ -382,7 +382,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes/{catalogId}": {
+    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -391,22 +391,6 @@ export interface paths {
         };
         /** @description Retrieves a Audit Scope */
         get: operations["Orchestrator_GetAuditScope"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
         put?: never;
         post?: never;
         /** @description Removes a Audit Scope */
@@ -802,7 +786,7 @@ export interface components {
             nextPageToken?: string;
         };
         ListAuditScopesResponse: {
-            auditScope?: components["schemas"]["AuditScope"][];
+            auditScopes?: components["schemas"]["AuditScope"][];
             nextPageToken?: string;
         };
         ListCatalogsResponse: {

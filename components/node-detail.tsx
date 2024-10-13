@@ -5,10 +5,10 @@ import { classNames, truncate } from "@/lib/util";
 import { useState } from "react";
 import NodePropertiesDetail from "./node-properties-detail";
 
-interface NodeDetailProps {
-  resource?: SchemaResource | undefined;
-  results: SchemaAssessmentResult[];
-  metrics: Map<string, SchemaMetric>;
+export interface NodeDetailProps {
+  resource?: SchemaResource;
+  results?: SchemaAssessmentResult[];
+  metrics?: Map<string, SchemaMetric>;
 }
 
 /**
@@ -34,7 +34,12 @@ export default function NodeDetail({
 }: NodeDetailProps) {
   const [tab, setTab] = useState("results");
 
-  if (resource == undefined || resource == null) {
+  if (
+    resource == undefined ||
+    resource == null ||
+    results == null ||
+    metrics == null
+  ) {
     return (
       <div className="flex flex-col">
         <div className="px-4 py-6 sm:px-6">

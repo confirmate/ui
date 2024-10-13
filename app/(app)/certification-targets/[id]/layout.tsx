@@ -11,8 +11,10 @@ interface LayoutProps
   };
 }
 
-export async function removeToe() {
+async function removeToe() {
   "use server";
+
+  return <></>;
 }
 
 export default async function Layout({ params, children }: LayoutProps) {

@@ -10,9 +10,9 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { auditScope: auditScopes } = await client
+  const { auditScopes } = await client
     .GET(
-      "/v1/orchestrator/certification_targets/{certificationTargetId}/auditScopes",
+      "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
       {
         params: {
           query: {
@@ -21,8 +21,7 @@ export default async function Page({ params }: PageProps) {
         },
       },
     )
-    .then((res) => res.data ?? { auditScope: [] });
-  auditScopes;
+    .then((res) => res.data ?? { auditScopes: [] });
 
   const { catalogs } = await client
     .GET("/v1/orchestrator/catalogs")
@@ -48,7 +47,9 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <ul className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-      {enabledCatalogs?.map((catalog) => <CatalogComplianceItem />)}
+      {enabledCatalogs?.map(({ catalog }) => (
+        <CatalogComplianceItem key={catalog.id} />
+      ))}
       {leftOverCatalogs.length > 0 ? (
         <li>
           <Link href="./compliance/new">

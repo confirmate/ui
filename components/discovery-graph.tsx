@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/button";
+import { NodeDetailProps } from "@/components/node-detail";
 import { SchemaResource } from "@/lib/api/discovery";
 import { SchemaAssessmentResult, SchemaMetric } from "@/lib/api/orchestrator";
 import {
@@ -30,10 +31,12 @@ import Cytoscape, {
   Stylesheet,
 } from "cytoscape";
 import cola from "cytoscape-cola";
+import { useRouter } from "next/navigation";
 import {
   ForwardRefExoticComponent,
   RefAttributes,
   SVGProps,
+  useEffect,
   useState,
 } from "react";
 import CytoscapeComponent from "react-cytoscapejs";
@@ -47,6 +50,7 @@ interface DiscoveryGraphProps {
   resources: SchemaResource[];
   results: SchemaAssessmentResult[];
   metrics: Map<string, SchemaMetric>;
+  initialSelect?: SchemaResource;
 }
 
 type Icon = ForwardRefExoticComponent<
@@ -58,27 +62,25 @@ type Icon = ForwardRefExoticComponent<
 
 Cytoscape.use(cola);
 
-interface Selection {
-  resource?: SchemaResource | undefined;
-  results: SchemaAssessmentResult[];
-  metrics: Map<string, SchemaMetric>;
-}
-
 export default function DiscoveryGraph({
   edges,
   nodes,
   resources,
   results,
   metrics,
+  initialSelect,
 }: DiscoveryGraphProps) {
   let [overlay, setOverlay] = useState(true);
   let [shouldCenter, setShouldCenter] = useState(false);
-  let [selected, setSelected] = useState<Selection | undefined>(undefined);
+  let [selected, setSelected] = useState<NodeDetailProps | undefined>(
+    undefined,
+  );
+  const router = useRouter();
 
   var elements: ElementDefinition[] = [];
   elements = elements.concat(edges, nodes);
 
-  const layout = {
+  const layout: cola.ColaLayoutOptions = {
     name: "cola",
     infinite: true,
     fit: false,
@@ -86,6 +88,18 @@ export default function DiscoveryGraph({
 
   // Store a reference to the cytoscape API, so that we can interact with it
   let myCy: Cytoscape.Core | undefined;
+
+  useEffect(() => {
+    if (initialSelect !== undefined) {
+      setSelected({
+        resource: initialSelect,
+        results: results.filter((r) => r.resourceId == initialSelect.id),
+        metrics: metrics,
+      });
+      var node = myCy?.nodes(`node[id="${initialSelect.id}"]`);
+      node?.select();
+    }
+  }, [initialSelect, results, metrics, myCy]);
 
   return (
     <>
@@ -156,6 +170,13 @@ export default function DiscoveryGraph({
                         ),
                         metrics: metrics,
                       });
+
+                      // Update the URL to point to the selected resource
+                      window.history.replaceState(
+                        null,
+                        "",
+                        `/certification-targets/${resource.certificationTargetId}/resources/${resource.id}`,
+                      );
                     }
                   }
                 });
@@ -200,7 +221,7 @@ function style(overlay: boolean): Stylesheet[] {
     ...nodeStyle("Compute", CpuChipIcon, overlay),
     ...nodeStyle("VirtualMachine", ComputerDesktopIcon, overlay),
     ...nodeStyle("Function", CommandLineIcon, overlay),
-    ...nodeStyle("Application", CodeBracketSquareIcon, overlay),
+    ...nodeStyle("Application", CommandLineIcon, overlay),
     ...nodeStyle("Library", BuildingLibraryIcon, overlay),
     ...nodeStyle("TranslationUnitDeclaration", CodeBracketIcon, overlay),
     ...nodeStyle("CodeRepository", FolderIcon, overlay),
@@ -209,6 +230,7 @@ function style(overlay: boolean): Stylesheet[] {
     ...nodeStyle("Secret", PuzzlePieceIcon, overlay),
     ...nodeStyle("Certificate", NewspaperIcon, overlay),
     ...nodeStyle("Object", DocumentIcon, overlay),
+    ...nodeStyle("CodeModule", CodeBracketSquareIcon, overlay),
     ...nodeStyle("NetworkSecurityGroup", ShieldCheckIcon, overlay),
   ]);
 
