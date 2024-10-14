@@ -24,7 +24,11 @@ export default function NodePropertiesDetail({
         <tbody>
           {humanProperties(resource).map(({ key, value }) => (
             <tr key={key} className="border-b border-gray-300">
-              <td className="px-4 py-2 text-sm">{truncate(key, 20)}</td>
+              <td className="px-4 py-2 text-sm">
+                {key.includes(".")
+                  ? key.split(".").slice(-2).join(".")
+                  : truncate(key, 20)}
+              </td>
               <td className="px-4 py-2 text-sm text-gray-900">{value}</td>
             </tr>
           ))}
