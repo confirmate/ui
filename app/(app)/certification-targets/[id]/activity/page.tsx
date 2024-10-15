@@ -76,7 +76,7 @@ function buildTimeline(
       href:
         "/certification-targets/" +
         target.id +
-        "/graph/?id=" +
+        "/resources/" +
         group[0].resourceId,
       date: formatDate(date),
       datetime: group[0].timestamp ?? "",
