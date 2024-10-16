@@ -13,8 +13,8 @@ export default function AssessmentNonComplianceDetails({ result }: AssessmentNon
         return <>{result.nonComplianceComments}</>
     } else {
         return <>
-            {result.nonComplianceDetails?.map((detail) =>
-                <div className="pb-2">
+            {result.nonComplianceDetails?.map((detail, idx) =>
+                <div className="pb-2" key={idx}>
                     <div className="font-medium text-gray-900">{detail.property}</div>
                     <div className="mt-1 text-gray-500">
                         <DisplayValue value={detail.value} />{" "}

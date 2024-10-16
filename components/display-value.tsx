@@ -9,7 +9,7 @@ export default function DisplayValue({ value }: DisplayValueProps) {
         })}]</>
     } else if (typeof (value) === "string") {
         return <>
-            "{value}"
+            {"\""}{value}{"\""}
         </>
     } else {
         return <>

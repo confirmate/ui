@@ -30,7 +30,7 @@
       ],
       "@/lib/*": [
         "./lib/*"
-      ]
+      ],
     },
     "target": "ES2017"
   },
@@ -40,7 +40,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "types": ["@types/cytoscape-cola"],
+  "types": [
+    "@types/cytoscape-cola"
+  ],
   "exclude": [
     "node_modules"
   ]

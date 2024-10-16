@@ -17,20 +17,20 @@ export const { handlers, auth } = NextAuth({
       id: "confirmate",
       name: "Confirmate",
       type: "oauth",
-      wellKnown: "http://localhost:8080/.well-known/openid-configuration",
+      wellKnown: process.env.AUTH_OPENID_CONFIGURATION,
       authorization: {
-        url: "http://localhost:8080/v1/auth/authorize",
+        url: process.env.AUTH_AUTHORIZE,
       },
       token: {
-        url: "http://localhost:8080/v1/auth/token",
+        url: process.env.AUTH_TOKEN,
       },
-      issuer: "http://localhost:8000/v1/auth",
+      issuer: process.env.AUTH_ISSUER,
       clientId: process.env.AUTH_CLIENT_ID,
       client: {
         token_endpoint_auth_method: "none",
       },
       userinfo: {
-        request: () => {},
+        request: () => { },
       },
       checks: ["pkce"],
     },
