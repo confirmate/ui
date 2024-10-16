@@ -51,12 +51,12 @@ export default function ColumnWithSort({ field, defaultField, children }: Column
     }, [searchParams])
 
     return (
-        <a onClick={() => sortField(field)} className="group inline-flex cursor-pointer">
+        <div onClick={() => sortField(field)} className="group inline-flex cursor-pointer">
             {children}
             <span className={classNames("ml-2 flex-none rounded", sortedBy === field ? "bg-gray-100 text-gray-900 group-hover:bg-gray-200" : "invisible text-gray-400 group-hover:visible group-focus:visible")}>
                 {order === "asc" ? <ChevronUpIcon aria-hidden="true" className={classNames("h-5 w-5", sortedBy === field ? "" : "invisible ml-2 h-5 w-5 flex-none rounded text-gray-400 group-hover:visible group-focus:visible")} /> :
                     <ChevronDownIcon aria-hidden="true" className={classNames("h-5 w-5", sortedBy === field ? "" : "invisible ml-2 h-5 w-5 flex-none rounded text-gray-400 group-hover:visible group-focus:visible")} />}
             </span>
-        </a>
+        </div>
     );
 }

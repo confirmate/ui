@@ -1,5 +1,6 @@
 import { icons } from "@/components/icons";
 import { classNames } from "@/lib/util";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export interface TabItemData {
@@ -43,7 +44,7 @@ export default function TabItem({ item, mobile }: TabItemProps) {
     );
   } else {
     return (
-      <a
+      <Link
         href={item.href}
         className={classNames(
           current
@@ -65,7 +66,7 @@ export default function TabItem({ item, mobile }: TabItemProps) {
           />
         )}
         <span>{item.name}</span>
-      </a>
+      </Link>
     );
   }
 }
