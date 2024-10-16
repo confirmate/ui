@@ -4,7 +4,7 @@ import { paths, SchemaMetric } from "./orchestrator.d";
 
 export * from "./orchestrator.d";
 
-const client = createClient<paths>({ baseUrl: process.env.CONFIRMATE_REST_API });
+const client = createClient<paths>({ baseUrl: process.env.CONFIRMATE_REST_API ?? "http://localhost:8080" });
 client.use(authMiddleware);
 
 export async function listMetrics(): Promise<SchemaMetric[]> {

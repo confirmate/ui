@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = localFont({
-  src: "../node_modules/inter-ui/variable/interVariable.woff2",
+  src: "../node_modules/inter-ui/variable/InterVariable.woff2",
   variable: "--sans",
 });
 
