@@ -627,6 +627,7 @@ export interface components {
             resourceTypes?: string[];
             /** @description Some comments on the reason for non-compliance */
             nonComplianceComments?: string;
+            nonComplianceDetails?: components["schemas"]["ComparisonResult"][];
             /** @description The certification target which this assessment result belongs to */
             certificationTargetId?: string;
             /** @description Reference to the tool which provided the assessment result */
@@ -724,6 +725,19 @@ export interface components {
             };
             /** @description an icon for the certification target used by the UI */
             icon?: string;
+        };
+        /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was succesful. */
+        ComparisonResult: {
+            /** @description Property is the property that was compared */
+            property?: string;
+            /** @description Value is the value in the property */
+            value?: string;
+            /** @description Operator is the operator used in the comparison */
+            operator?: string;
+            /** @description TargetValue is the target value used in the comparison */
+            targetValue?: components["schemas"]["GoogleProtobufValue"];
+            /** @description Success is true, if the comparison was sucessful */
+            success?: boolean;
         };
         /** @description Control represents a certain Control that needs to be fulfilled. It could be
          *      a Control in a certification catalog. It follows the OSCAL model. A
@@ -967,6 +981,7 @@ export type SchemaCategory = components['schemas']['Category'];
 export type SchemaCertificate = components['schemas']['Certificate'];
 export type SchemaCertificationTarget = components['schemas']['CertificationTarget'];
 export type SchemaCertificationTargetMetadata = components['schemas']['CertificationTarget_Metadata'];
+export type SchemaComparisonResult = components['schemas']['ComparisonResult'];
 export type SchemaControl = components['schemas']['Control'];
 export type SchemaDependency = components['schemas']['Dependency'];
 export type SchemaGetCertificationTargetStatisticsResponse = components['schemas']['GetCertificationTargetStatisticsResponse'];
