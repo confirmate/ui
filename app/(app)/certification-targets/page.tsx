@@ -1,7 +1,9 @@
 import BelowHeader from "@/components/below-header";
+import CertificationTargetCard from "@/components/certification-target-card";
 import FormattedDate from "@/components/formatted-date";
 import Header from "@/components/header";
 import client from "@/lib/api/orchestrator";
+import { LockOpenIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 export default async function Page() {
@@ -11,42 +13,23 @@ export default async function Page() {
   return (
     <>
       <Header name="Certification Targets" buttons={false} icon={false}>
-        {targets.length} target(s) configured
+        Currently {targets.length} target(s) configured
       </Header>
 
       <BelowHeader>
-        This page provides an overview of all certification targets within
-        Confirmate. Click on the name of a target to display more information
-        about it.
+        <div>
+          This page provides an overview of all certification targets within
+          Confirmate. A <i>certification target</i> is a single entity that comprises all necessary resources that are subject to a certification or an audit.
+        </div>
+        <div>
+          Click on the name of a target to display more information
+          about it.
+        </div>
       </BelowHeader>
 
-      <ul className="divide-y divide-gray-100">
+      <ul role="list" className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8 pt-4">
         {targets.map((target) => (
-          <li className="flex justify-between gap-x-6 py-5" key={target.id}>
-            <div className="flex gap-x-4">
-              <img
-                className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                src="https://images.unsplash.com/photo-1499346030926-9a72daac6c63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt=""
-              />
-              <div className="min-w-0 flex-auto">
-                <Link href={`/certification-targets/${target.id}/`}>
-                  <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {target.name}
-                  </p>
-                </Link>
-                <p className="mt-1 truncate text-sm leading-5 text-gray-500">
-                  {target.description}
-                </p>
-              </div>
-            </div>
-            <div className="hidden sm:flex sm:flex-col sm:items-end">
-              <p className="text-sm leading-6 text-gray-900" />
-              <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last updated <FormattedDate value={target.updatedAt} />
-              </p>
-            </div>
-          </li>
+          <CertificationTargetCard target={target} key={target.id} />
         ))}
       </ul>
     </>

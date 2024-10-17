@@ -7,6 +7,7 @@ interface PageProps {
     searchParams?: {
         sortedBy?: string
         order?: string
+        filterIds?: string[]
     };
 }
 
@@ -14,7 +15,7 @@ export default async function Page({
     searchParams,
 }: PageProps) {
     // We want to set a default sortedBy and order parameter if it does not exist        
-    const { results } = await client.GET("/v1/orchestrator/assessment_results",
+    let { results } = await client.GET("/v1/orchestrator/assessment_results",
         {
             params: {
                 query: {
@@ -23,6 +24,16 @@ export default async function Page({
             }
         }
     ).then((res) => res.data ?? { results: [] })
+
+    // TODO(oxisto): This should be done in the backend
+    // TODO(oxisto): ID should be required
+    results = results?.filter((result) => {
+        if (searchParams?.filterIds !== undefined && result.id !== undefined) {
+            return searchParams?.filterIds.includes(result.id)
+        } else {
+            return true;
+        }
+    })
 
     return (
         < div className="" >
@@ -33,6 +44,9 @@ export default async function Page({
                         The following table lists all assessment results that are present for the given certification target. An <i>assessment Result</i> represents the measurement of a particular <i>metric</i> on a <i>resource</i>.
                     </p>
                 </div>
+            </div>
+            <div className="">
+                Search and Filtering
             </div>
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

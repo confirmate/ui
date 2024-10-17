@@ -42,7 +42,7 @@ export default function Header({
               Enter a service name
             </h1>
           )}
-          <p className="text-sm font-medium text-gray-500">{children}</p>
+          <p className="text-sm font-medium text-gray-500 pt-1">{children}</p>
         </div>
       </div>
       <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">

@@ -64,7 +64,7 @@ export default function Page() {
 
         <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {modules.map((project) => (
-                <li key={project.initials} className="col-span-1 flex rounded-md shadow-sm">
+                <li key={project.initials} className="col-span-1 flex rounded-md">
                     <div
                         className={classNames(
                             project.bgColor,
@@ -78,7 +78,7 @@ export default function Page() {
                             <a href={project.href} className="font-medium text-gray-900 hover:text-gray-600">
                                 {project.name}
                             </a>
-                            <div className="text-gray-500">{project.detail}</div>
+                            <div className="text-gray-500 pt-2">{project.detail}</div>
                         </div>
                         <div className="flex-shrink-0 pr-2 pt-1">
                             <button

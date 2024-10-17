@@ -57,7 +57,7 @@ export default function NodeDetail({
     switch (tab) {
       case "results":
         return (
-          <NodeAssessmentResultsDetail results={results} metrics={metrics} />
+          <NodeAssessmentResultsDetail results={results} metrics={metrics} resource={resource} />
         );
       case "properties":
         return <NodePropertiesDetail resource={resource} />;

@@ -1,14 +1,18 @@
 import AssessmentIcon from "@/components/assessment-icon";
+import { SchemaResource } from "@/lib/api/discovery";
 import { SchemaAssessmentResult, SchemaMetric } from "@/lib/api/orchestrator";
+import Link from "next/link";
 
 interface NodeAssessmentResultsDetailProps {
   results: SchemaAssessmentResult[];
   metrics: Map<string, SchemaMetric>;
+  resource: SchemaResource;
 }
 
 export default function NodeAssessmentResultDetail({
   results,
   metrics,
+  resource
 }: NodeAssessmentResultsDetailProps) {
   return (
     <>
@@ -25,11 +29,11 @@ export default function NodeAssessmentResultDetail({
                     htmlFor="privacy-public"
                     className="font-medium text-gray-900"
                   >
-                    <a
-                      href={`/cloud/{selected.cloudServiceId}/assessments/?filterIds={result.id}`}
+                    <Link
+                      href={`/certification-targets/${resource.certificationTargetId}/assessments/?filterIds=${result.id}`}
                     >
                       {metrics.get(result.metricId ?? "")?.name}
-                    </a>
+                    </Link>
                   </label>
                   <p id="privacy-public-description" className="text-gray-500">
                     {metrics.get(result.metricId ?? "")?.description}
