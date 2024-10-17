@@ -51,7 +51,6 @@ export default function Header({
             <Button onClick={remove} className="bg-red-800 hover:bg-red-700">
               Delete
             </Button>
-            <Button>Save</Button>
           </>
         )}
       </div>

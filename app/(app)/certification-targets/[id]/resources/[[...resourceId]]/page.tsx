@@ -5,6 +5,7 @@ import orchestratorClient, {
   SchemaMetric,
 } from "@/lib/api/orchestrator";
 import { EdgeDefinition, NodeDefinition } from "cytoscape";
+import { useCallback } from "react";
 
 interface PageProps {
   params: {

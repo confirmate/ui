@@ -73,7 +73,7 @@ export default async function Layout({ params, children }: LayoutProps) {
 
     return (
       <>
-        <Header name={target?.name} remove={removeToe}>
+        <Header name={target?.name} remove={removeToe} icon={false}>
           {target.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
           discovered resources
         </Header>

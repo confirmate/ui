@@ -1,13 +1,15 @@
 import AssessmentIcon from "@/components/assessment-icon";
 import AssessmentNonComplianceDetails from "@/components/assessment-non-compliance-details";
-import ColumnWithSort from "@/components/table/column-with-sort"
-import client from "@/lib/api/orchestrator"
+import ColumnWithSort from "@/components/table/column-with-sort";
+import client, { listMetrics, SchemaMetric } from "@/lib/api/orchestrator";
 
 interface PageProps {
     searchParams?: {
         sortedBy?: string
         order?: string
-        filterIds?: string[]
+        filter?: {
+            id?: string[] | string,
+        }
     };
 }
 
@@ -15,11 +17,17 @@ export default async function Page({
     searchParams,
 }: PageProps) {
     // We want to set a default sortedBy and order parameter if it does not exist        
+    const sortedBy = searchParams?.sortedBy ?? "ID"
+    const order = searchParams?.order ?? "asc";
+    const filteredIDs = Array.isArray(searchParams?.filter?.id) ? searchParams?.filter.id :
+        searchParams?.filter?.id !== undefined ? [searchParams?.filter?.id] : undefined
+
     let { results } = await client.GET("/v1/orchestrator/assessment_results",
         {
             params: {
                 query: {
-                    orderBy: searchParams?.sortedBy,
+                    orderBy: sortedBy,
+                    asc: order == 'asc' ? true : false,
                 }
             }
         }
@@ -28,16 +36,22 @@ export default async function Page({
     // TODO(oxisto): This should be done in the backend
     // TODO(oxisto): ID should be required
     results = results?.filter((result) => {
-        if (searchParams?.filterIds !== undefined && result.id !== undefined) {
-            return searchParams?.filterIds.includes(result.id)
+        if (filteredIDs !== undefined && result.id !== undefined) {
+            return filteredIDs.includes(result.id)
         } else {
             return true;
         }
     })
 
+    const allMetrics = await listMetrics();
+    const metrics = new Map<string, SchemaMetric>();
+    allMetrics.forEach((m) => {
+        metrics.set(m.id ?? "", m);
+    });
+
     return (
-        < div className="" >
-            <div className="sm:flex sm:items-center">
+        <div>
+            <div className="sm:flex sm:items-start">
                 <div className="sm:flex-auto">
                     <h1 className="text-base font-semibold leading-6 text-gray-900">Assessment Results</h1>
                     <p className="mt-2 text-sm text-gray-700">
@@ -45,15 +59,16 @@ export default async function Page({
                     </p>
                 </div>
             </div>
-            <div className="">
-                Search and Filtering
-            </div>
+
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         <table className="min-w-full divide-y divide-gray-300">
                             <thead>
                                 <tr>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <ColumnWithSort field="compliant">Status</ColumnWithSort>
+                                    </th>
                                     <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         <ColumnWithSort field="id" defaultField={true}>ID</ColumnWithSort>
                                     </th>
@@ -62,9 +77,6 @@ export default async function Page({
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <ColumnWithSort field="timestamp">Timestamp</ColumnWithSort>
-                                    </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        <ColumnWithSort field="compliant">Compliant</ColumnWithSort>
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <ColumnWithSort field="non_compliance_comments">Non Compliance Details</ColumnWithSort>
@@ -77,23 +89,23 @@ export default async function Page({
                             <tbody className="divide-y divide-gray-200 bg-white">
                                 {results?.map((result) => (
                                     <tr key={result.id}>
-                                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                                            {result.id}
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                            <div className="font-medium text-gray-900">{result.metricId}</div>
-                                            <div className="mt-1 text-gray-500">Some metric text here</div>
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                            {result.timestamp}
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <AssessmentIcon result={result} />
                                         </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                            {result.id}
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <div className="font-medium text-gray-900">{result.metricId}</div>
+                                            <div className="mt-1 text-gray-500">{metrics.get(result.metricId ?? "")?.name}</div>
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            {result.timestamp}
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <AssessmentNonComplianceDetails result={result} />
                                         </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <div className="text-gray-900">{result.resourceId}</div>
                                             <div className="mt-1 text-gray-500">{(result.resourceTypes ?? [""])[0]}</div>
                                         </td>

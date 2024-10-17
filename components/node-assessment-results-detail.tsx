@@ -30,7 +30,7 @@ export default function NodeAssessmentResultDetail({
                     className="font-medium text-gray-900"
                   >
                     <Link
-                      href={`/certification-targets/${resource.certificationTargetId}/assessments/?filterIds=${result.id}`}
+                      href={`/certification-targets/${resource.certificationTargetId}/assessments/?filteredIDs=${result.id}`}
                     >
                       {metrics.get(result.metricId ?? "")?.name}
                     </Link>

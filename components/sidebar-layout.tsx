@@ -95,7 +95,7 @@ export default function SidebarLayout({
         </div>
 
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          {/*<div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               onClick={() => setSidebarOpen(true)}
@@ -105,7 +105,6 @@ export default function SidebarLayout({
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
             </button>
 
-            {/* Separator */}
             <div
               aria-hidden="true"
               className="h-6 w-px bg-gray-200 lg:hidden"
@@ -125,7 +124,7 @@ export default function SidebarLayout({
                   name="search"
                   type="search"
                   placeholder="Search..."
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm focus:outline-none"
                 />
               </form>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
@@ -137,13 +136,11 @@ export default function SidebarLayout({
                   <BellIcon aria-hidden="true" className="h-6 w-6" />
                 </button>
 
-                {/* Separator */}
                 <div
                   aria-hidden="true"
                   className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                 />
 
-                {/* Profile dropdown */}
                 <Menu as="div" className="relative">
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
@@ -183,13 +180,13 @@ export default function SidebarLayout({
                 </Menu>
               </div>
             </div>
-          </div>
+          </div>*/}
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+          <main className="py-4 px-4 sm:px-6 lg:px-8">
+            {children}
           </main>
         </div>
-      </div>
+      </div >
     </>
   );
 }
