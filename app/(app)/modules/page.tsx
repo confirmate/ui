@@ -74,7 +74,7 @@ export default function Page() {
                         {project.initials}
                     </div>
                     <div className="flex flex-1 items-start justify-between rounded-r-md border-b border-r border-t border-gray-200 bg-white">
-                        <div className="flex-1  px-4 py-2 text-sm">
+                        <div className="flex-1  px-4 py-4 text-sm">
                             <a href={project.href} className="font-medium text-gray-900 hover:text-gray-600">
                                 {project.name}
                             </a>

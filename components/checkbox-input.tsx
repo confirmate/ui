@@ -12,7 +12,7 @@ const CheckboxInput = ({ name, children, ...rest }: InputCheckboxProps) => {
         aria-describedby={name + "-description"}
         name={name}
         type="checkbox"
-        className="h-4 w-4 rounded border-gray-300 text-confirmate focus:ring-confirmate"
+        className="h-4 w-4 rounded border-gray-300 accent-confirmate focus:ring-confirmate"
         {...rest}
       />
       <label

@@ -102,7 +102,7 @@ export interface paths {
             cookie?: never;
         };
         /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes"];
+        get: operations["Orchestrator_ListAuditScopes_1"];
         put?: never;
         /** @description Creates a new Audit Scope */
         post: operations["Orchestrator_CreateAuditScope"];
@@ -175,7 +175,7 @@ export interface paths {
             cookie?: never;
         };
         /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes"];
+        get: operations["Orchestrator_ListAuditScopes_2"];
         put?: never;
         post?: never;
         delete?: never;
@@ -373,7 +373,7 @@ export interface paths {
             cookie?: never;
         };
         /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes"];
+        get: operations["Orchestrator_ListAuditScopes_3"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1280,7 +1280,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes: {
+    Orchestrator_ListAuditScopes_1: {
         parameters: {
             query?: {
                 /** @description We cannot create additional bindings when the parameter is optional so we
@@ -1517,7 +1517,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes: {
+    Orchestrator_ListAuditScopes_2: {
         parameters: {
             query?: {
                 /** @description We cannot create additional bindings when the parameter is optional so we
@@ -2021,7 +2021,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes: {
+    Orchestrator_ListAuditScopes_3: {
         parameters: {
             query?: {
                 /** @description when the catalog is specified, return all Audit Scopes that

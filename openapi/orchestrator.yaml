@@ -18,63 +18,63 @@ paths:
                   in: query
                   description: Optional. List only assessment results of a specific certification target.
                   schema:
-                    type: string
+                      type: string
                 - name: filter.compliant
                   in: query
                   description: Optional. List only compliant assessment results.
                   schema:
-                    type: boolean
+                      type: boolean
                 - name: filter.metricIds
                   in: query
                   description: Optional. List only assessment results of a specific metric id.
                   schema:
-                    type: array
-                    items:
-                        type: string
+                      type: array
+                      items:
+                          type: string
                 - name: filter.metricId
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: filter.toolId
                   in: query
                   description: Optional. List only assessment result from a specific assessment tool.
                   schema:
-                    type: string
+                      type: string
                 - name: latestByResourceId
                   in: query
                   description: Optional. Latest results grouped by resource_id and metric_id.
                   schema:
-                    type: boolean
+                      type: boolean
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListAssessmentResultsResponse'
+                                $ref: "#/components/schemas/ListAssessmentResultsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -84,7 +84,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AssessmentResult'
+                            $ref: "#/components/schemas/AssessmentResult"
                 required: true
             responses:
                 "200":
@@ -92,13 +92,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/StoreAssessmentResultResponse'
+                                $ref: "#/components/schemas/StoreAssessmentResultResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/assessment_results/{id}:
         get:
             tags:
@@ -110,20 +110,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AssessmentResult'
+                                $ref: "#/components/schemas/AssessmentResult"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/assessment_tools:
         get:
             tags:
@@ -136,33 +136,33 @@ paths:
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListAssessmentToolsResponse'
+                                $ref: "#/components/schemas/ListAssessmentToolsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -172,7 +172,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AssessmentTool'
+                            $ref: "#/components/schemas/AssessmentTool"
                 required: true
             responses:
                 "200":
@@ -180,13 +180,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AssessmentTool'
+                                $ref: "#/components/schemas/AssessmentTool"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/assessment_tools/{tool.id}:
         put:
             tags:
@@ -198,12 +198,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AssessmentTool'
+                            $ref: "#/components/schemas/AssessmentTool"
                 required: true
             responses:
                 "200":
@@ -211,13 +211,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AssessmentTool'
+                                $ref: "#/components/schemas/AssessmentTool"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/assessment_tools/{toolId}:
         get:
             tags:
@@ -229,20 +229,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AssessmentTool'
+                                $ref: "#/components/schemas/AssessmentTool"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         delete:
             tags:
                 - Orchestrator
@@ -255,7 +255,7 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
@@ -265,60 +265,60 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/audit_scopes:
         get:
             tags:
                 - Orchestrator
             description: Lists all Audit Scopes
-            operationId: Orchestrator_ListAuditScopes
+            operationId: Orchestrator_ListAuditScopes_1
             parameters:
                 - name: certificationTargetId
                   in: query
                   description: |-
-                    We cannot create additional bindings when the parameter is optional so we
-                     check for != "" in the method to see if it is set when the certification target is
-                     specified, return all Audit Scopes that evaluate the given certification target
-                     for any catalog
+                      We cannot create additional bindings when the parameter is optional so we
+                       check for != "" in the method to see if it is set when the certification target is
+                       specified, return all Audit Scopes that evaluate the given certification target
+                       for any catalog
                   schema:
-                    type: string
+                      type: string
                 - name: catalogId
                   in: query
                   description: |-
-                    when the catalog is specified, return all Audit Scopes that
-                     evaluate the given catalog for any certificationtarget
+                      when the catalog is specified, return all Audit Scopes that
+                       evaluate the given catalog for any certificationtarget
                   schema:
-                    type: string
+                      type: string
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListAuditScopesResponse'
+                                $ref: "#/components/schemas/ListAuditScopesResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -328,7 +328,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuditScope'
+                            $ref: "#/components/schemas/AuditScope"
                 required: true
             responses:
                 "200":
@@ -336,13 +336,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuditScope'
+                                $ref: "#/components/schemas/AuditScope"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs:
         get:
             tags:
@@ -355,33 +355,33 @@ paths:
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListCatalogsResponse'
+                                $ref: "#/components/schemas/ListCatalogsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -391,7 +391,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Catalog'
+                            $ref: "#/components/schemas/Catalog"
                 required: true
             responses:
                 "200":
@@ -399,13 +399,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Catalog'
+                                $ref: "#/components/schemas/Catalog"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs/{catalog.id}:
         put:
             tags:
@@ -417,12 +417,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Catalog'
+                            $ref: "#/components/schemas/Catalog"
                 required: true
             responses:
                 "200":
@@ -430,13 +430,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Catalog'
+                                $ref: "#/components/schemas/Catalog"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs/{catalogId}:
         get:
             tags:
@@ -450,20 +450,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Catalog'
+                                $ref: "#/components/schemas/Catalog"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         delete:
             tags:
                 - Orchestrator
@@ -474,7 +474,7 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
@@ -484,61 +484,61 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs/{catalogId}/audit_scopes:
         get:
             tags:
                 - Orchestrator
             description: Lists all Audit Scopes
-            operationId: Orchestrator_ListAuditScopes
+            operationId: Orchestrator_ListAuditScopes_2
             parameters:
                 - name: catalogId
                   in: path
                   description: |-
-                    when the catalog is specified, return all Audit Scopes that
-                     evaluate the given catalog for any certificationtarget
+                      when the catalog is specified, return all Audit Scopes that
+                       evaluate the given catalog for any certificationtarget
                   required: true
                   schema:
-                    type: string
+                      type: string
                 - name: certificationTargetId
                   in: query
                   description: |-
-                    We cannot create additional bindings when the parameter is optional so we
-                     check for != "" in the method to see if it is set when the certification target is
-                     specified, return all Audit Scopes that evaluate the given certification target
-                     for any catalog
+                      We cannot create additional bindings when the parameter is optional so we
+                       check for != "" in the method to see if it is set when the certification target is
+                       specified, return all Audit Scopes that evaluate the given certification target
+                       for any catalog
                   schema:
-                    type: string
+                      type: string
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListAuditScopesResponse'
+                                $ref: "#/components/schemas/ListAuditScopesResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs/{catalogId}/categories/{categoryName}/controls:
         get:
             tags:
@@ -554,88 +554,88 @@ paths:
                   description: return either all controls or only the controls of the specified category
                   required: true
                   schema:
-                    type: string
+                      type: string
                 - name: categoryName
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
                 - name: filter.assuranceLevels
                   in: query
                   description: Optional. Lists only controls with the specified assurance levels.
                   schema:
-                    type: array
-                    items:
-                        type: string
+                      type: array
+                      items:
+                          type: string
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListControlsResponse'
+                                $ref: "#/components/schemas/ListControlsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/catalogs/{catalogId}/categories/{categoryName}/controls/{controlId}:
-        get:
-            tags:
-                - Orchestrator
-            description: |-
-                Retrieves a control specified by the catalog ID, the control's category
-                 name and the control ID. If present, it also includes a list of
-                 sub-controls if present or a list of metrics if no sub-controls but metrics
-                 are present.
-            operationId: Orchestrator_GetControl
-            parameters:
-                - name: catalogId
-                  in: path
-                  required: true
-                  schema:
+                                $ref: "#/components/schemas/Status"
+    ? /v1/orchestrator/catalogs/{catalogId}/categories/{categoryName}/controls/{controlId}
+    : get:
+          tags:
+              - Orchestrator
+          description: |-
+              Retrieves a control specified by the catalog ID, the control's category
+               name and the control ID. If present, it also includes a list of
+               sub-controls if present or a list of metrics if no sub-controls but metrics
+               are present.
+          operationId: Orchestrator_GetControl
+          parameters:
+              - name: catalogId
+                in: path
+                required: true
+                schema:
                     type: string
-                - name: categoryName
-                  in: path
-                  required: true
-                  schema:
+              - name: categoryName
+                in: path
+                required: true
+                schema:
                     type: string
-                - name: controlId
-                  in: path
-                  required: true
-                  schema:
+              - name: controlId
+                in: path
+                required: true
+                schema:
                     type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Control'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Control"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
     /v1/orchestrator/catalogs/{catalogId}/category/{categoryName}:
         get:
             tags:
@@ -650,25 +650,25 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
                 - name: categoryName
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Category'
+                                $ref: "#/components/schemas/Category"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certificates:
         get:
             tags:
@@ -679,33 +679,33 @@ paths:
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListCertificatesResponse'
+                                $ref: "#/components/schemas/ListCertificatesResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -715,7 +715,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Certificate'
+                            $ref: "#/components/schemas/Certificate"
                 required: true
             responses:
                 "200":
@@ -723,13 +723,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Certificate'
+                                $ref: "#/components/schemas/Certificate"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certificates/{certificate.id}:
         put:
             tags:
@@ -741,12 +741,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Certificate'
+                            $ref: "#/components/schemas/Certificate"
                 required: true
             responses:
                 "200":
@@ -754,13 +754,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Certificate'
+                                $ref: "#/components/schemas/Certificate"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certificates/{certificateId}:
         get:
             tags:
@@ -772,20 +772,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Certificate'
+                                $ref: "#/components/schemas/Certificate"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         delete:
             tags:
                 - Orchestrator
@@ -796,7 +796,7 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
@@ -806,7 +806,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certification_targets:
         get:
             tags:
@@ -817,33 +817,33 @@ paths:
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListCertificationTargetsResponse'
+                                $ref: "#/components/schemas/ListCertificationTargetsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -853,7 +853,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CertificationTarget'
+                            $ref: "#/components/schemas/CertificationTarget"
                 required: true
             responses:
                 "200":
@@ -861,13 +861,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CertificationTarget'
+                                $ref: "#/components/schemas/CertificationTarget"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certification_targets/statistics:
         get:
             tags:
@@ -878,56 +878,56 @@ paths:
                 - name: certificationTargetId
                   in: query
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetCertificationTargetStatisticsResponse'
+                                $ref: "#/components/schemas/GetCertificationTargetStatisticsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/audit_scopes/{audit_scope.catalog_id}:
-        put:
-            tags:
-                - Orchestrator
-            description: Updates an existing Audit Scope
-            operationId: Orchestrator_UpdateAuditScope
-            parameters:
-                - name: audit_scope.certification_target_id
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: audit_scope.catalog_id
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/AuditScope'
+                                $ref: "#/components/schemas/Status"
+    ? /v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/audit_scopes/{audit_scope.catalog_id}
+    : put:
+          tags:
+              - Orchestrator
+          description: Updates an existing Audit Scope
+          operationId: Orchestrator_UpdateAuditScope
+          parameters:
+              - name: audit_scope.certification_target_id
+                in: path
                 required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/AuditScope'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                schema:
+                    type: string
+              - name: audit_scope.catalog_id
+                in: path
+                required: true
+                schema:
+                    type: string
+          requestBody:
+              content:
+                  application/json:
+                      schema:
+                          $ref: "#/components/schemas/AuditScope"
+              required: true
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/AuditScope"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
     /v1/orchestrator/certification_targets/{certificationTargetId}:
         get:
             tags:
@@ -939,20 +939,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CertificationTarget'
+                                $ref: "#/components/schemas/CertificationTarget"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         delete:
             tags:
                 - Orchestrator
@@ -963,7 +963,7 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
@@ -973,213 +973,213 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes:
         get:
             tags:
                 - Orchestrator
             description: Lists all Audit Scopes
-            operationId: Orchestrator_ListAuditScopes
+            operationId: Orchestrator_ListAuditScopes_3
             parameters:
                 - name: certificationTargetId
                   in: path
                   description: |-
-                    We cannot create additional bindings when the parameter is optional so we
-                     check for != "" in the method to see if it is set when the certification target is
-                     specified, return all Audit Scopes that evaluate the given certification target
-                     for any catalog
+                      We cannot create additional bindings when the parameter is optional so we
+                       check for != "" in the method to see if it is set when the certification target is
+                       specified, return all Audit Scopes that evaluate the given certification target
+                       for any catalog
                   required: true
                   schema:
-                    type: string
+                      type: string
                 - name: catalogId
                   in: query
                   description: |-
-                    when the catalog is specified, return all Audit Scopes that
-                     evaluate the given catalog for any certificationtarget
+                      when the catalog is specified, return all Audit Scopes that
+                       evaluate the given catalog for any certificationtarget
                   schema:
-                    type: string
+                      type: string
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListAuditScopesResponse'
+                                $ref: "#/components/schemas/ListAuditScopesResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}:
-        get:
-            tags:
-                - Orchestrator
-            description: Retrieves a Audit Scope
-            operationId: Orchestrator_GetAuditScope
-            parameters:
-                - name: certificationTargetId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: catalogId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/AuditScope'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        delete:
-            tags:
-                - Orchestrator
-            description: Removes a Audit Scope
-            operationId: Orchestrator_RemoveAuditScope
-            parameters:
-                - name: certificationTargetId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: catalogId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations:
-        get:
-            tags:
-                - Orchestrator
-            description: |-
-                Lists all metric configurations (target value and operator) for a
-                 specific certification target ID
-            operationId: Orchestrator_ListMetricConfigurations
-            parameters:
-                - name: certificationTargetId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ListMetricConfigurationResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations/{metricId}:
-        get:
-            tags:
-                - Orchestrator
-            description: |-
-                Retrieves a metric configuration (target value and operator) for a specific
-                 certification target and metric ID.
-            operationId: Orchestrator_GetMetricConfiguration
-            parameters:
-                - name: certificationTargetId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: metricId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MetricConfiguration'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        put:
-            tags:
-                - Orchestrator
-            description: |-
-                Updates a metric configuration (target value and operator) for a specific
-                 certification target and metric ID
-            operationId: Orchestrator_UpdateMetricConfiguration
-            parameters:
-                - name: certificationTargetId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: metricId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/MetricConfiguration'
+                                $ref: "#/components/schemas/Status"
+    ? /v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}
+    : get:
+          tags:
+              - Orchestrator
+          description: Retrieves a Audit Scope
+          operationId: Orchestrator_GetAuditScope
+          parameters:
+              - name: certificationTargetId
+                in: path
                 required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MetricConfiguration'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                schema:
+                    type: string
+              - name: catalogId
+                in: path
+                required: true
+                schema:
+                    type: string
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/AuditScope"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
+      delete:
+          tags:
+              - Orchestrator
+          description: Removes a Audit Scope
+          operationId: Orchestrator_RemoveAuditScope
+          parameters:
+              - name: certificationTargetId
+                in: path
+                required: true
+                schema:
+                    type: string
+              - name: catalogId
+                in: path
+                required: true
+                schema:
+                    type: string
+          responses:
+              "200":
+                  description: OK
+                  content: {}
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
+    ? /v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations
+    : get:
+          tags:
+              - Orchestrator
+          description: |-
+              Lists all metric configurations (target value and operator) for a
+               specific certification target ID
+          operationId: Orchestrator_ListMetricConfigurations
+          parameters:
+              - name: certificationTargetId
+                in: path
+                required: true
+                schema:
+                    type: string
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/ListMetricConfigurationResponse"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
+    ? /v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations/{metricId}
+    : get:
+          tags:
+              - Orchestrator
+          description: |-
+              Retrieves a metric configuration (target value and operator) for a specific
+               certification target and metric ID.
+          operationId: Orchestrator_GetMetricConfiguration
+          parameters:
+              - name: certificationTargetId
+                in: path
+                required: true
+                schema:
+                    type: string
+              - name: metricId
+                in: path
+                required: true
+                schema:
+                    type: string
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/MetricConfiguration"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
+      put:
+          tags:
+              - Orchestrator
+          description: |-
+              Updates a metric configuration (target value and operator) for a specific
+               certification target and metric ID
+          operationId: Orchestrator_UpdateMetricConfiguration
+          parameters:
+              - name: certificationTargetId
+                in: path
+                required: true
+                schema:
+                    type: string
+              - name: metricId
+                in: path
+                required: true
+                schema:
+                    type: string
+          requestBody:
+              content:
+                  application/json:
+                      schema:
+                          $ref: "#/components/schemas/MetricConfiguration"
+              required: true
+          responses:
+              "200":
+                  description: OK
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/MetricConfiguration"
+              default:
+                  description: Default error response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/Status"
     /v1/orchestrator/certification_targets/{certification_target.id}:
         put:
             tags:
@@ -1191,12 +1191,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CertificationTarget'
+                            $ref: "#/components/schemas/CertificationTarget"
                 required: true
             responses:
                 "200":
@@ -1204,13 +1204,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CertificationTarget'
+                                $ref: "#/components/schemas/CertificationTarget"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/controls:
         get:
             tags:
@@ -1225,48 +1225,48 @@ paths:
                   in: query
                   description: return either all controls or only the controls of the specified category
                   schema:
-                    type: string
+                      type: string
                 - name: categoryName
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: filter.assuranceLevels
                   in: query
                   description: Optional. Lists only controls with the specified assurance levels.
                   schema:
-                    type: array
-                    items:
-                        type: string
+                      type: array
+                      items:
+                          type: string
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListControlsResponse'
+                                $ref: "#/components/schemas/ListControlsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/metrics:
         get:
             tags:
@@ -1277,37 +1277,37 @@ paths:
                 - name: filter.includeDeprecated
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListMetricsResponse'
+                                $ref: "#/components/schemas/ListMetricsResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         post:
             tags:
                 - Orchestrator
@@ -1317,7 +1317,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Metric'
+                            $ref: "#/components/schemas/Metric"
                 required: true
             responses:
                 "200":
@@ -1325,13 +1325,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Metric'
+                                $ref: "#/components/schemas/Metric"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/metrics/{implementation.metric_id}/implementation:
         put:
             tags:
@@ -1343,12 +1343,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/MetricImplementation'
+                            $ref: "#/components/schemas/MetricImplementation"
                 required: true
             responses:
                 "200":
@@ -1356,13 +1356,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/MetricImplementation'
+                                $ref: "#/components/schemas/MetricImplementation"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/metrics/{metric.id}:
         put:
             tags:
@@ -1374,12 +1374,12 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Metric'
+                            $ref: "#/components/schemas/Metric"
                 required: true
             responses:
                 "200":
@@ -1387,13 +1387,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Metric'
+                                $ref: "#/components/schemas/Metric"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/metrics/{metricId}:
         get:
             tags:
@@ -1405,20 +1405,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Metric'
+                                $ref: "#/components/schemas/Metric"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
         delete:
             tags:
                 - Orchestrator
@@ -1429,7 +1429,7 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
@@ -1439,7 +1439,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/metrics/{metricId}/implementation:
         get:
             tags:
@@ -1451,20 +1451,20 @@ paths:
                   in: path
                   required: true
                   schema:
-                    type: string
+                      type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/MetricImplementation'
+                                $ref: "#/components/schemas/MetricImplementation"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/public/certificates:
         get:
             tags:
@@ -1475,33 +1475,33 @@ paths:
                 - name: pageSize
                   in: query
                   schema:
-                    type: integer
-                    format: int32
+                      type: integer
+                      format: int32
                 - name: pageToken
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: orderBy
                   in: query
                   schema:
-                    type: string
+                      type: string
                 - name: asc
                   in: query
                   schema:
-                    type: boolean
+                      type: boolean
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListPublicCertificatesResponse'
+                                $ref: "#/components/schemas/ListPublicCertificatesResponse"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
     /v1/orchestrator/runtime_info:
         get:
             tags:
@@ -1514,13 +1514,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Runtime'
+                                $ref: "#/components/schemas/Runtime"
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: "#/components/schemas/Status"
 components:
     schemas:
         AllowedValues:
@@ -1529,7 +1529,7 @@ components:
                 values:
                     type: array
                     items:
-                        $ref: '#/components/schemas/GoogleProtobufValue'
+                        $ref: "#/components/schemas/GoogleProtobufValue"
             description: Defines a range
         AssessmentResult:
             type: object
@@ -1546,11 +1546,11 @@ components:
                     description: Reference to the metric the assessment was based on
                 metricConfiguration:
                     allOf:
-                        - $ref: '#/components/schemas/MetricConfiguration'
+                        - $ref: "#/components/schemas/MetricConfiguration"
                     description: Data corresponding to the metric by the given metric id
                 compliant:
                     type: boolean
-                    description: 'Compliant case: true or false'
+                    description: "Compliant case: true or false"
                 evidenceId:
                     type: string
                     description: Reference to the assessed evidence
@@ -1568,7 +1568,7 @@ components:
                 nonComplianceDetails:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ComparisonResult'
+                        $ref: "#/components/schemas/ComparisonResult"
                 certificationTargetId:
                     type: string
                     description: The certification target which this assessment result belongs to
@@ -1633,7 +1633,7 @@ components:
                 categories:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Category'
+                        $ref: "#/components/schemas/Category"
                 allInScope:
                     type: boolean
                     description: |-
@@ -1652,7 +1652,7 @@ components:
                     description: Catalogs short name, e.g. EUCS
                 metadata:
                     allOf:
-                        - $ref: '#/components/schemas/Catalog_Metadata'
+                        - $ref: "#/components/schemas/Catalog_Metadata"
                     description: metadata of the catalog
         Catalog_Metadata:
             type: object
@@ -1677,7 +1677,7 @@ components:
                 controls:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Control'
+                        $ref: "#/components/schemas/Control"
         Certificate:
             required:
                 - id
@@ -1706,7 +1706,7 @@ components:
                 states:
                     type: array
                     items:
-                        $ref: '#/components/schemas/State'
+                        $ref: "#/components/schemas/State"
                     description: A list of states at specific times
             description: An ISO17021-based certificate
         CertificationTarget:
@@ -1727,11 +1727,11 @@ components:
                 catalogsInScope:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Catalog'
+                        $ref: "#/components/schemas/Catalog"
                 configuredMetrics:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Metric'
+                        $ref: "#/components/schemas/Metric"
                 createdAt:
                     type: string
                     description: creation time of the certification_target
@@ -1742,7 +1742,7 @@ components:
                     format: date-time
                 metadata:
                     allOf:
-                        - $ref: '#/components/schemas/CertificationTarget_Metadata'
+                        - $ref: "#/components/schemas/CertificationTarget_Metadata"
                     description: additional metadata of the certification target, mostly used for the UI
                 targetType:
                     enum:
@@ -1751,7 +1751,7 @@ components:
                         - TARGET_TYPE_PRODUCT
                         - TARGET_TYPE_ORGANIZATION
                     type: string
-                    description: 'type of the target to be evaluated: cloud, product or organization'
+                    description: "type of the target to be evaluated: cloud, product or organization"
                     format: enum
         CertificationTarget_Metadata:
             type: object
@@ -1778,7 +1778,7 @@ components:
                     description: Operator is the operator used in the comparison
                 targetValue:
                     allOf:
-                        - $ref: '#/components/schemas/GoogleProtobufValue'
+                        - $ref: "#/components/schemas/GoogleProtobufValue"
                     description: TargetValue is the target value used in the comparison
                 success:
                     type: boolean
@@ -1812,14 +1812,14 @@ components:
                 controls:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Control'
+                        $ref: "#/components/schemas/Control"
                     description: |-
                         List of sub - controls -
                              this is in accordance with the OSCAL model.
                 metrics:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Metric'
+                        $ref: "#/components/schemas/Metric"
                     description: |-
                         metrics contains either a list of reference to metrics - in this case only
                          the id field of the metric is populated - or a list of populated metric
@@ -1866,7 +1866,7 @@ components:
         GoogleProtobufAny:
             type: object
             properties:
-                '@type':
+                "@type":
                     type: string
                     description: The type of the serialized message.
             additionalProperties: true
@@ -1879,7 +1879,7 @@ components:
                 results:
                     type: array
                     items:
-                        $ref: '#/components/schemas/AssessmentResult'
+                        $ref: "#/components/schemas/AssessmentResult"
                 nextPageToken:
                     type: string
         ListAssessmentToolsResponse:
@@ -1888,7 +1888,7 @@ components:
                 tools:
                     type: array
                     items:
-                        $ref: '#/components/schemas/AssessmentTool'
+                        $ref: "#/components/schemas/AssessmentTool"
                 nextPageToken:
                     type: string
         ListAuditScopesResponse:
@@ -1897,7 +1897,7 @@ components:
                 auditScopes:
                     type: array
                     items:
-                        $ref: '#/components/schemas/AuditScope'
+                        $ref: "#/components/schemas/AuditScope"
                 nextPageToken:
                     type: string
         ListCatalogsResponse:
@@ -1906,7 +1906,7 @@ components:
                 catalogs:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Catalog'
+                        $ref: "#/components/schemas/Catalog"
                 nextPageToken:
                     type: string
         ListCertificatesResponse:
@@ -1915,7 +1915,7 @@ components:
                 certificates:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Certificate'
+                        $ref: "#/components/schemas/Certificate"
                 nextPageToken:
                     type: string
         ListCertificationTargetsResponse:
@@ -1927,7 +1927,7 @@ components:
                 targets:
                     type: array
                     items:
-                        $ref: '#/components/schemas/CertificationTarget'
+                        $ref: "#/components/schemas/CertificationTarget"
                 nextPageToken:
                     type: string
         ListControlsResponse:
@@ -1936,7 +1936,7 @@ components:
                 controls:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Control'
+                        $ref: "#/components/schemas/Control"
                 nextPageToken:
                     type: string
         ListMetricConfigurationResponse:
@@ -1945,7 +1945,7 @@ components:
                 configurations:
                     type: object
                     additionalProperties:
-                        $ref: '#/components/schemas/MetricConfiguration'
+                        $ref: "#/components/schemas/MetricConfiguration"
                     description: A map of metric configurations associated by their metric ID
         ListMetricsResponse:
             required:
@@ -1955,7 +1955,7 @@ components:
                 metrics:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Metric'
+                        $ref: "#/components/schemas/Metric"
                 nextPageToken:
                     type: string
         ListPublicCertificatesResponse:
@@ -1964,7 +1964,7 @@ components:
                 certificates:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Certificate'
+                        $ref: "#/components/schemas/Certificate"
                 nextPageToken:
                     type: string
         Metric:
@@ -1993,7 +1993,7 @@ components:
                     format: enum
                 range:
                     allOf:
-                        - $ref: '#/components/schemas/Range'
+                        - $ref: "#/components/schemas/Range"
                     description: The range of this metric. Depending on the scale.
                 interval:
                     pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
@@ -2003,7 +2003,7 @@ components:
                          metric.
                 implementation:
                     allOf:
-                        - $ref: '#/components/schemas/MetricImplementation'
+                        - $ref: "#/components/schemas/MetricImplementation"
                     description: |-
                         The implementation of this metric. This ensures that we are modelling an
                          association between a Metric and its MetricImplementation.
@@ -2022,7 +2022,7 @@ components:
                     description: The operator to compare the metric, such as == or >
                 targetValue:
                     allOf:
-                        - $ref: '#/components/schemas/GoogleProtobufValue'
+                        - $ref: "#/components/schemas/GoogleProtobufValue"
                     description: The target value
                 isDefault:
                     type: boolean
@@ -2075,7 +2075,7 @@ components:
                 values:
                     type: array
                     items:
-                        $ref: '#/components/schemas/GoogleProtobufValue'
+                        $ref: "#/components/schemas/GoogleProtobufValue"
             description: |-
                 Defines a range of values in a pre-defined order from the lowest to the
                  highest.
@@ -2084,15 +2084,15 @@ components:
             properties:
                 allowedValues:
                     allOf:
-                        - $ref: '#/components/schemas/AllowedValues'
+                        - $ref: "#/components/schemas/AllowedValues"
                     description: used for nominal scale
                 order:
                     allOf:
-                        - $ref: '#/components/schemas/Order'
+                        - $ref: "#/components/schemas/Order"
                     description: used for ordinal scale
                 minMax:
                     allOf:
-                        - $ref: '#/components/schemas/MinMax'
+                        - $ref: "#/components/schemas/MinMax"
                     description: used for metric scale
             description: A range resource representing the range of values
         Runtime:
@@ -2117,7 +2117,7 @@ components:
                 dependencies:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Dependency'
+                        $ref: "#/components/schemas/Dependency"
                     description: dependency is a list of used runtime dependencies
         State:
             type: object
@@ -2148,9 +2148,9 @@ components:
                 details:
                     type: array
                     items:
-                        $ref: '#/components/schemas/GoogleProtobufAny'
+                        $ref: "#/components/schemas/GoogleProtobufAny"
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
-            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+            description: "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
         StoreAssessmentResultResponse:
             type: object
             properties: {}

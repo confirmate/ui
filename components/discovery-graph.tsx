@@ -109,6 +109,20 @@ export default function DiscoveryGraph({
             This graph provides an overview over all discovered resources of the
             certification target, infrastructure as well as application
             source-code.
+            <div className="mt-2">
+              <CheckboxInput
+                name="overlay"
+                checked={overlay}
+                onChange={() => setOverlay(!overlay)}
+              >
+                <span className="text-gray-500">
+                  <span className="text-gray-900">
+                    Show overlay&nbsp;
+                  </span>
+                  of assessment results
+                </span>
+              </CheckboxInput>
+            </div>
           </div>
           <div className="flex gap-x-1.5">
             <Button onClick={() => myCy?.reset()}>
@@ -130,23 +144,8 @@ export default function DiscoveryGraph({
    "
         >
           <div id="graph-container" className="gap-4 md:col-span-2 md:grid-col">
-            <div className="ml-4 mt-4">
-              <CheckboxInput
-                name="overlay"
-                checked={overlay}
-                onChange={() => setOverlay(!overlay)}
-              >
-                <span className="text-gray-500">
-                  <span className="font-medium text-gray-900">
-                    Show overlay&nbsp;
-                  </span>
-                  of assessment results
-                </span>
-              </CheckboxInput>
-            </div>
-
             <CytoscapeComponent
-              className="graph h-[calc(100vh-25rem)] px-6 py-4 text-sm leading-6 w-full"
+              className="graph h-[calc(100vh-18rem)] px-6 py-4 text-sm leading-6 w-full"
               stylesheet={style(overlay)}
               elements={elements}
               layout={layout}
