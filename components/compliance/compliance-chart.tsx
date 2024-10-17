@@ -4,15 +4,20 @@ import { ComplianceStatus } from "@/lib/api/evaluation";
 import { SchemaAuditScope } from "@/lib/api/orchestrator";
 import { useEffect, useRef, useState } from "react";
 import CheckboxInput from "../checkbox-input";
-import { Chart, type ChartConfiguration, type ChartData } from 'chart.js/auto';
+import { Chart, InteractionItem, type ChartConfiguration, type ChartData } from 'chart.js/auto';
+import { useRouter } from "next/navigation";
+import PieChart from "./pie-chart";
 
 interface ComplianceChartProps {
     scope: SchemaAuditScope;
     compliance: Map<string, ComplianceStatus>;
 }
 
+type ComplianceChartData = { status: string[]; num: number }[]
+
 export default function ComplianceChart({ scope, compliance }: ComplianceChartProps) {
-    function buildData(merge: boolean): ChartData<'doughnut', { status: string[]; num: number }[]> {
+    const router = useRouter()
+    function buildData(merge: boolean): ChartData<'doughnut', ComplianceChartData> {
         if (merge) {
             return {
                 labels: ['Non Compliant', 'Compliant', 'Waiting for Data'],
@@ -20,12 +25,12 @@ export default function ComplianceChart({ scope, compliance }: ComplianceChartPr
                     {
                         label: scope.catalogId,
                         data: [
-                            filter([
+                            histogram([
                                 'EVALUATION_STATUS_NOT_COMPLIANT',
                                 'EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY'
                             ]),
-                            filter(['EVALUATION_STATUS_COMPLIANT', 'EVALUATION_STATUS_COMPLIANT_MANUALLY']),
-                            filter(['EVALUATION_STATUS_PENDING'])
+                            histogram(['EVALUATION_STATUS_COMPLIANT', 'EVALUATION_STATUS_COMPLIANT_MANUALLY']),
+                            histogram(['EVALUATION_STATUS_PENDING'])
                         ],
                         backgroundColor: ['#991b1b', '#166534', '#d4d4d4'],
                         hoverOffset: 4
@@ -45,11 +50,11 @@ export default function ComplianceChart({ scope, compliance }: ComplianceChartPr
                     {
                         label: scope.catalogId,
                         data: [
-                            filter(['EVALUATION_STATUS_NOT_COMPLIANT']),
-                            filter(['EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY']),
-                            filter(['EVALUATION_STATUS_COMPLIANT']),
-                            filter(['EVALUATION_STATUS_COMPLIANT_MANUALLY']),
-                            filter(['EVALUATION_STATUS_PENDING'])
+                            histogram(['EVALUATION_STATUS_NOT_COMPLIANT']),
+                            histogram(['EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY']),
+                            histogram(['EVALUATION_STATUS_COMPLIANT']),
+                            histogram(['EVALUATION_STATUS_COMPLIANT_MANUALLY']),
+                            histogram(['EVALUATION_STATUS_PENDING'])
                         ],
                         backgroundColor: ['#991b1b', 'rgb(185 28 28)', '#166534', 'rgb(21 128 61)', '#d4d4d4'],
                         hoverOffset: 4
@@ -59,21 +64,30 @@ export default function ComplianceChart({ scope, compliance }: ComplianceChartPr
         }
     }
 
-    function filter(status: string[]) {
+    function histogram(status: string[]) {
         return {
             status: status,
             num: Array.from(compliance.values()).filter((value) => status.includes(value)).length
         };
     }
 
+    function selectSegment(items: InteractionItem[], chart: Chart<'doughnut', ComplianceChartData>) {
+        if (items.length === 0) {
+            return;
+        } else {
+            const data = chart.data.datasets[0].data[items[0].index];
+            const params = new URLSearchParams();
+
+            for (const s of data.status) {
+                params.append('status', s);
+            }
+
+            router.push(`/certification-targets/${scope.certificationTargetId}/compliance/${scope.catalogId}?${params.toString()}`);
+        }
+    }
+
     const [isMerged, setMerged] = useState(false);
-    const [chartData, setChartData] = useState({
-    })
-
-    const canvasRef = useRef<HTMLCanvasElement>(null)
-    let chart: Chart<'doughnut', { status: string[]; num: number }[]>;
-
-    let config: ChartConfiguration<'doughnut', { status: string[]; num: number }[]> = {
+    const [config, setConfig] = useState<ChartConfiguration<'doughnut', ComplianceChartData>>({
         type: 'doughnut',
         data: buildData(isMerged),
         options: {
@@ -84,46 +98,40 @@ export default function ComplianceChart({ scope, compliance }: ComplianceChartPr
             plugins: {
                 tooltip: {
                     titleFont: {
-                        family: 'InterVariable'
+                        family: 'inter'
                     },
                     bodyFont: {
-                        family: 'InterVariable'
+                        family: 'inter'
                     },
                     footerFont: {
-                        family: 'InterVariable'
+                        family: 'inter'
                     }
                 },
                 legend: {
                     display: false,
                     labels: {
                         font: {
-                            family: 'InterVariable'
+                            family: 'inter'
                         }
                     }
                 }
             }
         }
-    };
-
-    useEffect(() => {
-        if (canvasRef.current !== null) {
-            chart = new Chart(canvasRef.current, config);
-        }
-    }, []);
+    });
 
     return <div className="py-3">
-        <div className="relative mb-2 flex items-start">
+        <div className="relative mb-2 flex flex-col items-start space-y-2">
             <div className="flex h-6 items-center">
                 <CheckboxInput name={`merge-{scope.catalogId}`} checked={isMerged}
                     onChange={() => setMerged(!isMerged)}>
-                    Merge manual results
+                    <span className="font-medium">Merge manual results{" "}</span>
                     <span className="text-gray-500">
                         <span className="sr-only">Merge manual results </span>
                         with automatic results.
                     </span>
                 </CheckboxInput>
             </div>
-            <canvas ref={canvasRef} id="chart" className="ml-auto mr-auto h-72 w-72" />
+            <PieChart config={config} onSelectSegment={selectSegment} className="ml-auto mr-auto h-72 w-72" />
         </div>
     </div>
 }

@@ -18,7 +18,7 @@ const CheckboxInput = ({ name, children, ...rest }: InputCheckboxProps) => {
       <label
         id={name + "-description"}
         htmlFor={name}
-        className="text-sm leading-6 ml-3 font-medium text-gray-900"
+        className="text-sm leading-6 ml-3 text-gray-900"
       >
         {children}
       </label>

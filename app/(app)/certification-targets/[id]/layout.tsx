@@ -43,15 +43,9 @@ export default async function Layout({ params, children }: LayoutProps) {
   if (target) {
     const tabs = [
       {
-        name: "Activity",
-        href: "/certification-targets/" + target.id + "/activity",
-        icon: "user",
-        current: false,
-      },
-      {
-        name: "Discovered Resources",
-        href: "/certification-targets/" + target.id + "/resources",
-        icon: "squares2x2",
+        name: "Compliance",
+        href: "/certification-targets/" + target.id + "/compliance",
+        icon: "check-badge",
       },
       {
         name: "Security Assessment",
@@ -59,9 +53,15 @@ export default async function Layout({ params, children }: LayoutProps) {
         icon: "queue-list",
       },
       {
-        name: "Compliance",
-        href: "/certification-targets/" + target.id + "/compliance",
-        icon: "check-badge",
+        name: "Discovered Resources",
+        href: "/certification-targets/" + target.id + "/resources",
+        icon: "squares2x2",
+      },
+      {
+        name: "Activity",
+        href: "/certification-targets/" + target.id + "/activity",
+        icon: "user",
+        current: false,
       },
       {
         name: "Settings",

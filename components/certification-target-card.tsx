@@ -1,12 +1,15 @@
 import client, { SchemaCertificationTarget } from "@/lib/api/orchestrator";
-import { classNames } from "@/lib/util";
-import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import BarChart from "@/components/compliance/bar-chart";
+import { ChartConfiguration, ChartData } from "chart.js";
 
 interface CertificationTargetCardProps {
     target: SchemaCertificationTarget
 }
+
+type ComplianceChartData = { status: string[]; num: number }[]
 
 export default async function CertificationTargetCard({ target }: CertificationTargetCardProps) {
     const { data: statistics } = await client.GET("/v1/orchestrator/certification_targets/statistics", {
@@ -17,10 +20,82 @@ export default async function CertificationTargetCard({ target }: CertificationT
         }
     })
 
+    const data: ChartData<'bar', number[]> = {
+        labels: ["TR-01831"],
+        datasets: [
+            {
+                label: 'Compliant',
+                data: [1],
+                backgroundColor: ['#991b1b'],
+            },
+            {
+                label: 'Non Compliant',
+                data: [2],
+                backgroundColor: ['#166534'],
+            },
+            {
+                label: 'Pending',
+                data: [14],
+                backgroundColor: ['#d4d4d4']
+            },
+        ]
+    }
+
+    const config: ChartConfiguration<'bar', number[]> = {
+        type: 'bar',
+        data: data,
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    titleFont: {
+                        family: 'inter'
+                    },
+                    bodyFont: {
+                        family: 'inter'
+                    },
+                    footerFont: {
+                        family: 'inter'
+                    },
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        font: {
+                            family: 'inter'
+                        }
+                    }
+                },
+                title: {
+                    display: false
+                },
+            },
+            scales: {
+                y: {
+                    display: true,
+                    stacked: true,
+                    ticks: {
+                        font: {
+                            family: "inter",
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            family: "inter",
+                        }
+                    }
+                }
+            }
+        },
+    }
+
     return <li key={target.id} className="overflow-hidden rounded-xl border border-gray-200">
         <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 px-6 py-4">
             <div className="flex flex-col space-y-1">
-                <div className="text-sm font-medium leading-6 text-gray-900"><Link href={`/certification-targets/${target.id}/activity`} >{target.name}</Link></div>
+                <div className="text-sm font-medium leading-6 text-gray-900"><Link href={`/certification-targets/${target.id}/compliance`} >{target.name}</Link></div>
                 <div className="text-sm leading-5 text-gray-400">{target.description}</div>
             </div>
             <Menu as="div" className="relative ml-auto">
@@ -57,6 +132,15 @@ export default async function CertificationTargetCard({ target }: CertificationT
                 <dd className="flex items-start gap-x-2">
                     <div className="font-medium text-gray-900">{statistics?.numberOfAssessmentResults}</div>
                 </dd>
+            </div>
+            <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Configured Catalogs</dt>
+                <dd className="flex items-start gap-x-2">
+                    <div className="font-medium text-gray-900">{statistics?.numberOfSelectedCatalogs}</div>
+                </dd>
+            </div>
+            <div className="flex justify-between gap-x-4 py-3">
+                <BarChart config={config} />
             </div>
         </dl>
     </li>

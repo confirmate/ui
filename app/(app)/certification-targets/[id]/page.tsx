@@ -7,5 +7,5 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  redirect(`/certification-targets/${params.id}/activity`);
+  redirect(`/certification-targets/${params.id}/compliance`);
 }

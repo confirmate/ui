@@ -116,7 +116,7 @@ export default function DiscoveryGraph({
                 onChange={() => setOverlay(!overlay)}
               >
                 <span className="text-gray-500">
-                  <span className="text-gray-900">
+                  <span className="text-gray-900 font-medium">
                     Show overlay&nbsp;
                   </span>
                   of assessment results
