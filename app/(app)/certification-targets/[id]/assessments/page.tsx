@@ -2,20 +2,6 @@ import AssessmentIcon from "@/components/assessment-icon";
 import AssessmentNonComplianceDetails from "@/components/assessment-non-compliance-details";
 import ColumnWithSort from "@/components/table/column-with-sort"
 import client from "@/lib/api/orchestrator"
-import { ChevronDownIcon } from "@heroicons/react/20/solid"
-
-const people = [
-    {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    // More people...
-]
 
 interface PageProps {
     searchParams?: {
@@ -27,7 +13,7 @@ interface PageProps {
 export default async function Page({
     searchParams,
 }: PageProps) {
-    // We want to set a default sortedBy and order parameter if it does not exist
+    // We want to set a default sortedBy and order parameter if it does not exist        
     const { results } = await client.GET("/v1/orchestrator/assessment_results",
         {
             params: {

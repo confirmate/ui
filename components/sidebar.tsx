@@ -42,13 +42,8 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
         },
       ],
     },
-    { name: "Metrics", href: "/metrics", icon: "adjustments-horizontal" },
-    {
-      name: "Catalog Data",
-      href: "/catalogs",
-      icon: "archive-box",
-      disabled: true,
-    },
+    { name: "Metrics", href: "/metrics", icon: "adjustments-horizontal", disabled: true },
+    { name: "Modules", href: "/modules", icon: "archive-box" },
     { name: "Reports", href: "/reports", icon: "chart-pie", disabled: true },
   ];
 

@@ -36,9 +36,9 @@ export default function Header({
         )}
         <div className="pt-1.5">
           {name != "" ? (
-            <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">{name}</h1>
           ) : (
-            <h1 className="text-2xl font-bold text-gray-400">
+            <h1 className="text-2xl font-semibold text-gray-400">
               Enter a service name
             </h1>
           )}

@@ -83,7 +83,7 @@ export default function DiscoveryGraph({
   const layout: cola.ColaLayoutOptions = {
     name: "cola",
     infinite: true,
-    fit: false,
+    fit: true,
   };
 
   // Store a reference to the cytoscape API, so that we can interact with it
