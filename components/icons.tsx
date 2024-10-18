@@ -6,6 +6,7 @@ import {
   CheckBadgeIcon,
   CloudIcon,
   Cog6ToothIcon,
+  DocumentTextIcon,
   HomeIcon,
   QueueListIcon,
   RectangleGroupIcon,
@@ -23,6 +24,7 @@ export type IconType = React.ForwardRefExoticComponent<
 
 export const icons = new Map<string, IconType>([
   ["home", HomeIcon],
+  ["document-text", DocumentTextIcon],
   ["rectangle-group", RectangleGroupIcon],
   ["adjustments-horizontal", AdjustmentsHorizontalIcon],
   ["archive-box", ArchiveBoxIcon],

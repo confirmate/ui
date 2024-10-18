@@ -1,6 +1,8 @@
 import Header from "@/components/header";
+import { icons } from "@/components/icons";
 import Tabs from "@/components/tabs";
 import client from "@/lib/api/orchestrator";
+import { hrtime } from "process";
 
 interface LayoutProps
   extends Readonly<{
@@ -52,6 +54,14 @@ export default async function Layout({ params, children }: LayoutProps) {
         href: "/certification-targets/" + target.id + "/assessments",
         icon: "queue-list",
       },
+      ...(process.env.PLUGIN_CSAF_ENABLE ?
+        [{
+          name: "Security Advisories",
+          href: "/certification-targets/" + target.id + "/advisories",
+          icon: "document-text",
+          current: false,
+        }] : []
+      ),
       {
         name: "Discovered Resources",
         href: "/certification-targets/" + target.id + "/resources",
