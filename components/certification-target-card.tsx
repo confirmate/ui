@@ -4,14 +4,46 @@ import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import BarChart from "@/components/compliance/bar-chart";
 import { ChartConfiguration, ChartData } from "chart.js";
+import { buildCompliance, ComplianceStatus } from "@/lib/api/evaluation";
 
 interface CertificationTargetCardProps {
     target: SchemaCertificationTarget
 }
 
-type ComplianceChartData = { status: string[]; num: number }[]
-
 export default async function CertificationTargetCard({ target }: CertificationTargetCardProps) {
+    const compliance = await buildCompliance(target.id);
+
+    function buildData(compliance: Map<string, Map<string, ComplianceStatus>>): ChartData<'bar', number[]> {
+        return {
+            labels: [...Array.from(compliance.keys())],
+            datasets: [
+                {
+                    label: "Compliant",
+                    data: Array.from(compliance.values()).map((entry) => percentage(entry, [
+                        'EVALUATION_STATUS_COMPLIANT',
+                        'EVALUATION_STATUS_COMPLIANT_MANUALLY'
+                    ])),
+                    backgroundColor: ['#166534'],
+                },
+                {
+                    label: "Not Compliant",
+                    data: Array.from(compliance.values()).map((entry) => percentage(entry, [
+                        'EVALUATION_STATUS_NOT_COMPLIANT',
+                        'EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY'
+                    ])),
+                    backgroundColor: '#991b1b',
+                },
+                {
+                    label: "Pending",
+                    data: Array.from(compliance.values()).map((entry) => percentage(entry, [
+                        'EVALUATION_STATUS_PENDING'
+                    ])),
+                    backgroundColor: ['#d4d4d4'],
+                }
+            ]
+        };
+    }
+
     const { data: statistics } = await client.GET("/v1/orchestrator/certification_targets/statistics", {
         params: {
             query: {
@@ -20,35 +52,16 @@ export default async function CertificationTargetCard({ target }: CertificationT
         }
     })
 
-    const data: ChartData<'bar', number[]> = {
-        labels: ["TR-01831"],
-        datasets: [
-            {
-                label: 'Compliant',
-                data: [1],
-                backgroundColor: ['#991b1b'],
-            },
-            {
-                label: 'Non Compliant',
-                data: [2],
-                backgroundColor: ['#166534'],
-            },
-            {
-                label: 'Pending',
-                data: [14],
-                backgroundColor: ['#d4d4d4']
-            },
-        ]
-    }
-
     const config: ChartConfiguration<'bar', number[]> = {
         type: 'bar',
-        data: data,
+        data: buildData(compliance),
         options: {
+            maintainAspectRatio: false,
             indexAxis: 'y',
             responsive: true,
             plugins: {
                 tooltip: {
+                    position: "average",
                     titleFont: {
                         family: 'inter'
                     },
@@ -82,7 +95,13 @@ export default async function CertificationTargetCard({ target }: CertificationT
                     }
                 },
                 x: {
+                    stacked: true,
+                    min: 0,
+                    max: 1,
                     ticks: {
+                        format: {
+                            style: 'percent'
+                        },
                         font: {
                             family: "inter",
                         }
@@ -144,4 +163,8 @@ export default async function CertificationTargetCard({ target }: CertificationT
             </div>
         </dl>
     </li>
+}
+
+function percentage(entry: Map<string, ComplianceStatus>, statuses: string[]): number {
+    return Array.from(entry.values()).filter((value) => statuses.includes(value)).length / entry.size
 }
