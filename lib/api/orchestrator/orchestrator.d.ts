@@ -626,8 +626,8 @@ export interface components {
             /** @description Resource types */
             resourceTypes?: string[];
             /** @description Some comments on the reason for non-compliance */
-            nonComplianceComments?: string;
-            nonComplianceDetails?: components["schemas"]["ComparisonResult"][];
+            complianceComment?: string;
+            complianceDetails?: components["schemas"]["ComparisonResult"][];
             /** @description The certification target which this assessment result belongs to */
             certificationTargetId?: string;
             /** @description Reference to the tool which provided the assessment result */

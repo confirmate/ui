@@ -50,7 +50,7 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
   return (
     <div
       className={classNames(
-        isMobile ? "" : "border-r border-gray-200",
+        isMobile ? "" : "shadow-sm border-r border-gray-200",
         "flex grow flex-col gap-y-5 overflow-y-auto bg-slate-50 px-6 pb-4",
       )}
     >

@@ -11,9 +11,9 @@ interface CatalogComplianceItemProps {
 }
 
 export default function CatalogComplianceItem({ catalog, scope, compliance }: CatalogComplianceItemProps) {
-  return <li className="overflow-hidden rounded-xl border border-gray-200">
+  return <li className="overflow-hidden rounded-xl shadow-sm border border-gray-200">
     <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-      <a href={'/cloud/' + scope.certificationTargetId + '/compliance/' + catalog.id}>
+      <a href={`/certification-targets/${scope.certificationTargetId}/compliance/${catalog.id}`}>
         <div className="text-sm font-medium leading-6 text-gray-900">{catalog.name}</div>
         <div className="text-sm text-gray-500">{catalog.description}</div>
       </a>

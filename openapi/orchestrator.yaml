@@ -1562,10 +1562,10 @@ components:
                     items:
                         type: string
                     description: Resource types
-                nonComplianceComments:
+                complianceComment:
                     type: string
                     description: Some comments on the reason for non-compliance
-                nonComplianceDetails:
+                complianceDetails:
                     type: array
                     items:
                         $ref: "#/components/schemas/ComparisonResult"

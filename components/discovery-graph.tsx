@@ -103,7 +103,7 @@ export default function DiscoveryGraph({
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl border border-gray-200">
+      <div className="overflow-hidden rounded-xl shadow border border-gray-200">
         <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-4">
           <div className="text-sm text-gray-500">
             This graph provides an overview over all discovered resources of the

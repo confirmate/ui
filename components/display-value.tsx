@@ -5,7 +5,7 @@ interface DisplayValueProps {
 export default function DisplayValue({ value }: DisplayValueProps) {
     if (Array.isArray(value)) {
         return <>[{value.map((item, index) => {
-            return <><DisplayValue value={item} />{!!index && ", "}</>
+            return <span key={index}><DisplayValue value={item} />{!!index && ", "}</span>
         })}]</>
     } else if (typeof (value) === "string") {
         return <>

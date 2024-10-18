@@ -34,7 +34,5 @@ export async function createAuditScope(certificationTargetId: string, catalogId:
     return;
   }
 
-  console.log("test");
-
   revalidatePath(`/certification-targets/${certificationTargetId}/compliance`);
 }

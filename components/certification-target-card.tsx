@@ -111,7 +111,7 @@ export default async function CertificationTargetCard({ target }: CertificationT
         },
     }
 
-    return <li key={target.id} className="overflow-hidden rounded-xl border border-gray-200">
+    return <li key={target.id} className="overflow-hidden shadow-sm rounded-xl border border-gray-200">
         <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 px-6 py-4">
             <div className="flex flex-col space-y-1">
                 <div className="text-sm font-medium leading-6 text-gray-900"><Link href={`/certification-targets/${target.id}/compliance`} >{target.name}</Link></div>
@@ -158,9 +158,11 @@ export default async function CertificationTargetCard({ target }: CertificationT
                     <div className="font-medium text-gray-900">{statistics?.numberOfSelectedCatalogs}</div>
                 </dd>
             </div>
-            <div className="flex justify-between gap-x-4 py-3">
-                <BarChart config={config} />
-            </div>
+            {parseInt(statistics?.numberOfSelectedCatalogs ?? "") > 0 &&
+                <div className="flex justify-between gap-x-4 py-3">
+                    <BarChart config={config} />
+                </div>
+            }
         </dl>
     </li>
 }
