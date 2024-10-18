@@ -4,13 +4,13 @@ import evaluationClient from "@/lib/api/evaluation";
 import client from "@/lib/api/orchestrator";
 import { revalidatePath } from "next/cache";
 
-export async function addTR(certificationTargetId: string) {
+export async function addTR(certificationTargetId: string, catalogId: string) {
   // Create the audit scope
   const { data: scope } = await client.POST("/v1/orchestrator/audit_scopes",
     {
       body: {
         certificationTargetId,
-        catalogId: "TR-03183",
+        catalogId: catalogId,
       }
     }
   )
