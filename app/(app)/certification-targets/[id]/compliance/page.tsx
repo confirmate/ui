@@ -58,9 +58,7 @@ export default async function Page({ params }: PageProps) {
         />
       ))}
       {leftOverCatalogs.length > 0 ? (
-        <li>
-          <EnableCatalogButton certificationTargetId={params.id} />
-        </li>
+        <EnableCatalogButton certificationTargetId={params.id} leftOverCatalogs={leftOverCatalogs} />
       ) : (
         <></>
       )}
