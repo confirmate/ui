@@ -5,20 +5,26 @@ import DisplayValue from "@/components/display-value";
 import DisplayOperator from "./display-operator";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { truncate } from "@/lib/util";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface AssessmentNonComplianceDetailsProps {
     result: SchemaAssessmentResult;
 };
 
 export default function AssessmentNonComplianceDetails({ result }: AssessmentNonComplianceDetailsProps) {
-    // Check, if we have a (good) textual comment in result.nonComplianceComment
-    // If yes - return it as a text, truncated to 400 chars and with expand button
-    if (result.nonComplianceComments !== undefined && result.nonComplianceComments !== "No comments so far") {
-        const fullComment = result.nonComplianceComments;
-        const truncatedComment = truncate(fullComment, 150)
-        const [isExpanded, setIsExpanded] = useState(fullComment === truncatedComment);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [truncatedComment, setTruncatedComment] = useState("");
+    const fullComment = result.nonComplianceComments;
 
+    useEffect(() => {
+        if (fullComment !== undefined) {
+            setTruncatedComment(truncate(fullComment, 150))
+        }
+        setIsExpanded(fullComment === truncatedComment);
+    }, [fullComment])
+
+    // Check, if we have a (good) textual comment in result.nonComplianceComment
+    if (result.nonComplianceComments !== undefined && result.nonComplianceComments !== "No comments so far") {
         return (
             <div className="text-wrap">
                 {isExpanded && fullComment !== truncatedComment ? (
@@ -30,7 +36,6 @@ export default function AssessmentNonComplianceDetails({ result }: AssessmentNon
                     >
                         <ChevronRightIcon className="w-4 h-4" />
                     </button></p>
-
                 </>}
             </div>
         );

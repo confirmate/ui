@@ -13,7 +13,7 @@ export default async function Page({ params }: PageProps) {
       "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
       {
         params: {
-          query: {
+          path: {
             certificationTargetId: params.id,
           },
         },
