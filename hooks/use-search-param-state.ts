@@ -39,7 +39,7 @@ export function useSearchParamState<T>(param: string, defaultValue: T): [T, Disp
         }
 
         replace(`${pathname}?${params.toString()}`);
-    }, [searchParams, param, value]);
+    }, [value]);
 
     return [value, setValue];
 }
