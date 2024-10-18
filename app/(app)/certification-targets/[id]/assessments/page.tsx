@@ -17,8 +17,8 @@ export default async function Page({
     searchParams,
 }: PageProps) {
     // We want to set a default sortedBy and order parameter if it does not exist        
-    const sortedBy = searchParams?.sortedBy ?? "ID"
-    const order = searchParams?.order ?? "asc";
+    const sortedBy = searchParams?.sortedBy ?? "timestamp"
+    const order = searchParams?.order ?? "desc";
     const filteredIDs = Array.isArray(searchParams?.filter?.id) ? searchParams?.filter.id :
         searchParams?.filter?.id !== undefined ? [searchParams?.filter?.id] : undefined
 
@@ -69,14 +69,11 @@ export default async function Page({
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <ColumnWithSort field="compliant">Status</ColumnWithSort>
                                     </th>
-                                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        <ColumnWithSort field="id" defaultField={true}>ID</ColumnWithSort>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <ColumnWithSort field="timestamp" defaultField={true}>Timestamp</ColumnWithSort>
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <ColumnWithSort field="metric_id">Metric</ColumnWithSort>
-                                    </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        <ColumnWithSort field="timestamp">Timestamp</ColumnWithSort>
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <ColumnWithSort field="non_compliance_comments">Non Compliance Details</ColumnWithSort>
@@ -92,15 +89,12 @@ export default async function Page({
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <AssessmentIcon result={result} />
                                         </td>
-                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
-                                            {result.id}
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            {result.timestamp}
                                         </td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <div className="font-medium text-gray-900">{result.metricId}</div>
                                             <div className="mt-1 text-gray-500">{metrics.get(result.metricId ?? "")?.name}</div>
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {result.timestamp}
                                         </td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             <AssessmentNonComplianceDetails result={result} />
