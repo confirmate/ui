@@ -3,6 +3,7 @@ import { ComplianceStatus } from "@/lib/api/evaluation";
 import { SchemaAuditScope, SchemaCatalog } from "@/lib/api/orchestrator";
 import Button from "@/components/button";
 import { PauseIcon, TrashIcon } from "@heroicons/react/20/solid";
+import {RemoveAuditScopeButton} from "@/components/compliance/remove-audit-scope-button";
 
 interface CatalogComplianceItemProps {
   catalog: SchemaCatalog;
@@ -21,9 +22,7 @@ export default function CatalogComplianceItem({ catalog, scope, compliance }: Ca
         {/*<Button>
           <PauseIcon className="h-4 w-4" />
         </Button>*/}
-        <Button className="bg-red-800 hover:bg-red-700">
-          <TrashIcon className="h-4 w-4" />
-        </Button>
+        <RemoveAuditScopeButton scope={scope} />
       </div>
     </div>
 
