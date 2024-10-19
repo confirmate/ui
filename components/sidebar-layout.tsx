@@ -182,7 +182,7 @@ export default function SidebarLayout({
             </div>
           </div>*/}
 
-          <main className="py-4 px-4 sm:px-6 lg:px-8">
+          <main>
             {children}
           </main>
         </div>

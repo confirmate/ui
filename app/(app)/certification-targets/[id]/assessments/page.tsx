@@ -5,6 +5,8 @@ import ShowOnlyLatestSlider from "@/components/table/show-only-latest-slider";
 import { SortDefaults, Table, TableBody, TableHeader } from "@/components/table";
 import client, { listMetrics, SchemaMetric } from "@/lib/api/orchestrator";
 import Link from "next/link";
+import { GenerationRequestResponse, listAdvisoryRequests } from "@/lib/api/csaf-generator";
+import AdvisoryHelper from "@/components/csaf/advisory-helper";
 
 interface PageProps {
     searchParams?: {
@@ -19,6 +21,8 @@ const defaults: SortDefaults = {
     sortedBy: "timestamp",
     direction: "desc"
 }
+
+const csafEnabled = process.env.PLUGIN_CSAF_ENABLE;
 
 export default async function Page({
     searchParams,
@@ -57,6 +61,11 @@ export default async function Page({
     allMetrics.forEach((m) => {
         metrics.set(m.id ?? "", m);
     });
+
+    let advisories: GenerationRequestResponse[] = [];
+    if (csafEnabled) {
+        advisories = await listAdvisoryRequests();
+    }
 
     return (
         <div>
@@ -105,7 +114,10 @@ export default async function Page({
 
                             </td>
                             <td className="text-wrap px-3 py-4 text-sm text-gray-500 max-w-xl align-top">
-                                <AssessmentNonComplianceDetails result={result} showAdvisory={process.env.PLUGIN_CSAF_ENABLE} />
+                                <div className="space-y-2">
+                                    <AssessmentNonComplianceDetails result={result} />
+                                    {csafEnabled && !result.compliant && <AdvisoryHelper requests={advisories} result={result} />}
+                                </div>
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 align-top">
                                 <div className="text-gray-900">

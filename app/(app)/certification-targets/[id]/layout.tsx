@@ -83,14 +83,17 @@ export default async function Layout({ params, children }: LayoutProps) {
 
     return (
       <>
-        <Header name={target?.name} remove={removeToe} icon={false}>
-          {target.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
-          discovered resources
-        </Header>
+        <div className="sticky top-0 bg-white z-[999] border-b border-gray-200 shadow-sm">
+          <div className="pt-4 px-4 sm:px-6 lg:px-8">
+            <Header name={target?.name} remove={removeToe} icon={false}>
+              {target.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
+              discovered resources
+            </Header>
 
-        <Tabs items={tabs} />
-
-        <div className="pt-8">{children}</div>
+            <Tabs items={tabs} />
+          </div>
+        </div >
+        <div className="pt-4 px-4 py-4 sm:px-6 lg:px-8">{children}</div>
       </>
     );
   } else {

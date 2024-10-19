@@ -54,15 +54,18 @@ const modules = [
 
 export default function Page() {
     return <>
-        <Header name="Modules" buttons={false} icon={false}>
-            {modules.filter((module) => module.enabled).length} modules configured and active.
-        </Header>
+        <div className="border-b border-gray-200 shadow-sm">
+            <div className="py-4 px-4 sm:px-6 lg:px-8">
+                <Header name="Modules" buttons={false} icon={false}>
+                    {modules.filter((module) => module.enabled).length} modules configured and active.
+                </Header>
 
-        <BelowHeader>
-            This page provides an overview of all modules that are currently active in this instance of Confirmate.
-        </BelowHeader>
-
-        <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3">
+                <BelowHeader>
+                    This page provides an overview of all modules that are currently active in this instance of Confirmate.
+                </BelowHeader>
+            </div>
+        </div>
+        <ul role="list" className="pt-4 px-4 py-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {modules.map((project) => (
                 <li key={project.initials} className="col-span-1 flex rounded-md">
                     <div

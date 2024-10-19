@@ -11,10 +11,9 @@ import { createSecurityAdvisory } from "@/actions/create-security-advisory";
 
 interface AssessmentNonComplianceDetailsProps {
     result: SchemaAssessmentResult;
-    showAdvisory: boolean
 };
 
-export default function AssessmentNonComplianceDetails({ result, showAdvisory }: AssessmentNonComplianceDetailsProps) {
+export default function AssessmentNonComplianceDetails({ result }: AssessmentNonComplianceDetailsProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [truncatedComment, setTruncatedComment] = useState("");
 
@@ -25,7 +24,7 @@ export default function AssessmentNonComplianceDetails({ result, showAdvisory }:
         setIsExpanded(result.complianceComment === truncatedComment);
     }, [result])
 
-    return <div className="space-y-2">
+    return <>
         {isExpanded ?
             <p>{result.complianceComment}</p>
             :
@@ -47,8 +46,5 @@ export default function AssessmentNonComplianceDetails({ result, showAdvisory }:
                 </div>
             </div>
         )}
-
-        {showAdvisory && result.compliant == false &&
-            <Button onClick={() => createSecurityAdvisory(result)}>Create Security Advisory</Button>}
-    </div>
+    </>
 }

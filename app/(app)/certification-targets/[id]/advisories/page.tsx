@@ -1,6 +1,7 @@
 import FormattedDate from "@/components/formatted-date";
 import { SortDefaults, Table, TableBody, TableHeader } from "@/components/table"
 import TableRefresher from "@/components/table/table-refresher";
+import { GenerationRequestResponse, listAdvisoryRequests } from "@/lib/api/csaf-generator";
 import { listMetrics, SchemaMetric } from "@/lib/api/orchestrator";
 import Link from "next/link";
 
@@ -20,7 +21,7 @@ export default async function Page({ params }: PageProps) {
         return <>CSAF plugin not enabled</>
     }
 
-    const responses = await fetch(`${process.env.PLUGIN_CSAF_API_BASE}/v1/csaf-generator/requests`).then((res) => res.json() as Promise<GenerationResponse[]>)
+    const responses = await listAdvisoryRequests();
 
     const allMetrics = await listMetrics();
     const metrics = new Map<string, SchemaMetric>();
@@ -48,8 +49,10 @@ export default async function Page({ params }: PageProps) {
                 <TableRefresher ms={5000} />
                 {responses.map((response, idx) => {
                     return <tr key={idx}>
-                        <td className="text-wrap px-4 py-4 text-sm text-gray-500 max-w-xl align-top">
-                            {response.title}
+                        <td className="text-wrap px-4 py-4 text-sm text-gray-900 max-w-xl align-top">
+                            <Link href={`/certification-targets/${params.id}/advisories/${response.id}`}>
+                                {response.title}
+                            </Link>
                         </td>
                         <td className="text-wrap py-4 text-sm text-gray-500 max-w-xl align-top">
                             <div className="space-y-2">
@@ -63,7 +66,7 @@ export default async function Page({ params }: PageProps) {
                             </div>
                         </td>
                         <td className="text-wrap py-4 text-sm text-gray-500 max-w-xl align-top">
-                            {response.status == "done" ? <FormattedDate value={response.csaf.document.tracking.initial_release_date} format="short-date-time" /> : "Pending"}
+                            {response.createdAt ? <FormattedDate value={response.createdAt} format="short-date-time" /> : "Pending"}
                         </td>
                     </tr>
                 })}

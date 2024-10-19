@@ -1,19 +1,23 @@
-interface GenerationRequest {
+import { SchemaComparisonResult } from "../orchestrator"
+
+export interface GenerationRequest {
     metricId: string
     assessmentId: string
     compliant: boolean
     productId: string
     productName: string
     productVersion: string
-    functionality: {
+    /*functionality: {
         cryptographicHash: {
             algorithm: string
             withSalt: false
         }
-    }
+    }*/
+    complianceComment?: string
+    complianceDetails?: SchemaComparisonResult[]
 }
 
-interface GenerationResponse {
+export interface GenerationRequestResponse {
     id: string
     metricId: string
     assessmentId: string
@@ -24,4 +28,14 @@ interface GenerationResponse {
     title: string
     createdAt?: string
     csaf?: any
+}
+
+export function listAdvisoryRequests() {
+    return fetch(`${process.env.PLUGIN_CSAF_API_BASE}/v1/csaf-generator/requests`)
+        .then((res) => res.json() as Promise<GenerationRequestResponse[]>)
+}
+
+export function getAdvisoryRequest(requestId: string) {
+    return fetch(`${process.env.PLUGIN_CSAF_API_BASE}/v1/csaf-generator/requests/${requestId}`)
+        .then((res) => res.json() as Promise<GenerationRequestResponse>)
 }

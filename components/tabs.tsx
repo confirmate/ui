@@ -31,13 +31,11 @@ export default function Tabs({ items }: TabsProps) {
         </select>
       </div>
       <div className="hidden sm:block">
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-            {items.map((item) => (
-              <TabItem item={item} key={item.name} />
-            ))}
-          </nav>
-        </div>
+        <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+          {items.map((item) => (
+            <TabItem item={item} key={item.name} />
+          ))}
+        </nav>
       </div>
     </div>
   );
