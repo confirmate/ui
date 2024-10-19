@@ -54,7 +54,7 @@ export default async function Layout({ params, children }: LayoutProps) {
         href: "/certification-targets/" + target.id + "/assessments",
         icon: "queue-list",
       },
-      ...(process.env.PLUGIN_CSAF_ENABLE ?
+      ...(process.env.PLUGIN_CSAF_ENABLE == "true" ?
         [{
           name: "Security Advisories",
           href: "/certification-targets/" + target.id + "/advisories",

@@ -22,7 +22,7 @@ namespace NodeJS {
         /**
          * Whether to enable the CSAF UI plugin.
          */
-        PLUGIN_CSAF_ENABLE: boolean;
+        PLUGIN_CSAF_ENABLE: "true" | "false";
 
         /**
          * Path to the CSAF generator API.

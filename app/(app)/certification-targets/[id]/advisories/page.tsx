@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-    if (!process.env.PLUGIN_CSAF_ENABLE) {
+    if (process.env.PLUGIN_CSAF_ENABLE !== "true") {
         return <>CSAF plugin not enabled</>
     }
 

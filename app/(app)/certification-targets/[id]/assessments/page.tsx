@@ -22,7 +22,7 @@ const defaults: SortDefaults = {
     direction: "desc"
 }
 
-const csafEnabled = process.env.PLUGIN_CSAF_ENABLE;
+const csafEnabled = process.env.PLUGIN_CSAF_ENABLE === "true";
 
 export default async function Page({
     searchParams,
