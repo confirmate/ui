@@ -105,7 +105,7 @@ export default async function Page({
 
                             </td>
                             <td className="text-wrap px-3 py-4 text-sm text-gray-500 max-w-xl align-top">
-                                <AssessmentNonComplianceDetails result={result} />
+                                <AssessmentNonComplianceDetails result={result} showAdvisory={process.env.PLUGIN_CSAF_ENABLE} />
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 align-top">
                                 <div className="text-gray-900">

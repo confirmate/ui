@@ -6,12 +6,15 @@ import DisplayOperator from "./display-operator";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { truncate } from "@/lib/util";
 import { useEffect, useState } from "react";
+import Button from "./button";
+import { createSecurityAdvisory } from "@/actions/create-security-advisory";
 
 interface AssessmentNonComplianceDetailsProps {
     result: SchemaAssessmentResult;
+    showAdvisory: boolean
 };
 
-export default function AssessmentNonComplianceDetails({ result }: AssessmentNonComplianceDetailsProps) {
+export default function AssessmentNonComplianceDetails({ result, showAdvisory }: AssessmentNonComplianceDetailsProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [truncatedComment, setTruncatedComment] = useState("");
 
@@ -22,7 +25,7 @@ export default function AssessmentNonComplianceDetails({ result }: AssessmentNon
         setIsExpanded(result.complianceComment === truncatedComment);
     }, [result])
 
-    return <>
+    return <div className="space-y-2">
         {isExpanded ?
             <p>{result.complianceComment}</p>
             :
@@ -35,7 +38,7 @@ export default function AssessmentNonComplianceDetails({ result }: AssessmentNon
             </p>
         }
         {result.complianceDetails?.map((detail, idx) =>
-            <div className="pt-2" key={idx}>
+            <div key={idx}>
                 <div className="font-medium text-gray-900">{detail.property}</div>
                 <div className="mt-1 text-gray-500">
                     <DisplayValue value={detail.value} />{" "}
@@ -44,5 +47,8 @@ export default function AssessmentNonComplianceDetails({ result }: AssessmentNon
                 </div>
             </div>
         )}
-    </>
+
+        {showAdvisory && result.compliant == false &&
+            <Button onClick={() => createSecurityAdvisory(result)}>Create Security Advisory</Button>}
+    </div>
 }
