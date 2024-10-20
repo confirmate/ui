@@ -97,6 +97,9 @@ export default async function Page({ params, searchParams }: PageProps) {
         path: {
           catalogId: params.catalogId,
         },
+        query: {
+          pageSize: 1500,
+        },
       },
     })
     .then((res) => {
@@ -124,6 +127,10 @@ export default async function Page({ params, searchParams }: PageProps) {
               item={item}
               controls={controls}
               key={item.result.controlId}
+              scope={{
+                catalogId: params.catalogId,
+                certificationTargetId: params.id,
+              }}
             />
           ))}
         </dl>

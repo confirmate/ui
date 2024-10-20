@@ -50,7 +50,7 @@ export default function SidebarLayout({
         <Dialog
           open={sidebarOpen}
           onClose={setSidebarOpen}
-          className="relative z-50 lg:hidden"
+          className="relative lg:hidden"
         >
           <DialogBackdrop
             transition
@@ -82,7 +82,7 @@ export default function SidebarLayout({
           </div>
         </Dialog>
 
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
           {desktopSidebar}
         </div>
 

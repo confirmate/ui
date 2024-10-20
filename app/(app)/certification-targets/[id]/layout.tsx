@@ -98,7 +98,7 @@ export default async function Layout({ params, children }: LayoutProps) {
 
     return (
       <>
-        <div className="sticky top-0 bg-white z-[999] border-b border-gray-200 shadow-sm">
+        <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm">
           <div className="pt-4 px-4 sm:px-6 lg:px-8">
             <Header name={target?.name} icon={false}>
               {target.description}.{" "}

@@ -8,9 +8,13 @@ import Link from "next/link";
 
 interface EvaluationIconProps {
   result: SchemaEvaluationResult;
+  onPendingClick: () => void;
 }
 
-export default function EvaluationIcon({ result }: EvaluationIconProps) {
+export default function EvaluationIcon({
+  result,
+  onPendingClick,
+}: EvaluationIconProps) {
   switch (result.status) {
     case "EVALUATION_STATUS_COMPLIANT":
     case "EVALUATION_STATUS_COMPLIANT_MANUALLY":
@@ -31,7 +35,12 @@ export default function EvaluationIcon({ result }: EvaluationIconProps) {
         </Link>
       );
     case "EVALUATION_STATUS_PENDING":
-      return <EllipsisHorizontalCircleIcon className="h-5 w-5 text-gray-500" />;
+      return (
+        <EllipsisHorizontalCircleIcon
+          className="h-5 w-5 text-gray-500"
+          onClick={onPendingClick}
+        />
+      );
     default:
       return <></>;
   }

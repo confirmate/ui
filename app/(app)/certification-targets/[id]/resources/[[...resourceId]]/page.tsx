@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
 
   const allMetrics = await listMetrics();
   const metrics = new Map<string, SchemaMetric>();
-  allMetrics.forEach((m) => {
+  allMetrics?.forEach((m) => {
     metrics.set(m.id ?? "", m);
   });
 

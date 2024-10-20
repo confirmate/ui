@@ -14,9 +14,7 @@ export function RemoveAuditScopeButton({ scope }: RemoveAuditScopeButtonProps) {
     <Button
       className="bg-red-800 hover:bg-red-700"
       onClick={() => {
-        let really = confirm(
-          "Do you really want to remove this target of evaluation?",
-        );
+        let really = confirm("Do you really want to remove this audit scope?");
 
         if (!really) {
           return;

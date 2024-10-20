@@ -11,41 +11,33 @@ const client = createClient<paths>({
 client.use(authMiddleware);
 
 export async function listMetrics(): Promise<SchemaMetric[]> {
-  let res = await client.GET("/v1/orchestrator/metrics", {
-    ...staticDataCache,
-    params: {
-      query: {
-        pageSize: 1500,
-      },
-    },
-  });
+  const metrics: SchemaMetric[] = [];
+  let nextPageToken: string | null = null;
 
-  if (res.data && res.data.nextPageToken) {
-    const metrics = [...(res.data.metrics || [])];
-
-    while (res.data.nextPageToken) {
-      const nextRes = await client.GET("/v1/orchestrator/metrics", {
-        params: {
-          query: {
-            pageSize: 1500,
-            pageToken: res.data.nextPageToken,
-          },
+  do {
+    const paginationInit = {
+      params: {
+        query: {
+          pageSize: 1500,
+          ...(nextPageToken && { pageToken: nextPageToken }),
         },
-      });
+      },
+    };
 
-      if (nextRes.data && nextRes.data.nextPageToken) {
-        metrics.push(...(nextRes.data.metrics || []));
-      } else {
-        break;
-      }
+    const res: any = await client.GET("/v1/orchestrator/metrics", {
+      ...staticDataCache,
+      paginationInit,
+    });
+
+    if (!res.data) {
+      throw new Error("No data found in response");
     }
 
-    return metrics;
-  } else if (res.data) {
-    return res.data.metrics as SchemaMetric[];
-  } else {
-    throw new Error("No data found in response");
-  }
+    metrics.push(...(res.data.metrics || []));
+    nextPageToken = res.data.nextPageToken || null;
+  } while (nextPageToken);
+
+  return metrics;
 }
 
 export default client;
