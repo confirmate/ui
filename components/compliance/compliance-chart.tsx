@@ -10,7 +10,6 @@ import {
 } from "chart.js/auto";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import CheckboxInput from "../checkbox-input";
 import PieChart from "./pie-chart";
 
 interface ComplianceChartProps {
@@ -151,7 +150,7 @@ export default function ComplianceChart({
     <div className="py-3">
       <div className="relative mb-2 flex flex-col items-start space-y-2">
         <div className="flex h-6 items-center">
-          <CheckboxInput
+          {/*<CheckboxInput
             name={`merge-{scope.catalogId}`}
             checked={isMerged}
             onChange={() => setMerged(!isMerged)}
@@ -161,7 +160,7 @@ export default function ComplianceChart({
               <span className="sr-only">Merge manual results </span>
               with automatic results.
             </span>
-          </CheckboxInput>
+          </CheckboxInput>*/}
         </div>
         <PieChart
           config={config}
