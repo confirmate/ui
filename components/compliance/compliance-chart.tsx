@@ -102,7 +102,7 @@ export default function ComplianceChart({
       const params = new URLSearchParams();
 
       for (const s of data.status) {
-        params.append("status", s);
+        params.append("filter.status", s);
       }
 
       router.push(
