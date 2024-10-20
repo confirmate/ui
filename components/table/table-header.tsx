@@ -1,9 +1,9 @@
 "use client";
 
-import { useSearchParamState } from "@/hooks/use-search-param-state";
-import { classNames } from "@/lib/util";
 import ColumnWithSort from "@/components/table/column-with-sort";
 import { SortDefaultProps } from "@/components/table/table";
+import { useSearchParamState } from "@/hooks/use-search-param-state";
+import { classNames } from "@/lib/util";
 
 export interface HeaderColumnData {
     name: string

@@ -1,4 +1,5 @@
-import NextAuth from "next-auth";
+import { logger } from "@/logger";
+import NextAuth, { Account } from "next-auth";
 
 export const { handlers, auth } = NextAuth({
   cookies: {
@@ -37,6 +38,19 @@ export const { handlers, auth } = NextAuth({
   ],
   callbacks: {
     authorized: async ({ auth }) => {
+      // If we don't have an access token, there is no point in being authenticated
+      if (auth?.backendAccount === undefined) {
+        return false;
+      }
+
+      // We need to check if we still have a valid backend API token, otherwise, we need to renew the session. 
+      // This is needed because next-auth prolongs the expiry of our frontend session independently from our
+      // backend token :( and we can only access the "session" here, not the "token", so we need to include
+      // the backend token in the session.
+      if (new Date((auth.backendAccount.expires_at ?? 0) * 1000) < new Date()) {
+        return false;
+      }
+
       return !!auth;
     },
     jwt: async ({ token, user, account }) => {
@@ -48,10 +62,7 @@ export const { handlers, auth } = NextAuth({
         // Note: While this means that the API token ends up in this token, the
         // client will not be able to read it since it is encrypted on the
         // client-side.
-        token.backendAPIToken = account.access_token;
-
-        // Sync the expiry of our backend token with the frontend token
-        token.exp = account.expires_at;
+        token.backendAccount = account;
       }
 
       return token;
@@ -65,11 +76,15 @@ export const { handlers, auth } = NextAuth({
           name: "Compliance Manager",
         },
         locale: "de-DE",
+        // not an ideal solution as this "exposes" the API key to the client. this is sort of ok,
+        // since its his key anyway and he can just request one himself, but its not a 100 % solution.
+        backendAccount: token.backendAccount
       };
     },
   },
   session: {
     maxAge: 24 * 60 * 60,
+    updateAge: 24 * 60 * 60 * 30
   },
 });
 
@@ -79,14 +94,19 @@ declare module "next-auth" {
      * The user's locale.
      */
     locale: string;
+
+    /**
+     * This contains the account (including token) for our backend services.
+     */
+    backendAccount?: Account;
   }
 }
 
 declare module "@auth/core/jwt" {
   interface JWT {
     /**
-     * This contains the API token for our backend services.
+     * This contains the account (including token) for our backend services.
      */
-    backendAPIToken?: string;
+    backendAccount?: Account;
   }
 }

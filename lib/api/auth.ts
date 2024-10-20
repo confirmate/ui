@@ -1,11 +1,13 @@
+import { logger } from "@/logger";
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import { Middleware } from "openapi-fetch";
+import { auth } from "@/lib/auth";
 
 export const authMiddleware: Middleware = {
   async onRequest({ request }) {
     // Build the cookie name
-    const cookieName =
+    /*const cookieName =
       process.env.NODE_ENV === "production"
         ? "__Secure-authjs.session-token"
         : "authjs.session-token";
@@ -18,10 +20,13 @@ export const authMiddleware: Middleware = {
       token: cookie?.value,
       secret: process.env.AUTH_SECRET ?? "",
       salt: cookieName,
-    });
+    });*/
+
+    // backend account is now (temporarily) in the session
+    const session = await auth()
 
     // Set the backend API token
-    request.headers.set("Authorization", `Bearer ${token?.backendAPIToken}`);
+    request.headers.set("Authorization", `Bearer ${session?.backendAccount?.access_token}`);
     return request;
-  },
+  }
 };
