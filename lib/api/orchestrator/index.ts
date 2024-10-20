@@ -1,14 +1,18 @@
 import { authMiddleware } from "@/lib/api/auth";
 import createClient from "openapi-fetch";
+import { staticDataCache } from "..";
 import { paths, SchemaMetric } from "./orchestrator.d";
 
 export * from "./orchestrator.d";
 
-const client = createClient<paths>({ baseUrl: process.env.CONFIRMATE_REST_API ?? "http://localhost:8080" });
+const client = createClient<paths>({
+  baseUrl: process.env.CONFIRMATE_REST_API ?? "http://localhost:8080",
+});
 client.use(authMiddleware);
 
 export async function listMetrics(): Promise<SchemaMetric[]> {
   let res = await client.GET("/v1/orchestrator/metrics", {
+    ...staticDataCache,
     params: {
       query: {
         pageSize: 1500,

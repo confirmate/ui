@@ -1,5 +1,6 @@
 import CatalogComplianceItem from "@/components/compliance/catalog-compliance-item";
 import EnableCatalogButton from "@/components/compliance/enable-catalog-button";
+import { staticDataCache } from "@/lib/api";
 import { buildCompliance } from "@/lib/api/evaluation";
 import client from "@/lib/api/orchestrator";
 
@@ -21,10 +22,12 @@ export default async function Page({ params }: PageProps) {
         },
       },
     )
-    .then((res) => { return { data: res.data?.auditScopes ?? [], error: res.error } });
+    .then((res) => {
+      return { data: res.data?.auditScopes ?? [], error: res.error };
+    });
 
   const { catalogs } = await client
-    .GET("/v1/orchestrator/catalogs")
+    .GET("/v1/orchestrator/catalogs", { ...staticDataCache })
     .then((res) => res.data ?? { catalogs: [] });
 
   const leftOverCatalogs =
@@ -58,7 +61,10 @@ export default async function Page({ params }: PageProps) {
         />
       ))}
       {leftOverCatalogs.length > 0 ? (
-        <EnableCatalogButton certificationTargetId={params.id} leftOverCatalogs={leftOverCatalogs} />
+        <EnableCatalogButton
+          certificationTargetId={params.id}
+          leftOverCatalogs={leftOverCatalogs}
+        />
       ) : (
         <></>
       )}

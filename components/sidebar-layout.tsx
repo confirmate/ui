@@ -4,17 +4,9 @@ import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
 } from "@headlessui/react";
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -182,11 +174,9 @@ export default function SidebarLayout({
             </div>
           </div>*/}
 
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </div>
-      </div >
+      </div>
     </>
   );
 }

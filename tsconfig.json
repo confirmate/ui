@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,31 +18,14 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/actions/*": [
-        "./actions/*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ],
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/actions/*": ["./actions/*"],
+      "@/lib/*": ["./lib/*"]
     },
     "target": "ES2017"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "types": [
-    "@types/cytoscape-cola"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "types": ["@types/cytoscape-cola"],
+  "exclude": ["node_modules"]
 }

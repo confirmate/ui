@@ -1,4 +1,3 @@
-import { logger } from "@/logger";
 import NextAuth, { Account } from "next-auth";
 
 export const { handlers, auth } = NextAuth({
@@ -31,7 +30,7 @@ export const { handlers, auth } = NextAuth({
         token_endpoint_auth_method: "none",
       },
       userinfo: {
-        request: () => { },
+        request: () => {},
       },
       checks: ["pkce"],
     },
@@ -43,7 +42,7 @@ export const { handlers, auth } = NextAuth({
         return false;
       }
 
-      // We need to check if we still have a valid backend API token, otherwise, we need to renew the session. 
+      // We need to check if we still have a valid backend API token, otherwise, we need to renew the session.
       // This is needed because next-auth prolongs the expiry of our frontend session independently from our
       // backend token :( and we can only access the "session" here, not the "token", so we need to include
       // the backend token in the session.
@@ -78,13 +77,13 @@ export const { handlers, auth } = NextAuth({
         locale: "de-DE",
         // not an ideal solution as this "exposes" the API key to the client. this is sort of ok,
         // since its his key anyway and he can just request one himself, but its not a 100 % solution.
-        backendAccount: token.backendAccount
+        backendAccount: token.backendAccount,
       };
     },
   },
   session: {
     maxAge: 24 * 60 * 60,
-    updateAge: 24 * 60 * 60 * 30
+    updateAge: 24 * 60 * 60 * 30,
   },
 });
 

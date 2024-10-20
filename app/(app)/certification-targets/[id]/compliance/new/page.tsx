@@ -1,4 +1,5 @@
 import WizardStepCatalog from "@/components/wizard/wizard-step-catalog";
+import { staticDataCache } from "@/lib/api";
 import client from "@/lib/api/orchestrator";
 
 interface PageProps {
@@ -22,7 +23,7 @@ export default async function Page({ params }: PageProps) {
     .then((res) => res.data ?? { auditScopes: [] });
 
   const { catalogs } = await client
-    .GET("/v1/orchestrator/catalogs")
+    .GET("/v1/orchestrator/catalogs", { ...staticDataCache })
     .then((res) => res.data ?? { catalogs: [] });
 
   return (

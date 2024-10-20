@@ -12,7 +12,7 @@ interface NodeAssessmentResultsDetailProps {
 export default function NodeAssessmentResultDetail({
   results,
   metrics,
-  resource
+  resource,
 }: NodeAssessmentResultsDetailProps) {
   return (
     <>

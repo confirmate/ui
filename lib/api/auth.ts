@@ -1,8 +1,5 @@
-import { logger } from "@/logger";
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
-import { Middleware } from "openapi-fetch";
 import { auth } from "@/lib/auth";
+import { Middleware } from "openapi-fetch";
 
 export const authMiddleware: Middleware = {
   async onRequest({ request }) {
@@ -23,10 +20,13 @@ export const authMiddleware: Middleware = {
     });*/
 
     // backend account is now (temporarily) in the session
-    const session = await auth()
+    const session = await auth();
 
     // Set the backend API token
-    request.headers.set("Authorization", `Bearer ${session?.backendAccount?.access_token}`);
+    request.headers.set(
+      "Authorization",
+      `Bearer ${session?.backendAccount?.access_token}`,
+    );
     return request;
-  }
+  },
 };

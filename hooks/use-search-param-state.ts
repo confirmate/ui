@@ -14,44 +14,49 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
  * // Usage for a string search parameter
  * const [searchQuery, setSearchQuery] = useSearchParamState('query', '');
  */
-export function useSearchParamState<T>(param: string, defaultValue: T): [T, Dispatch<SetStateAction<T>>] {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const { replace } = useRouter();
-    const [value, setValue] = useState(parseOrDefault(searchParams.get(param), defaultValue));
+export function useSearchParamState<T>(
+  param: string,
+  defaultValue: T,
+): [T, Dispatch<SetStateAction<T>>] {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+  const [value, setValue] = useState(
+    parseOrDefault(searchParams.get(param), defaultValue),
+  );
 
-    // 
-    useEffect(() => {
-        const peek = parseOrDefault(searchParams.get(param), defaultValue);
-        if (peek != value) {
-            setValue(peek)
-        }
-    }, [searchParams])
+  //
+  useEffect(() => {
+    const peek = parseOrDefault(searchParams.get(param), defaultValue);
+    if (peek != value) {
+      setValue(peek);
+    }
+  }, [searchParams]);
 
-    // This changes the URL parameters, when our value changes
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams);
+  // This changes the URL parameters, when our value changes
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
 
-        if (value !== undefined && value !== null) {
-            params.set(param, value.toString())
-        } else {
-            params.delete(param)
-        }
+    if (value !== undefined && value !== null) {
+      params.set(param, value.toString());
+    } else {
+      params.delete(param);
+    }
 
-        replace(`${pathname}?${params.toString()}`);
-    }, [value]);
+    replace(`${pathname}?${params.toString()}`);
+  }, [value]);
 
-    return [value, setValue];
+  return [value, setValue];
 }
 
 function parseOrDefault<T>(raw: string | null, defaultValue: T) {
-    if (raw === null) {
-        return defaultValue
-    } else if (typeof defaultValue == "boolean") {
-        return (raw == "true" ? true : false) as T
-    } else if (typeof defaultValue == "number" && raw !== null) {
-        return parseFloat(raw) as T
-    } else {
-        return raw as T
-    }
+  if (raw === null) {
+    return defaultValue;
+  } else if (typeof defaultValue == "boolean") {
+    return (raw == "true" ? true : false) as T;
+  } else if (typeof defaultValue == "number" && raw !== null) {
+    return parseFloat(raw) as T;
+  } else {
+    return raw as T;
+  }
 }

@@ -9,7 +9,7 @@ interface DateProps {
   /**
    * The format to use
    */
-  format?: "date-only" | "short-date-time"
+  format?: "date-only" | "short-date-time";
 }
 
 export default function FormattedDate({ value, format }: DateProps) {
@@ -21,21 +21,20 @@ export default function FormattedDate({ value, format }: DateProps) {
   return (
     value && (
       <time dateTime={value.toISOString()}>
-        {format == "short-date-time" ?
-          df.dateTime(value, {
-            year: "2-digit",
-            month: "2-digit",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit"
-          })
-          :
-          df.dateTime(value, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
+        {format == "short-date-time"
+          ? df.dateTime(value, {
+              year: "2-digit",
+              month: "2-digit",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : df.dateTime(value, {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
       </time>
     )
   );

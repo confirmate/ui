@@ -1,8 +1,4 @@
 {
-    "editor.formatOnSave": true,
-    "cSpell.words": [
-        "confirmate",
-        "heroicons",
-        "tailwindcss"
-    ]
+  "editor.formatOnSave": true,
+  "cSpell.words": ["confirmate", "heroicons", "tailwindcss"]
 }

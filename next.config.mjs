@@ -11,7 +11,7 @@ const nextConfig = {
     removeConsole: false,
   },
   reactStrictMode: true,
-  output: 'standalone',
+  output: "standalone",
   rewrites: () => {
     return [
       {

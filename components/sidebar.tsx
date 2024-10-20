@@ -1,7 +1,6 @@
 import { SidebarItem } from "@/components/sidebar-item";
 import client from "@/lib/api/orchestrator";
 import { classNames } from "@/lib/util";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 interface SidebarProps {
@@ -42,7 +41,12 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
         },
       ],
     },
-    { name: "Metrics", href: "/metrics", icon: "adjustments-horizontal", disabled: true },
+    {
+      name: "Metrics",
+      href: "/metrics",
+      icon: "adjustments-horizontal",
+      disabled: true,
+    },
     { name: "Modules", href: "/modules", icon: "archive-box" },
     { name: "Reports", href: "/reports", icon: "chart-pie", disabled: true },
   ];

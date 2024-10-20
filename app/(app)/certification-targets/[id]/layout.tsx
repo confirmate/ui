@@ -1,8 +1,7 @@
 import Header from "@/components/header";
-import { icons } from "@/components/icons";
 import Tabs from "@/components/tabs";
 import client from "@/lib/api/orchestrator";
-import { hrtime } from "process";
+import { ResolvingMetadata } from "next";
 
 interface LayoutProps
   extends Readonly<{
@@ -13,10 +12,24 @@ interface LayoutProps
   };
 }
 
-async function removeToe() {
-  "use server";
+export async function generateMetadata(
+  { params }: LayoutProps,
+  parent: ResolvingMetadata,
+) {
+  const { data: target } = await client.GET(
+    "/v1/orchestrator/certification_targets/{certificationTargetId}",
+    {
+      params: {
+        path: {
+          certificationTargetId: params.id,
+        },
+      },
+    },
+  );
 
-  return <></>;
+  return {
+    title: target?.name,
+  };
 }
 
 export default async function Layout({ params, children }: LayoutProps) {
@@ -54,14 +67,16 @@ export default async function Layout({ params, children }: LayoutProps) {
         href: "/certification-targets/" + target.id + "/assessments",
         icon: "queue-list",
       },
-      ...(process.env.PLUGIN_CSAF_ENABLE == "true" ?
-        [{
-          name: "Security Advisories",
-          href: "/certification-targets/" + target.id + "/advisories",
-          icon: "document-text",
-          current: false,
-        }] : []
-      ),
+      ...(process.env.PLUGIN_CSAF_ENABLE == "true"
+        ? [
+            {
+              name: "Security Advisories",
+              href: "/certification-targets/" + target.id + "/advisories",
+              icon: "document-text",
+              current: false,
+            },
+          ]
+        : []),
       {
         name: "Discovered Resources",
         href: "/certification-targets/" + target.id + "/resources",
@@ -85,14 +100,15 @@ export default async function Layout({ params, children }: LayoutProps) {
       <>
         <div className="sticky top-0 bg-white z-[999] border-b border-gray-200 shadow-sm">
           <div className="pt-4 px-4 sm:px-6 lg:px-8">
-            <Header name={target?.name} remove={removeToe} icon={false}>
-              {target.description}. {statistics?.numberOfDiscoveredResources ?? 0}{" "}
-              discovered resources
+            <Header name={target?.name} icon={false}>
+              {target.description}.{" "}
+              {statistics?.numberOfDiscoveredResources ?? 0} discovered
+              resources
             </Header>
 
             <Tabs items={tabs} />
           </div>
-        </div >
+        </div>
         <div className="pt-4 px-4 py-4 sm:px-6 lg:px-8">{children}</div>
       </>
     );
