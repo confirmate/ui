@@ -14,6 +14,7 @@ import {
   listAdvisoryRequests,
 } from "@/lib/api/csaf-generator";
 import client, { listMetrics, SchemaMetric } from "@/lib/api/orchestrator";
+import { toArray } from "@/lib/util";
 import Link from "next/link";
 
 interface PageProps {
@@ -36,11 +37,7 @@ export default async function Page({ searchParams }: PageProps) {
   // We want to set a default sortedBy and order parameter if it does not exist
   const sortedBy = searchParams?.sortedBy ?? defaults.sortedBy;
   const direction = searchParams?.direction ?? defaults.direction;
-  const filteredIDs = Array.isArray(searchParams?.["filter.id"])
-    ? searchParams?.["filter.id"]
-    : searchParams?.["filter.id"] !== undefined
-      ? searchParams?.["filter.id"]
-      : undefined;
+  const filteredIDs = toArray(searchParams?.["filter.id"]);
   const latestByResourceId = searchParams?.latestByResource ?? true;
 
   let { results } = await client
@@ -50,6 +47,7 @@ export default async function Page({ searchParams }: PageProps) {
           orderBy: sortedBy,
           asc: direction == "asc" ? true : false,
           latestByResourceId: latestByResourceId,
+          "filter.assessmentResultIds": filteredIDs,
         },
       },
     })

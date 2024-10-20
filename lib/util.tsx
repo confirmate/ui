@@ -71,3 +71,21 @@ export function truncate(str: string, maxLength = 80) {
   }
   return str;
 }
+
+/**
+ * Converts a variable to an array of strings.
+ * If the variable is a string, it returns an array containing that string.
+ * If the variable is an array of strings, it returns it as is.
+ * If the variable is undefined, it returns undefined.
+ *
+ * @param {string | string[] | undefined} variable - The variable to convert.
+ * @returns {string[] | undefined} - The converted array or undefined.
+ */
+export function toArray(
+  variable: string | string[] | undefined,
+): string[] | undefined {
+  if (variable === undefined) {
+    return undefined;
+  }
+  return typeof variable === "string" ? [variable] : variable;
+}

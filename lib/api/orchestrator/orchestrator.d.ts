@@ -1038,7 +1038,8 @@ export interface operations {
                 "filter.compliant"?: boolean;
                 /** @description Optional. List only assessment results of a specific metric id. */
                 "filter.metricIds"?: string[];
-                "filter.metricId"?: string;
+                /** @description Optional. List only assessment result from a specific list of IDs. */
+                "filter.assessmentResultIds"?: string[];
                 /** @description Optional. List only assessment result from a specific assessment tool. */
                 "filter.toolId"?: string;
                 /** @description Optional. Latest results grouped by resource_id and metric_id. */

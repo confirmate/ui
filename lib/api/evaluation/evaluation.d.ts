@@ -93,7 +93,7 @@ export interface components {
             timestamp: string;
             /** @description List of assessment results because of which the evaluation status is not
              *      'compliant' */
-            failingAssessmentResultIds: string[];
+            assessmentResultIds: string[];
             comment?: string;
             /**
              * Format: date-time

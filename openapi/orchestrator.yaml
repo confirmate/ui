@@ -31,10 +31,13 @@ paths:
             type: array
             items:
               type: string
-        - name: filter.metricId
+        - name: filter.assessmentResultIds
           in: query
+          description: Optional. List only assessment result from a specific list of IDs.
           schema:
-            type: string
+            type: array
+            items:
+              type: string
         - name: filter.toolId
           in: query
           description: Optional. List only assessment result from a specific assessment tool.

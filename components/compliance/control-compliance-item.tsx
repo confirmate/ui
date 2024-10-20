@@ -53,7 +53,7 @@ export function ControlComplianceItems({
                 <ControlComplianceItem
                   result={child}
                   control={controls.find(
-                    (control) => control.id === item.result.controlId,
+                    (control) => control.id === child.controlId,
                   )}
                 />
               </div>
