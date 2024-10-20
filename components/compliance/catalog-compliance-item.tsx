@@ -20,7 +20,7 @@ export default function CatalogComplianceItem({
         <a
           href={`/certification-targets/${scope.certificationTargetId}/compliance/${catalog.id}`}
         >
-          <div className="text-sm font-medium leading-6 text-gray-900">
+          <div className="text-sm font-semibold leading-6 text-gray-900">
             {catalog.name}
           </div>
           <div className="text-sm text-gray-500">{catalog.description}</div>

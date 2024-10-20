@@ -129,12 +129,12 @@ export default async function CertificationTargetCard({
     >
       <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 px-6 py-4">
         <div className="flex flex-col space-y-1">
-          <div className="text-sm font-medium leading-6 text-gray-900">
+          <div className="text-sm font-semibold leading-6 text-gray-900">
             <Link href={`/certification-targets/${target.id}/compliance`}>
               {target.name}
             </Link>
           </div>
-          <div className="text-sm leading-5 text-gray-400">
+          <div className="text-sm leading-5 text-gray-500">
             {target.description}
           </div>
         </div>

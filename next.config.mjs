@@ -7,9 +7,6 @@ const nextConfig = {
   experimental: {
     ppr: true,
   },
-  compiler: {
-    removeConsole: false,
-  },
   reactStrictMode: true,
   output: "standalone",
   rewrites: () => {
