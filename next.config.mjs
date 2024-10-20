@@ -13,12 +13,8 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/dashboard",
-      },
-      {
-        source: "/api/auth/callback",
-        destination: "/api/auth/callback/confirmate",
-      },
+        destination: "/certification-targets",
+      }
     ];
   },
 };

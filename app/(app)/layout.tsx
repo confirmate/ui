@@ -1,6 +1,7 @@
 import Sidebar from "@/components/sidebar";
 import SidebarLayout from "@/components/sidebar-layout";
 import { SessionProvider } from "next-auth/react";
+import { NextIntlClientProvider } from "next-intl";
 
 export default function Layout({
   children,
@@ -14,7 +15,7 @@ export default function Layout({
           mobileSidebar={<Sidebar isMobile={true} />}
           desktopSidebar={<Sidebar />}
         >
-          {children}
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </SidebarLayout>
       </SessionProvider>
     </>

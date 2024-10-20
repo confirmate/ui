@@ -28,12 +28,15 @@ export default function AdvisoryHelper({
         <Link
           href={`/certification-targets/${result.certificationTargetId}/advisories/${advisory.id}`}
         >
-          <Button className="bg-gray-800 hover:bg-gray-600">
+          <Button className="bg-gray-800 hover:bg-gray-600 text-xs">
             Advisory Exists
           </Button>
         </Link>
       ) : (
-        <Button onClick={() => createSecurityAdvisory(result)}>
+        <Button
+          onClick={() => createSecurityAdvisory(result)}
+          className="text-xs"
+        >
           Create Security Advisory
         </Button>
       )}

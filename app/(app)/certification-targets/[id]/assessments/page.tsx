@@ -14,7 +14,7 @@ import {
   listAdvisoryRequests,
 } from "@/lib/api/csaf-generator";
 import client, { listMetrics, SchemaMetric } from "@/lib/api/orchestrator";
-import { toArray } from "@/lib/util";
+import { toArray, truncate } from "@/lib/util";
 import Link from "next/link";
 
 interface PageProps {
@@ -144,7 +144,7 @@ export default async function Page({ searchParams }: PageProps) {
                   <Link
                     href={`/certification-targets/${result.certificationTargetId}/resources/${result.resourceId}`}
                   >
-                    {result.resourceId}
+                    {truncate(result.resourceId, 30)}
                   </Link>
                 </div>
                 <div className="mt-1 text-gray-500">

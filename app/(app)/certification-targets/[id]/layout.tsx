@@ -100,7 +100,7 @@ export default async function Layout({ params, children }: LayoutProps) {
       <>
         <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm">
           <div className="pt-4 px-4 sm:px-6 lg:px-8">
-            <Header name={target?.name} icon={false}>
+            <Header name={target?.name} icon={false} buttons={false}>
               {target.description}.{" "}
               {statistics?.numberOfDiscoveredResources ?? 0} discovered
               resources

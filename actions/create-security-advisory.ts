@@ -17,16 +17,10 @@ export async function createSecurityAdvisory(result: SchemaAssessmentResult) {
   );
 
   const request: GenerationRequest = {
-    metricId: result.metricId!!,
-    assessmentId: result.id!!,
-    compliant: result.compliant!!,
-    // TODO: generalize
-    /*functionality: {
-            cryptographicHash: {
-                algorithm: "MD5",
-                "withSalt": false
-            }
-        },*/
+    metricId: result.metricId,
+    assessmentId: result.id,
+    compliant: result.compliant ?? false,
+    certificationTargetId: result.certificationTargetId,
     complianceComment: result.complianceComment,
     complianceDetails: result.complianceDetails,
     productId: target?.name!!,
@@ -43,7 +37,5 @@ export async function createSecurityAdvisory(result: SchemaAssessmentResult) {
     },
   );
 
-  redirect(
-    `/certification-targets/${result.certificationTargetId!!}/advisories`,
-  );
+  redirect(`/certification-targets/${result.certificationTargetId}/advisories`);
 }

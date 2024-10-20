@@ -15,7 +15,7 @@ export default async function Page({ params }: PageProps) {
   logger.debug("Before getAdvisoryRequest");
   const request = await getAdvisoryRequest(params.requestId);
   logger.info("after getAdvisoryRequest", request);
-  return request ? (
+  return request.status !== "pending" ? (
     <div className="space-y-6">
       <PropertyList
         title={request.csaf.document.title}
@@ -96,6 +96,6 @@ export default async function Page({ params }: PageProps) {
       <JsonView json={request.csaf} />
     </div>
   ) : (
-    <>Advisory does not exist</>
+    <>Advisory does not exist (yet)</>
   );
 }
