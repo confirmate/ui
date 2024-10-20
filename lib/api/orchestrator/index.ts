@@ -26,7 +26,7 @@ export async function listMetrics(): Promise<SchemaMetric[]> {
 
     const res: any = await client.GET("/v1/orchestrator/metrics", {
       ...staticDataCache,
-      paginationInit,
+      ...paginationInit,
     });
 
     if (!res.data) {

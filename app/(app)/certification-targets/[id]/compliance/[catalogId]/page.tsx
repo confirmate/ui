@@ -6,6 +6,7 @@ import {
 import { staticDataCache } from "@/lib/api";
 import evaluationClient, { SchemaEvaluationResult } from "@/lib/api/evaluation";
 import client from "@/lib/api/orchestrator";
+import { toArray } from "@/lib/util";
 
 interface PageProps {
   params: {
@@ -106,7 +107,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       return { controls: res.data?.controls ?? [] };
     });
 
-  const tree = buildTree(results, [...(searchParams["filter.status"] ?? [])]);
+  const tree = buildTree(results, toArray(searchParams["filter.status"]) ?? []);
 
   return catalog ? (
     <>
