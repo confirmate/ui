@@ -23,6 +23,9 @@ export async function removeAuditScope(scope: SchemaAuditScope) {
         path: {
           ...scope,
         },
+        query: {
+          removeEvaluationResults: true,
+        },
       },
     },
   );

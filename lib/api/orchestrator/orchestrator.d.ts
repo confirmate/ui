@@ -2159,7 +2159,9 @@ export interface operations {
     };
     Orchestrator_RemoveAuditScope: {
         parameters: {
-            query?: never;
+            query?: {
+                removeEvaluationResults?: boolean;
+            };
             header?: never;
             path: {
                 certificationTargetId: string;
