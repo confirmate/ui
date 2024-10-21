@@ -44,7 +44,7 @@ export default function AssessmentNonComplianceDetails({
           <div className="font-medium text-gray-900">{detail.property}</div>
           <div className="mt-1 text-gray-500">
             <DisplayValue value={detail.value} />{" "}
-            <DisplayOperator op={detail.operator!!} negate={true} />
+            <DisplayOperator op={detail.operator!!} negate={!detail.success} />
             {" target value "}
             <DisplayValue value={detail.targetValue} />
           </div>

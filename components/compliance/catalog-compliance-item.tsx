@@ -2,6 +2,7 @@ import ComplianceChart from "@/components/compliance/compliance-chart";
 import { RemoveAuditScopeButton } from "@/components/compliance/remove-audit-scope-button";
 import { ComplianceStatus } from "@/lib/api/evaluation";
 import { SchemaAuditScope, SchemaCatalog } from "@/lib/api/orchestrator";
+import FormattedPercentage from "../formatted-percentage";
 
 interface CatalogComplianceItemProps {
   catalog: SchemaCatalog;
@@ -14,6 +15,16 @@ export default function CatalogComplianceItem({
   scope,
   compliance,
 }: CatalogComplianceItemProps) {
+  const goodControls = [
+    ...compliance
+      .values()
+      .filter(
+        (v) =>
+          v == "EVALUATION_STATUS_COMPLIANT" ||
+          v == "EVALUATION_STATUS_COMPLIANT_MANUALLY",
+      ),
+  ];
+
   return (
     <li className="overflow-hidden rounded-xl shadow-sm border border-gray-200">
       <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
@@ -38,7 +49,13 @@ export default function CatalogComplianceItem({
         <div className="flex justify-between gap-x-4 py-3">
           <dt className="text-gray-500">Controls in Scope</dt>
           <dd className="flex items-start gap-x-2">
-            <div className="font-medium text-gray-900">{compliance.size}</div>
+            <div className="font-medium text-gray-900">
+              {compliance.size} (
+              <FormattedPercentage
+                value={goodControls.length / compliance.size}
+              />{" "}
+              compliant)
+            </div>
           </dd>
         </div>
         <div className="flex justify-between gap-x-4 py-3">
