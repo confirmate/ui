@@ -16,13 +16,11 @@ export default function CatalogComplianceItem({
   compliance,
 }: CatalogComplianceItemProps) {
   const goodControls = [
-    ...compliance
-      .values()
-      .filter(
-        (v) =>
-          v == "EVALUATION_STATUS_COMPLIANT" ||
-          v == "EVALUATION_STATUS_COMPLIANT_MANUALLY",
-      ),
+    ...[...compliance.values()].filter(
+      (v) =>
+        v == "EVALUATION_STATUS_COMPLIANT" ||
+        v == "EVALUATION_STATUS_COMPLIANT_MANUALLY",
+    ),
   ];
 
   return (
