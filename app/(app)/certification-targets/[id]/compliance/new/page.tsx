@@ -3,19 +3,20 @@ import { staticDataCache } from "@/lib/api";
 import client from "@/lib/api/orchestrator";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
+  const p = await params;
   const { auditScopes } = await client
     .GET(
       "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
       {
         params: {
           path: {
-            certificationTargetId: params.id,
+            certificationTargetId: p.id,
           },
         },
       },

@@ -5,15 +5,15 @@ import { getAdvisoryRequest } from "@/lib/api/csaf-generator";
 import { logger } from "@/logger";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
     requestId: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
   logger.debug("Before getAdvisoryRequest");
-  const request = await getAdvisoryRequest(params.requestId);
+  const request = await getAdvisoryRequest((await params).requestId);
   logger.info("after getAdvisoryRequest", request);
   return request.status !== "pending" ? (
     <div className="space-y-6">

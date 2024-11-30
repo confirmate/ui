@@ -1,9 +1,9 @@
 import { authMiddleware } from "@/lib/api/auth";
 import createClient from "openapi-fetch";
 import { staticDataCache } from "..";
-import { paths, SchemaMetric } from "./orchestrator.d";
+import { paths, SchemaMetric } from "./orchestrator";
 
-export * from "./orchestrator.d";
+export * from "./orchestrator";
 
 const client = createClient<paths>({
   baseUrl: process.env.CONFIRMATE_REST_API ?? "http://localhost:8080",

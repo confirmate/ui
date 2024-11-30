@@ -7,21 +7,22 @@ interface LayoutProps
   extends Readonly<{
     children: React.ReactNode;
   }> {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata(
   { params }: LayoutProps,
   parent: ResolvingMetadata,
 ) {
+  const p = await params;
   const { data: target } = await client.GET(
     "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
         path: {
-          certificationTargetId: params.id,
+          certificationTargetId: p.id,
         },
       },
     },
@@ -33,12 +34,13 @@ export async function generateMetadata(
 }
 
 export default async function Layout({ params, children }: LayoutProps) {
+  const p = await params;
   const { data: target } = await client.GET(
     "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
         path: {
-          certificationTargetId: params.id,
+          certificationTargetId: p.id,
         },
       },
     },
@@ -49,7 +51,7 @@ export default async function Layout({ params, children }: LayoutProps) {
     {
       params: {
         query: {
-          certificationTargetId: params.id,
+          certificationTargetId: p.id,
         },
       },
     },
@@ -69,13 +71,13 @@ export default async function Layout({ params, children }: LayoutProps) {
       },
       ...(process.env.PLUGIN_CSAF_ENABLE == "true"
         ? [
-            {
-              name: "Security Advisories",
-              href: "/certification-targets/" + target.id + "/advisories",
-              icon: "document-text",
-              current: false,
-            },
-          ]
+          {
+            name: "Security Advisories",
+            href: "/certification-targets/" + target.id + "/advisories",
+            icon: "document-text",
+            current: false,
+          },
+        ]
         : []),
       {
         name: "Discovered Resources",

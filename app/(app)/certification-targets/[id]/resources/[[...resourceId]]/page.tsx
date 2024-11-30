@@ -7,13 +7,14 @@ import orchestratorClient, {
 import { EdgeDefinition, NodeDefinition } from "cytoscape";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
     resourceId?: string[];
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
+  const p = await params;
   // We need to retrieve the assessment results...
   const resResults = await orchestratorClient.GET(
     "/v1/orchestrator/assessment_results",
@@ -104,9 +105,9 @@ export default async function Page({ params }: PageProps) {
 
   // Put together the ID for an initial selection, if specified
   const id =
-    params?.resourceId !== undefined
-      ? params?.resourceId.length > 0
-        ? params?.resourceId.join("/")
+    p?.resourceId !== undefined
+      ? p?.resourceId.length > 0
+        ? p?.resourceId.join("/")
         : undefined
       : undefined;
   const initialSelect = resources.find((r) => r.id === id);

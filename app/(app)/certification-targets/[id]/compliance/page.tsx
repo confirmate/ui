@@ -5,19 +5,20 @@ import { buildCompliance } from "@/lib/api/evaluation";
 import client from "@/lib/api/orchestrator";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
+  const p = await params;
   const { error, data: auditScopes } = await client
     .GET(
       "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
       {
         params: {
           path: {
-            certificationTargetId: params.id,
+            certificationTargetId: p.id,
           },
         },
       },
@@ -48,7 +49,7 @@ export default async function Page({ params }: PageProps) {
     return { catalog, auditScope };
   });
 
-  const compliance = await buildCompliance(params.id);
+  const compliance = await buildCompliance(p.id);
 
   return (
     <ul className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
@@ -62,7 +63,7 @@ export default async function Page({ params }: PageProps) {
       ))}
       {leftOverCatalogs.length > 0 ? (
         <EnableCatalogButton
-          certificationTargetId={params.id}
+          certificationTargetId={p.id}
           leftOverCatalogs={leftOverCatalogs}
         />
       ) : (

@@ -1,8 +1,8 @@
 import { authMiddleware } from "@/lib/api/auth";
 import createClient from "openapi-fetch";
-import { paths } from "./evaluation.d";
+import { paths } from "./evaluation";
 
-export * from "./evaluation.d";
+export * from "./evaluation";
 
 export type ComplianceStatus =
   | "EVALUATION_STATUS_UNSPECIFIED"
