@@ -102,11 +102,29 @@ export interface paths {
             cookie?: never;
         };
         /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes_2"];
+        get: operations["Orchestrator_ListAuditScopes"];
         put?: never;
         /** @description Creates a new Audit Scope */
         post: operations["Orchestrator_CreateAuditScope"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/audit_scopes/{auditScopeId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves an Audit Scope */
+        get: operations["Orchestrator_GetAuditScope"];
+        put?: never;
+        post?: never;
+        /** @description Removes an Audit Scope */
+        delete: operations["Orchestrator_RemoveAuditScope"];
         options?: never;
         head?: never;
         patch?: never;
@@ -167,23 +185,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/catalogs/{catalogId}/audit_scopes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes_3"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/orchestrator/catalogs/{catalogId}/categories/{categoryName}/controls": {
         parameters: {
             query?: never;
@@ -194,7 +195,7 @@ export interface paths {
         /** @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
          *      in this category are returned. */
-        get: operations["Orchestrator_ListControls_2"];
+        get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
         delete?: never;
@@ -234,25 +235,6 @@ export interface paths {
          *      category name. It includes the first level of controls within each
          *      category. */
         get: operations["Orchestrator_GetCategory"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/catalogs/{catalogId}/controls": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description If no additional parameters are specified, this lists all controls. If a
-         *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned. */
-        get: operations["Orchestrator_ListControls_3"];
         put?: never;
         post?: never;
         delete?: never;
@@ -384,41 +366,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all Audit Scopes */
-        get: operations["Orchestrator_ListAuditScopes_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes/{catalogId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Retrieves a Audit Scope */
-        get: operations["Orchestrator_GetAuditScope"];
-        put?: never;
-        post?: never;
-        /** @description Removes a Audit Scope */
-        delete: operations["Orchestrator_RemoveAuditScope"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations": {
         parameters: {
             query?: never;
@@ -484,7 +431,7 @@ export interface paths {
         /** @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
          *      in this category are returned. */
-        get: operations["Orchestrator_ListControls_1"];
+        get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
         delete?: never;
@@ -626,32 +573,31 @@ export interface components {
          *      with id resource_id. */
         AssessmentResult: {
             /** @description Assessment result id */
-            id: string;
+            id?: string;
             /**
              * Format: date-time
              * @description Time of assessment
              */
-            timestamp: string;
+            timestamp?: string;
             /** @description Reference to the metric the assessment was based on */
-            metricId: string;
+            metricId?: string;
             /** @description Data corresponding to the metric by the given metric id */
-            metricConfiguration: components["schemas"]["MetricConfiguration"];
+            metricConfiguration?: components["schemas"]["MetricConfiguration"];
             /** @description Compliant case: true or false */
             compliant?: boolean;
             /** @description Reference to the assessed evidence */
-            evidenceId: string;
+            evidenceId?: string;
             /** @description Reference to the resource of the assessed evidence */
-            resourceId: string;
+            resourceId?: string;
             /** @description Resource types */
-            resourceTypes: string[];
-            /** @description ComplianceComment contains a human readable description on the reason for (non)-compliance. */
-            complianceComment: string;
-            /** @description ComplianceDetails contains machine-readable details about which comparisons lead to a (non)-compliance. */
-            complianceDetails?: components["schemas"]["ComparisonResult"][];
+            resourceTypes?: string[];
+            /** @description Some comments on the reason for non-compliance */
+            nonComplianceComments?: string;
+            nonComplianceDetails?: components["schemas"]["ComparisonResult"][];
             /** @description The certification target which this assessment result belongs to */
-            certificationTargetId: string;
+            certificationTargetId?: string;
             /** @description Reference to the tool which provided the assessment result */
-            toolId: string;
+            toolId?: string;
         };
         /** @description Represents an external tool or service that offers assessments according to
          *      certain metrics. */
@@ -665,6 +611,8 @@ export interface components {
         /** @description A Audit Scope binds a certification target to a catalog, so the certification target is
          *      evaluated regarding this catalog's controls */
         AuditScope: {
+            /** @description Audit Scope ID */
+            id: string;
             certificationTargetId: string;
             catalogId: string;
             /** @description an assurance level is not offered by every catalog, therefore it is
@@ -717,7 +665,6 @@ export interface components {
             id: string;
             name: string;
             description?: string;
-            catalogsInScope: components["schemas"]["Catalog"][];
             configuredMetrics: components["schemas"]["Metric"][];
             /**
              * Format: date-time
@@ -749,15 +696,15 @@ export interface components {
         /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was succesful. */
         ComparisonResult: {
             /** @description Property is the property that was compared */
-            property: string;
+            property?: string;
             /** @description Value is the value in the property */
-            value: components["schemas"]["GoogleProtobufValue"];
+            value?: string;
             /** @description Operator is the operator used in the comparison */
-            operator: string;
+            operator?: string;
             /** @description TargetValue is the target value used in the comparison */
-            targetValue: components["schemas"]["GoogleProtobufValue"];
+            targetValue?: components["schemas"]["GoogleProtobufValue"];
             /** @description Success is true, if the comparison was sucessful */
-            success: boolean;
+            success?: boolean;
         };
         /** @description Control represents a certain Control that needs to be fulfilled. It could be
          *      a Control in a certification catalog. It follows the OSCAL model. A
@@ -856,9 +803,9 @@ export interface components {
         /** @description A metric resource */
         Metric: {
             /** @description Required. The unique identifier of the metric. */
-            id: string;
+            id?: string;
             /** @description Required. The human readable name of the metric. */
-            name: string;
+            name?: string;
             /** @description The description of the metric */
             description?: string;
             /** @description The reference to control catalog category or domain */
@@ -887,25 +834,25 @@ export interface components {
         /** @description Defines the operator and a target value for an individual metric */
         MetricConfiguration: {
             /** @description The operator to compare the metric, such as == or > */
-            operator: string;
+            operator?: string;
             /** @description The target value */
-            targetValue: components["schemas"]["GoogleProtobufValue"];
+            targetValue?: components["schemas"]["GoogleProtobufValue"];
             /** @description Whether this configuration is a default configuration */
-            isDefault: boolean;
+            isDefault?: boolean;
             /**
              * Format: date-time
              * @description The last time of update
              */
             updatedAt?: string;
             /** @description The metric this configuration belongs to */
-            metricId: string;
+            metricId?: string;
             /** @description The certification target this configuration belongs to */
-            certificationTargetId: string;
+            certificationTargetId?: string;
         };
         /** @description MetricImplementation defines the implementation of an individual metric. */
         MetricImplementation: {
             /** @description The metric which is implemented */
-            metricId: string;
+            metricId?: string;
             /**
              * Format: enum
              * @description The language this metric is implemented in
@@ -913,7 +860,7 @@ export interface components {
              */
             lang?: "LANGUAGE_UNSPECIFIED" | "LANGUAGE_REGO";
             /** @description The actual implementation */
-            code: string;
+            code?: string;
             /**
              * Format: date-time
              * @description The last time of update
@@ -1038,8 +985,7 @@ export interface operations {
                 "filter.compliant"?: boolean;
                 /** @description Optional. List only assessment results of a specific metric id. */
                 "filter.metricIds"?: string[];
-                /** @description Optional. List only assessment result from a specific list of IDs. */
-                "filter.assessmentResultIds"?: string[];
+                "filter.metricId"?: string;
                 /** @description Optional. List only assessment result from a specific assessment tool. */
                 "filter.toolId"?: string;
                 /** @description Optional. Latest results grouped by resource_id and metric_id. */
@@ -1301,17 +1247,13 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes_2: {
+    Orchestrator_ListAuditScopes: {
         parameters: {
             query?: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the certification target is
-                 *      specified, return all Audit Scopes that evaluate the given certification target
-                 *      for any catalog */
-                certificationTargetId?: string;
-                /** @description when the catalog is specified, return all Audit Scopes that
-                 *      evaluate the given catalog for any certificationtarget */
-                catalogId?: string;
+                /** @description Optional. List only audit scopes of a specific certification target */
+                "filter.certificationTargetId"?: string;
+                /** @description Optional. List only audit scopes that evaluate the given catalog for any certification target */
+                "filter.catalogId"?: string;
                 pageSize?: number;
                 pageToken?: string;
                 orderBy?: string;
@@ -1364,6 +1306,68 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["AuditScope"];
                 };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetAuditScope: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                auditScopeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuditScope"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_RemoveAuditScope: {
+        parameters: {
+            query?: {
+                removeEvaluationResults?: boolean;
+            };
+            header?: never;
+            path: {
+                auditScopeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Default error response */
             default: {
@@ -1538,50 +1542,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes_3: {
-        parameters: {
-            query?: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the certification target is
-                 *      specified, return all Audit Scopes that evaluate the given certification target
-                 *      for any catalog */
-                certificationTargetId?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path: {
-                /** @description when the catalog is specified, return all Audit Scopes that
-                 *      evaluate the given catalog for any certificationtarget */
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListAuditScopesResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_ListControls_2: {
+    Orchestrator_ListControls: {
         parameters: {
             query?: {
                 /** @description Optional. Lists only controls with the specified assurance levels. */
@@ -1673,46 +1634,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Category"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_ListControls_3: {
-        parameters: {
-            query?: {
-                categoryName?: string;
-                /** @description Optional. Lists only controls with the specified assurance levels. */
-                "filter.assuranceLevels"?: string[];
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path: {
-                /** @description return either all controls or only the controls of the specified category */
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListControlsResponse"];
                 };
             };
             /** @description Default error response */
@@ -2082,113 +2003,6 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListAuditScopes_1: {
-        parameters: {
-            query?: {
-                /** @description when the catalog is specified, return all Audit Scopes that
-                 *      evaluate the given catalog for any certificationtarget */
-                catalogId?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path: {
-                /** @description We cannot create additional bindings when the parameter is optional so we
-                 *      check for != "" in the method to see if it is set when the certification target is
-                 *      specified, return all Audit Scopes that evaluate the given certification target
-                 *      for any catalog */
-                certificationTargetId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListAuditScopesResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_GetAuditScope: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                certificationTargetId: string;
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AuditScope"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_RemoveAuditScope: {
-        parameters: {
-            query?: {
-                removeEvaluationResults?: boolean;
-            };
-            header?: never;
-            path: {
-                certificationTargetId: string;
-                catalogId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
     Orchestrator_ListMetricConfigurations: {
         parameters: {
             query?: never;
@@ -2323,7 +2137,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListControls_1: {
+    Orchestrator_ListControls: {
         parameters: {
             query?: {
                 /** @description return either all controls or only the controls of the specified category */

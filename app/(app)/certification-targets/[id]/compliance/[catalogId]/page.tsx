@@ -9,13 +9,13 @@ import client from "@/lib/api/orchestrator";
 import { toArray } from "@/lib/util";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
     catalogId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     "filter.status"?: string | string[];
-  };
+  }>;
 }
 
 /**
@@ -66,13 +66,16 @@ function buildTree(
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
+  const p = await params;
+  const sp = await searchParams;
+
   const { data: catalog } = await client.GET(
     "/v1/orchestrator/catalogs/{catalogId}",
     {
       ...staticDataCache,
       params: {
         path: {
-          catalogId: params.catalogId,
+          catalogId: p.catalogId,
         },
       },
     },
@@ -82,8 +85,8 @@ export default async function Page({ params, searchParams }: PageProps) {
     .GET("/v1/evaluation/results", {
       params: {
         query: {
-          "filter.certificationTargetId": params.id,
-          "filter.catalogId": params.catalogId,
+          "filter.certificationTargetId": p.id,
+          "filter.catalogId": p.catalogId,
           latestByControlId: true,
         },
       },
@@ -96,7 +99,7 @@ export default async function Page({ params, searchParams }: PageProps) {
     .GET("/v1/orchestrator/catalogs/{catalogId}/controls", {
       params: {
         path: {
-          catalogId: params.catalogId,
+          catalogId: p.catalogId,
         },
         query: {
           pageSize: 1500,
@@ -107,7 +110,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       return { controls: res.data?.controls ?? [] };
     });
 
-  const tree = buildTree(results, toArray(searchParams["filter.status"]) ?? []);
+  const tree = buildTree(results, toArray(sp["filter.status"]) ?? []);
 
   return catalog ? (
     <>
@@ -129,8 +132,8 @@ export default async function Page({ params, searchParams }: PageProps) {
               controls={controls}
               key={item.result.controlId}
               scope={{
-                catalogId: params.catalogId,
-                certificationTargetId: params.id,
+                catalogId: p.catalogId,
+                certificationTargetId: p.id,
               }}
             />
           ))}

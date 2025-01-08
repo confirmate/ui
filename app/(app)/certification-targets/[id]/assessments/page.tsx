@@ -18,12 +18,12 @@ import { toArray, truncate } from "@/lib/util";
 import Link from "next/link";
 
 interface PageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     sortedBy?: string;
     direction?: string;
     latestByResource?: boolean;
     "filter.id"?: string[] | string;
-  };
+  }>;
 }
 
 const defaults: SortDefaults = {
@@ -34,11 +34,13 @@ const defaults: SortDefaults = {
 const csafEnabled = process.env.PLUGIN_CSAF_ENABLE === "true";
 
 export default async function Page({ searchParams }: PageProps) {
+  const sp = await searchParams;
+
   // We want to set a default sortedBy and order parameter if it does not exist
-  const sortedBy = searchParams?.sortedBy ?? defaults.sortedBy;
-  const direction = searchParams?.direction ?? defaults.direction;
-  const filteredIDs = toArray(searchParams?.["filter.id"]);
-  const latestByResourceId = searchParams?.latestByResource ?? true;
+  const sortedBy = sp?.sortedBy ?? defaults.sortedBy;
+  const direction = sp?.direction ?? defaults.direction;
+  const filteredIDs = toArray(sp?.["filter.id"]);
+  const latestByResourceId = sp?.latestByResource ?? true;
 
   let { results } = await client
     .GET("/v1/orchestrator/assessment_results", {

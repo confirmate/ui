@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function Page({ params }: PageProps) {
-  redirect(`/certification-targets/${params.id}/compliance`);
+export default async function Page({ params }: PageProps) {
+  const p = await params;
+  redirect(`/certification-targets/${p.id}/compliance`);
 }

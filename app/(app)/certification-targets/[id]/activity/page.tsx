@@ -6,18 +6,19 @@ import client, {
 import { shortResourceId } from "@/lib/util";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
+  const p = (await params);
   const { data: target } = await client.GET(
     "/v1/orchestrator/certification_targets/{certificationTargetId}",
     {
       params: {
         path: {
-          certificationTargetId: params.id,
+          certificationTargetId: p.id,
         },
       },
     },
@@ -26,7 +27,7 @@ export default async function Page({ params }: PageProps) {
   const { data } = await client.GET("/v1/orchestrator/assessment_results", {
     params: {
       query: {
-        "filter.certificationTargetId": params.id,
+        "filter.certificationTargetId": p.id,
       },
     },
   });
