@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/v1/evaluation/evaluate/{certificationTargetId}/{catalogId}/start": {
+    "/v1/evaluation/evaluate/{auditScopeId}/start": {
         parameters: {
             query?: never;
             header?: never;
@@ -22,7 +22,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/evaluation/evaluate/{certificationTargetId}/{catalogId}/stop": {
+    "/v1/evaluation/evaluate/{auditScopeId}/stop": {
         parameters: {
             query?: never;
             header?: never;
@@ -69,15 +69,17 @@ export interface components {
          *      catalog_id are necessary to get the corresponding AuditScope */
         EvaluationResult: {
             /** @description Evaluation result id */
-            id: string;
+            id?: string;
             /** @description The Certification Target ID the evaluation belongs to */
-            certificationTargetId: string;
+            certificationTargetId?: string;
+            /** @description The Audit Scope ID the evaluation belongs to */
+            auditScopeId?: string;
             /** @description The control id the evaluation was based on */
-            controlId: string;
+            controlId?: string;
             /** @description The category the evaluated control belongs to */
-            controlCategoryName: string;
+            controlCategoryName?: string;
             /** @description The catalog the evaluated control belongs to */
-            controlCatalogId: string;
+            controlCatalogId?: string;
             /** @description Optionally, specifies the parent control ID, if this is a sub-control */
             parentControlId?: string;
             /**
@@ -85,15 +87,15 @@ export interface components {
              * @description Evaluation status
              * @enum {string}
              */
-            status: "EVALUATION_STATUS_UNSPECIFIED" | "EVALUATION_STATUS_COMPLIANT" | "EVALUATION_STATUS_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_NOT_COMPLIANT" | "EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_PENDING";
+            status?: "EVALUATION_STATUS_UNSPECIFIED" | "EVALUATION_STATUS_COMPLIANT" | "EVALUATION_STATUS_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_NOT_COMPLIANT" | "EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_PENDING";
             /**
              * Format: date-time
              * @description Time of evaluation
              */
-            timestamp: string;
+            timestamp?: string;
             /** @description List of assessment results because of which the evaluation status is not
              *      'compliant' */
-            assessmentResultIds: string[];
+            failingAssessmentResultIds?: string[];
             comment?: string;
             /**
              * Format: date-time
@@ -154,8 +156,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                certificationTargetId: string;
-                catalogId: string;
+                auditScopeId: string;
             };
             cookie?: never;
         };
@@ -186,8 +187,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
-                catalogId: string;
+                auditScopeId: string;
             };
             cookie?: never;
         };

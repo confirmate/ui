@@ -4,9 +4,9 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
+  /*experimental: {
     ppr: true,
-  },
+  },*/
   reactStrictMode: true,
   output: "standalone",
   rewrites: () => {
@@ -14,7 +14,7 @@ const nextConfig = {
       {
         source: "/",
         destination: "/certification-targets",
-      }
+      },
     ];
   },
 };
