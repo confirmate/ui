@@ -307,7 +307,7 @@ export interface paths {
         get: operations["Orchestrator_ListCertificationTargets"];
         put?: never;
         /** @description Registers a new target certification target */
-        post: operations["Orchestrator_RegisterCertificationTarget"];
+        post: operations["Orchestrator_CreateCertificationTarget"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1843,7 +1843,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_RegisterCertificationTarget: {
+    Orchestrator_CreateCertificationTarget: {
         parameters: {
             query?: never;
             header?: never;
