@@ -85,7 +85,7 @@ export default async function Page({ params, searchParams }: PageProps) {
     .GET("/v1/evaluation/results", {
       params: {
         query: {
-          "filter.certificationTargetId": p.id,
+          "filter.targetOfEvaluationId": p.id,
           "filter.catalogId": p.catalogId,
           latestByControlId: true,
         },
@@ -133,7 +133,7 @@ export default async function Page({ params, searchParams }: PageProps) {
               key={item.result.controlId}
               scope={{
                 catalogId: p.catalogId,
-                certificationTargetId: p.id,
+                targetOfEvaluationId: p.id,
               }}
             />
           ))}

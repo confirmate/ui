@@ -1,18 +1,18 @@
 import BarChart from "@/components/compliance/bar-chart";
 import { buildCompliance, ComplianceStatus } from "@/lib/api/evaluation";
-import client, { SchemaCertificationTarget } from "@/lib/api/orchestrator";
+import client, { SchemaTargetOfEvaluation } from "@/lib/api/orchestrator";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { ChartConfiguration, ChartData } from "chart.js";
 import Link from "next/link";
 
-interface CertificationTargetCardProps {
-  target: SchemaCertificationTarget;
+interface TargetOfEvaluationCardProps {
+  target: SchemaTargetOfEvaluation;
 }
 
-export default async function CertificationTargetCard({
+export default async function TargetOfEvaluationCard({
   target,
-}: CertificationTargetCardProps) {
+}: TargetOfEvaluationCardProps) {
   const compliance = await buildCompliance(target.id);
 
   function buildData(
@@ -53,11 +53,11 @@ export default async function CertificationTargetCard({
   }
 
   const { data: statistics } = await client.GET(
-    "/v1/orchestrator/certification_targets/statistics",
+    "/v1/orchestrator/targets_of_evaluation/statistics",
     {
       params: {
         query: {
-          certificationTargetId: target.id,
+          targetOfEvaluationId: target.id,
         },
       },
     },
@@ -130,7 +130,7 @@ export default async function CertificationTargetCard({
       <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 px-6 py-4">
         <div className="flex flex-col space-y-1">
           <div className="text-sm font-semibold leading-6 text-gray-900">
-            <Link href={`/certification-targets/${target.id}/compliance`}>
+            <Link href={`/targets-of-evaluation/${target.id}/compliance`}>
               {target.name}
             </Link>
           </div>

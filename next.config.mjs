@@ -13,7 +13,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/certification-targets",
+        destination: "/targets-of-evaluation",
       },
     ];
   },

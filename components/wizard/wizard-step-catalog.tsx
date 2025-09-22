@@ -42,7 +42,7 @@ export default function WizardStepCatalog({
         catalogId: catalog.id,
         // This will not be the final ID, since we do not know it at this point.
         // This needs to be set by the caller of save()
-        certificationTargetId: "TODO",
+        targetOfEvaluationId: "TODO",
         assuranceLevel: assuranceLevel,
       };
 

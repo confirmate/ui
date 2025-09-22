@@ -20,7 +20,7 @@ export default function EvaluationIcon({
     case "EVALUATION_STATUS_COMPLIANT_MANUALLY":
       return (
         <Link
-          href={`/certification-targets/${result.certificationTargetId}/assessments?latestByResource=false${result.assessmentResultIds.map((id) => `&filter.id=${id}`).join("")}`}
+          href={`/targets-of-evaluation/${result.targetOfEvaluationId}/assessments?latestByResource=false${result.assessmentResultIds.map((id) => `&filter.id=${id}`).join("")}`}
         >
           <CheckCircleIcon className="h-5 w-5 text-green-800" />
         </Link>
@@ -29,7 +29,7 @@ export default function EvaluationIcon({
     case "EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY":
       return (
         <Link
-          href={`/certification-targets/${result.certificationTargetId}/assessments?latestByResource=false${result.assessmentResultIds.map((id) => `&filter.id=${id}`).join("")}`}
+          href={`/targets-of-evaluation/${result.targetOfEvaluationId}/assessments?latestByResource=false${result.assessmentResultIds.map((id) => `&filter.id=${id}`).join("")}`}
         >
           <XCircleIcon className="h-5 w-5 text-red-800" />
         </Link>

@@ -27,7 +27,7 @@ export default function CatalogComplianceItem({
     <li className="overflow-hidden rounded-xl shadow-sm border border-gray-200">
       <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
         <a
-          href={`/certification-targets/${scope.certificationTargetId}/compliance/${catalog.id}`}
+          href={`/targets-of-evaluation/${scope.targetOfEvaluationId}/compliance/${catalog.id}`}
         >
           <div className="text-sm font-semibold leading-6 text-gray-900">
             {catalog.name}

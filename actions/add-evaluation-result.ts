@@ -25,7 +25,7 @@ export async function addEvaluationResult(
     id: "", // will be filled by server,
     status: data.get("status") as ComplianceStatus,
     assessmentResultIds: [],
-    certificationTargetId: scope.certificationTargetId,
+    targetOfEvaluationId: scope.targetOfEvaluationId,
     controlId: control.id,
     controlCatalogId: control.categoryCatalogId,
     controlCategoryName: control.categoryName,
@@ -40,7 +40,7 @@ export async function addEvaluationResult(
 
   if (res.data) {
     revalidatePath(
-      `/certification-targets/${scope.certificationTargetId}/compliance/${scope.catalogId}`,
+      `/targets-of-evaluation/${scope.targetOfEvaluationId}/compliance/${scope.catalogId}`,
     );
     return res.data;
   } else {

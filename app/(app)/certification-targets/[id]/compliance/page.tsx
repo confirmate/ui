@@ -14,11 +14,11 @@ export default async function Page({ params }: PageProps) {
   const p = await params;
   const { error, data: auditScopes } = await client
     .GET(
-      "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
+      "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/audit_scopes",
       {
         params: {
           path: {
-            certificationTargetId: p.id,
+            targetOfEvaluationId: p.id,
           },
         },
       },
@@ -63,7 +63,7 @@ export default async function Page({ params }: PageProps) {
       ))}
       {leftOverCatalogs.length > 0 ? (
         <EnableCatalogButton
-          certificationTargetId={p.id}
+          targetOfEvaluationId={p.id}
           leftOverCatalogs={leftOverCatalogs}
         />
       ) : (
