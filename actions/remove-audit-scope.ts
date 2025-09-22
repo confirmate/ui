@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export async function removeAuditScope(scope: SchemaAuditScope) {
   await evaluationClient.POST(
-    "/v1/evaluation/evaluate/{targetOfEvaluationId}/{catalogId}/stop",
+    "/v1/evaluation/evaluate/{id}/stop",
     {
       params: {
         path: {
@@ -17,7 +17,7 @@ export async function removeAuditScope(scope: SchemaAuditScope) {
   );
 
   await client.DELETE(
-    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/audit_scopes/{catalogId}",
+    "/v1/orchestrator/audit_scopes/{id}",
     {
       params: {
         path: {
