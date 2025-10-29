@@ -4,23 +4,6 @@
  */
 
 export interface paths {
-    "/v1/discovery/resources": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all evidences collected in the last run, exposed as REST. */
-        get: operations["Discovery_ListResources"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/discovery/start": {
         parameters: {
             query?: never;
@@ -38,51 +21,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1experimental/discovery/graph/edges": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * @description ListGraphEdges returns the edges (relationship) between resources in our
-         *      resource graph.
-         *
-         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE
-         */
-        get: operations["ExperimentalDiscovery_ListGraphEdges"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1experimental/discovery/resources/{resource.id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * @description UpdateResource updates a resource (or creates it, if it does not exist).
-         *      This is used to give third-party tools the possibility to add something to
-         *      the resource graph.
-         *
-         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE
-         */
-        post: operations["ExperimentalDiscovery_UpdateResource"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -93,49 +31,6 @@ export interface components {
             "@type"?: string;
         } & {
             [key: string]: unknown;
-        };
-        GraphEdge: {
-            id: string;
-            source: string;
-            target: string;
-            type: string;
-        };
-        ListGraphEdgesResponse: {
-            edges: components["schemas"]["GraphEdge"][];
-            nextPageToken?: string;
-        };
-        ListResourcesResponse: {
-            results: components["schemas"]["Resource"][];
-            nextPageToken?: string;
-        };
-        /**
-         * @description Resource is a wrapper around google.protobuf.Value that is needed for
-         *      persistence reasons.
-         */
-        Resource: {
-            /**
-             * @description Id contains a unique ID for each resource. This is specific for the cloud
-             *      provider this resource was gathered for and can for example be a resource
-             *      URL.
-             */
-            id: string;
-            /**
-             * @description TargetOfEvaluationId is the UUID for the target of evaluation to which this resource
-             *      belongs to.
-             */
-            targetOfEvaluationId: string;
-            /**
-             * @description ResourceType contains a comma separated string of resource types according
-             *      to our ontology.
-             */
-            resourceType: string;
-            /** @description Reference to the tool which provided the resource */
-            toolId: string;
-            /**
-             * @description Properties contains a protobuf message that describe the resource in the
-             *      terms of our Clouditor ontology.
-             */
-            properties: components["schemas"]["GoogleProtobufAny"];
         };
         StartDiscoveryRequest: {
             resourceGroup?: string;
@@ -156,9 +51,6 @@ export interface components {
             /** @description A list of messages that carry the error details.  There is a common set of message types for APIs to use. */
             details?: components["schemas"]["GoogleProtobufAny"][];
         };
-        UpdateResourceRequest: {
-            resource: components["schemas"]["Resource"];
-        };
     };
     responses: never;
     parameters: never;
@@ -167,53 +59,11 @@ export interface components {
     pathItems: never;
 }
 export type SchemaGoogleProtobufAny = components['schemas']['GoogleProtobufAny'];
-export type SchemaGraphEdge = components['schemas']['GraphEdge'];
-export type SchemaListGraphEdgesResponse = components['schemas']['ListGraphEdgesResponse'];
-export type SchemaListResourcesResponse = components['schemas']['ListResourcesResponse'];
-export type SchemaResource = components['schemas']['Resource'];
 export type SchemaStartDiscoveryRequest = components['schemas']['StartDiscoveryRequest'];
 export type SchemaStartDiscoveryResponse = components['schemas']['StartDiscoveryResponse'];
 export type SchemaStatus = components['schemas']['Status'];
-export type SchemaUpdateResourceRequest = components['schemas']['UpdateResourceRequest'];
 export type $defs = Record<string, never>;
 export interface operations {
-    Discovery_ListResources: {
-        parameters: {
-            query?: {
-                "filter.type"?: string;
-                "filter.targetOfEvaluationId"?: string;
-                "filter.toolId"?: string;
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListResourcesResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
     Discovery_Start: {
         parameters: {
             query?: never;
@@ -234,75 +84,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StartDiscoveryResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    ExperimentalDiscovery_ListGraphEdges: {
-        parameters: {
-            query?: {
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListGraphEdgesResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    ExperimentalDiscovery_UpdateResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                "resource.id": string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateResourceRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Resource"];
                 };
             };
             /** @description Default error response */

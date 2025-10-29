@@ -46,10 +46,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description Lists all assessment tools assessing evidences for the metric given by the
-         *      passed metric id
-         */
+        /** @description Lists all assessment tools assessing evidences for the metric given by the
+         *      passed metric id */
         get: operations["Orchestrator_ListAssessmentTools"];
         put?: never;
         /** @description Registers the passed assessment tool */
@@ -88,10 +86,8 @@ export interface paths {
         get: operations["Orchestrator_GetAssessmentTool"];
         put?: never;
         post?: never;
-        /**
-         * @description Remove assessment tool with passed id from the list of active assessment
-         *      tools
-         */
+        /** @description Remove assessment tool with passed id from the list of active assessment
+         *      tools */
         delete: operations["Orchestrator_DeregisterAssessmentTool"];
         options?: never;
         head?: never;
@@ -141,10 +137,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description Lists all security controls catalogs. Each catalog includes a list of its
-         *      categories but no additional sub-resources.
-         */
+        /** @description Lists all security controls catalogs. Each catalog includes a list of its
+         *      categories but no additional sub-resources. */
         get: operations["Orchestrator_ListCatalogs"];
         put?: never;
         /** @description Creates a new security controls catalog */
@@ -179,10 +173,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description Retrieves a specific catalog by it's ID. The catalog includes a list of all
-         *      of it categories as well as the first level of controls in each category.
-         */
+        /** @description Retrieves a specific catalog by it's ID. The catalog includes a list of all
+         *      of it categories as well as the first level of controls in each category. */
         get: operations["Orchestrator_GetCatalog"];
         put?: never;
         post?: never;
@@ -200,11 +192,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description If no additional parameters are specified, this lists all controls. If a
+        /** @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned.
-         */
+         *      in this category are returned. */
         get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
@@ -221,12 +211,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description Retrieves a control specified by the catalog ID, the control's category
+        /** @description Retrieves a control specified by the catalog ID, the control's category
          *      name and the control ID. If present, it also includes a list of
          *      sub-controls if present or a list of metrics if no sub-controls but metrics
-         *      are present.
-         */
+         *      are present. */
         get: operations["Orchestrator_GetControl"];
         put?: never;
         post?: never;
@@ -243,11 +231,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description Retrieves a category of a catalog specified by the catalog ID and the
+        /** @description Retrieves a category of a catalog specified by the catalog ID and the
          *      category name. It includes the first level of controls within each
-         *      category.
-         */
+         *      category. */
         get: operations["Orchestrator_GetCategory"];
         put?: never;
         post?: never;
@@ -264,11 +250,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description If no additional parameters are specified, this lists all controls. If a
+        /** @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned.
-         */
+         *      in this category are returned. */
         get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
@@ -331,137 +315,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/targets_of_evaluation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Lists all target targets of evaluation */
-        get: operations["Orchestrator_ListTargetOfEvaluations"];
-        put?: never;
-        /** @description Registers a new target target of evaluation */
-        post: operations["Orchestrator_CreateTargetOfEvaluation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/statistics": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Retrieves target target of evaluation statistics */
-        get: operations["Orchestrator_GetTargetOfEvaluationStatistics"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/{audit_scope.target_of_evaluation_id}/audit_scopes/{audit_scope.catalog_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Updates an existing Audit Scope */
-        put: operations["Orchestrator_UpdateAuditScope"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Retrieves a target target of evaluation */
-        get: operations["Orchestrator_GetTargetOfEvaluation"];
-        put?: never;
-        post?: never;
-        /** @description Removes a target target of evaluation */
-        delete: operations["Orchestrator_RemoveTargetOfEvaluation"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * @description Lists all metric configurations (target value and operator) for a
-         *      specific target of evaluation ID
-         */
-        get: operations["Orchestrator_ListMetricConfigurations"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations/{metricId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * @description Retrieves a metric configuration (target value and operator) for a specific
-         *      target of evaluation and metric ID.
-         */
-        get: operations["Orchestrator_GetMetricConfiguration"];
-        /**
-         * @description Updates a metric configuration (target value and operator) for a specific
-         *      target of evaluation and metric ID
-         */
-        put: operations["Orchestrator_UpdateMetricConfiguration"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/orchestrator/targets_of_evaluation/{target_of_evaluation.id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Registers a new target target of evaluation */
-        put: operations["Orchestrator_UpdateTargetOfEvaluation"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/orchestrator/controls": {
         parameters: {
             query?: never;
@@ -469,11 +322,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description If no additional parameters are specified, this lists all controls. If a
+        /** @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned.
-         */
+         *      in this category are returned. */
         get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
@@ -604,18 +455,153 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/orchestrator/targets_of_evaluation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lists all targets of evaluations */
+        get: operations["Orchestrator_ListTargetsOfEvaluation"];
+        put?: never;
+        /** @description Registers a new target of evaluation */
+        post: operations["Orchestrator_CreateTargetOfEvaluation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/statistics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves target of evaluation statistics */
+        get: operations["Orchestrator_GetTargetOfEvaluationStatistics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/{audit_scope.target_of_evaluation_id}/audit_scopes/{audit_scope.catalog_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Updates an existing Audit Scope */
+        put: operations["Orchestrator_UpdateAuditScope"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves a target of evaluation */
+        get: operations["Orchestrator_GetTargetOfEvaluation"];
+        put?: never;
+        post?: never;
+        /** @description Removes a target of evaluation */
+        delete: operations["Orchestrator_RemoveTargetOfEvaluation"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lists all metric configurations (target value and operator) for a
+         *      specific target of evaluation ID */
+        get: operations["Orchestrator_ListMetricConfigurations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations/{metricId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Retrieves a metric configuration (target value and operator) for a specific
+         *      target of evaluation and metric ID. */
+        get: operations["Orchestrator_GetMetricConfiguration"];
+        /** @description Updates a metric configuration (target value and operator) for a specific
+         *      target of evaluation and metric ID */
+        put: operations["Orchestrator_UpdateMetricConfiguration"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/targets_of_evaluation/{target_of_evaluation.id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Registers a new target of evaluation */
+        put: operations["Orchestrator_UpdateTargetOfEvaluation"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** @description Defines a range */
-        AllowedValues: {
-            values?: components["schemas"]["GoogleProtobufValue"][];
+        /** @description ActivityLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        ActivityLogging: {
+            enabled?: boolean;
+            monitoringLogDataEnabled?: boolean;
+            retentionPeriod?: string;
+            securityAlertsEnabled?: boolean;
+            loggingServiceIds?: string[];
         };
-        /**
-         * @description A result resource, representing the result after assessing the cloud resource
-         *      with id resource_id.
-         */
+        /** @description ApplicationLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        ApplicationLogging: {
+            enabled?: boolean;
+            monitoringLogDataEnabled?: boolean;
+            retentionPeriod?: string;
+            securityAlertsEnabled?: boolean;
+            loggingServiceIds?: string[];
+        };
+        /** @description A result resource, representing the result after assessing the cloud resource
+         *      with id resource_id. */
         AssessmentResult: {
             /** @description Assessment result id */
             id: string;
@@ -623,14 +609,14 @@ export interface components {
              * Format: date-time
              * @description Time of assessment
              */
-            timestamp: string;
+            createdAt: string;
             /** @description Reference to the metric the assessment was based on */
             metricId: string;
             /** @description Data corresponding to the metric by the given metric id */
             metricConfiguration: components["schemas"]["MetricConfiguration"];
             /** @description Compliant case: true or false */
             compliant?: boolean;
-            /** @description Reference to the assessed evidence */
+            /** @description Reference to the last assessed evidence */
             evidenceId: string;
             /** @description Reference to the resource of the assessed evidence */
             resourceId: string;
@@ -644,11 +630,16 @@ export interface components {
             targetOfEvaluationId: string;
             /** @description Reference to the tool which provided the assessment result */
             toolId: string;
+            /**
+             * Format: date-time
+             * @description The time of the last update of the assessment result history field
+             */
+            historyUpdatedAt: string;
+            /** @description Stores the history of evidence IDs and timestamps for evidence that have the same content as the evidence used for this assessment result. */
+            history: components["schemas"]["Record"][];
         };
-        /**
-         * @description Represents an external tool or service that offers assessments according to
-         *      certain metrics.
-         */
+        /** @description Represents an external tool or service that offers assessments according to
+         *      certain metrics. */
         AssessmentTool: {
             id?: string;
             name: string;
@@ -656,36 +647,37 @@ export interface components {
             /** @description a list of metrics that this tool can assess, referred by their ids */
             availableMetrics: string[];
         };
-        /**
-         * @description A Audit Scope binds a target of evaluation to a catalog, so the target of evaluation is
-         *      evaluated regarding this catalog's controls
-         */
+        /** @description A Audit Scope binds a target of evaluation to a catalog, so the target of evaluation is
+         *      evaluated regarding this catalog's controls */
         AuditScope: {
             /** @description Audit Scope ID */
             id: string;
+            name: string;
             targetOfEvaluationId: string;
             catalogId: string;
-            /**
-             * @description an assurance level is not offered by every catalog, therefore it is
-             *      optional
-             */
+            /** @description an assurance level is not offered by every catalog, therefore it is
+             *      optional */
             assuranceLevel?: string;
+        };
+        /** @description BootLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        BootLogging: {
+            enabled?: boolean;
+            monitoringLogDataEnabled?: boolean;
+            retentionPeriod?: string;
+            securityAlertsEnabled?: boolean;
+            loggingServiceIds?: string[];
         };
         Catalog: {
             id: string;
             name: string;
             description?: string;
             categories: components["schemas"]["Category"][];
-            /**
-             * @description Certain security catalogs do not allow to select the scope of the controls,
+            /** @description Certain security catalogs do not allow to select the scope of the controls,
              *      but all controls are automatically "in scope", however they can be set to a
-             *      DELEGATED status.
-             */
+             *      DELEGATED status. */
             allInScope?: boolean;
-            /**
-             * @description A list of the assurance levels, e.g., basic, substantial and high for the
-             *      EUCS catalog.
-             */
+            /** @description A list of the assurance levels, e.g., basic, substantial and high for the
+             *      EUCS catalog. */
             assuranceLevels?: string[];
             /** @description Catalogs short name, e.g. EUCS */
             shortName: string;
@@ -703,51 +695,31 @@ export interface components {
             description?: string;
             controls: components["schemas"]["Control"][];
         };
-        /** @description An ISO17021-based certificate */
+        /** @description Certificate is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
         Certificate: {
-            id: string;
-            name: string;
-            targetOfEvaluationId: string;
-            issueDate?: string;
+            /** Format: date-time */
+            creationTime?: string;
+            description?: string;
+            enabled?: boolean;
+            /** Format: date-time */
             expirationDate?: string;
-            standard?: string;
-            assuranceLevel?: string;
-            cab?: string;
-            description?: string;
-            /** @description A list of states at specific times */
-            states?: components["schemas"]["State"][];
-        };
-        TargetOfEvaluation: {
-            id: string;
-            name: string;
-            description?: string;
-            configuredMetrics: components["schemas"]["Metric"][];
-            /**
-             * Format: date-time
-             * @description creation time of the target_of_evaluation
-             */
-            createdAt?: string;
-            /**
-             * Format: date-time
-             * @description last update time of the target_of_evaluation
-             */
-            updatedAt?: string;
-            /** @description additional metadata of the target of evaluation, mostly used for the UI */
-            metadata?: components["schemas"]["TargetOfEvaluation_Metadata"];
-            /**
-             * Format: enum
-             * @description type of the target to be evaluated: cloud, product or organization
-             * @enum {string}
-             */
-            targetType: "TARGET_TYPE_UNSPECIFIED" | "TARGET_TYPE_CLOUD" | "TARGET_TYPE_PRODUCT" | "TARGET_TYPE_ORGANIZATION";
-        };
-        TargetOfEvaluation_Metadata: {
-            /** @description a map of key/value pairs, e.g., env:prod */
+            id?: string;
+            internetAccessibleEndpoint?: boolean;
+            isManaged?: boolean;
             labels?: {
                 [key: string]: string;
             };
-            /** @description an icon for the target of evaluation used by the UI */
-            icon?: string;
+            name?: string;
+            /** Format: date-time */
+            notBeforeDate?: string;
+            /** @description The raw field contains the raw information that is used to fill in the fields of the ontology. */
+            raw?: string;
+            geoLocation?: components["schemas"]["GeoLocation"];
+            infrastructureId?: string;
+            loggings?: components["schemas"]["Logging"][];
+            redundancies?: components["schemas"]["Redundancy"][];
+            parentId?: string;
+            usageStatistics?: components["schemas"]["UsageStatistics"];
         };
         /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was successful. */
         ComparisonResult: {
@@ -762,17 +734,13 @@ export interface components {
             /** @description Success is true, if the comparison was sucessful */
             success: boolean;
         };
-        /**
-         * @description Control represents a certain Control that needs to be fulfilled. It could be
+        /** @description Control represents a certain Control that needs to be fulfilled. It could be
          *      a Control in a certification catalog. It follows the OSCAL model. A
          *      requirement in the EUCS terminology, e.g., is represented as the lowest
-         *      sub-control.
-         */
+         *      sub-control. */
         Control: {
-            /**
-             * @description A short name of the control, e.g. OPS-01, as used in OSCAL; it is not a
-             *      unique ID!
-             */
+            /** @description A short name of the control, e.g. OPS-01, as used in OSCAL; it is not a
+             *      unique ID! */
             id: string;
             categoryName: string;
             categoryCatalogId: string;
@@ -780,30 +748,32 @@ export interface components {
             name: string;
             /** @description Description of the control */
             description?: string;
-            /**
-             * @description List of sub - controls -
-             *          this is in accordance with the OSCAL model.
-             */
+            /** @description List of sub - controls -
+             *          this is in accordance with the OSCAL model. */
             controls: components["schemas"]["Control"][];
-            /**
-             * @description metrics contains either a list of reference to metrics - in this case only
+            /** @description metrics contains either a list of reference to metrics - in this case only
              *      the id field of the metric is populated - or a list of populated metric
-             *      meta-data, most likely returned by the database.
-             */
+             *      meta-data, most likely returned by the database. */
             metrics: components["schemas"]["Metric"][];
             /** @description Reference to the parent category this control belongs to. */
             parentControlId?: string;
             parentControlCategoryName?: string;
             parentControlCategoryCatalogId?: string;
-            /**
-             * @description An assurance level is not offered by every catalog, therefore it is
-             *      optional.
-             */
+            /** @description An assurance level is not offered by every catalog, therefore it is
+             *      optional. */
             assuranceLevel?: string;
         };
         Dependency: {
             path?: string;
             version?: string;
+        };
+        /** @description GeoLocation is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        GeoLocation: {
+            region?: string;
+        };
+        /** @description GeoRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        GeoRedundancy: {
+            geoLocations?: components["schemas"]["GeoLocation"][];
         };
         GetTargetOfEvaluationStatisticsResponse: {
             /** @description number of discovered resources per target of evaluation */
@@ -844,10 +814,6 @@ export interface components {
             certificates?: components["schemas"]["Certificate"][];
             nextPageToken?: string;
         };
-        ListTargetOfEvaluationsResponse: {
-            targets: components["schemas"]["TargetOfEvaluation"][];
-            nextPageToken?: string;
-        };
         ListControlsResponse: {
             controls?: components["schemas"]["Control"][];
             nextPageToken?: string;
@@ -866,33 +832,36 @@ export interface components {
             certificates?: components["schemas"]["Certificate"][];
             nextPageToken?: string;
         };
+        ListTargetsOfEvaluationResponse: {
+            targets: components["schemas"]["TargetOfEvaluation"][];
+            nextPageToken?: string;
+        };
+        /** @description LocalRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        LocalRedundancy: {
+            geoLocations?: components["schemas"]["GeoLocation"][];
+        };
+        /** @description Logging is an abstract class in our ontology, it cannot be instantiated but acts as an "interface". */
+        Logging: {
+            activityLogging?: components["schemas"]["ActivityLogging"];
+            applicationLogging?: components["schemas"]["ApplicationLogging"];
+            bootLogging?: components["schemas"]["BootLogging"];
+            osLogging?: components["schemas"]["OSLogging"];
+            resourceLogging?: components["schemas"]["ResourceLogging"];
+        };
         /** @description A metric resource */
         Metric: {
             /** @description Required. The unique identifier of the metric. */
             id: string;
-            /** @description Required. The human readable name of the metric. */
-            name: string;
             /** @description The description of the metric */
-            description?: string;
-            /** @description The reference to control catalog category or domain */
-            category?: string;
-            /**
-             * Format: enum
-             * @description The scale of this metric, e.g. categories, ranked data or metric values.
-             * @enum {string}
-             */
-            scale?: "SCALE_UNSPECIFIED" | "NOMINAL" | "ORDINAL" | "METRIC";
-            /** @description The range of this metric. Depending on the scale. */
-            range?: components["schemas"]["Range"];
-            /**
-             * @description The interval in seconds the evidences must be collected for the respective
-             *      metric.
-             */
-            interval?: string;
-            /**
-             * @description The implementation of this metric. This ensures that we are modelling an
-             *      association between a Metric and its MetricImplementation.
-             */
+            description: string;
+            /** @description The version of this metric */
+            version: string;
+            /** @description Optional comments that describe the purpose of this metric. They may also describe a scenario in which the metric can be useful. */
+            comments?: string;
+            /** @description Semantically, the reference to control catalog category or domain; it must conform to the directory structure of the security-metrics respository */
+            category: string;
+            /** @description The implementation of this metric. This ensures that we are modelling an
+             *      association between a Metric and its MetricImplementation. */
             implementation?: components["schemas"]["MetricImplementation"];
             /**
              * Format: date-time
@@ -937,28 +906,32 @@ export interface components {
              */
             updatedAt?: string;
         };
-        /** @description Defines a range of values through a (inclusive) minimum and a maximum */
-        MinMax: {
-            /** @description Required. */
-            min?: string;
-            /** @description Required. */
-            max?: string;
+        /** @description OSLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        OSLogging: {
+            enabled?: boolean;
+            monitoringLogDataEnabled?: boolean;
+            retentionPeriod?: string;
+            securityAlertsEnabled?: boolean;
+            loggingServiceIds?: string[];
         };
-        /**
-         * @description Defines a range of values in a pre-defined order from the lowest to the
-         *      highest.
-         */
-        Order: {
-            values?: components["schemas"]["GoogleProtobufValue"][];
+        Record: {
+            evidenceId: string;
+            /** Format: date-time */
+            evidenceRecordedAt: string;
         };
-        /** @description A range resource representing the range of values */
-        Range: {
-            /** @description used for nominal scale */
-            allowedValues?: components["schemas"]["AllowedValues"];
-            /** @description used for ordinal scale */
-            order?: components["schemas"]["Order"];
-            /** @description used for metric scale */
-            minMax?: components["schemas"]["MinMax"];
+        /** @description Redundancy is an abstract class in our ontology, it cannot be instantiated but acts as an "interface". */
+        Redundancy: {
+            geoRedundancy?: components["schemas"]["GeoRedundancy"];
+            localRedundancy?: components["schemas"]["LocalRedundancy"];
+            zoneRedundancy?: components["schemas"]["ZoneRedundancy"];
+        };
+        /** @description ResourceLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        ResourceLogging: {
+            enabled?: boolean;
+            monitoringLogDataEnabled?: boolean;
+            retentionPeriod?: string;
+            securityAlertsEnabled?: boolean;
+            loggingServiceIds?: string[];
         };
         Runtime: {
             /** @description release_version is the latest Clouditor release version for this commit */
@@ -977,16 +950,6 @@ export interface components {
             /** @description dependency is a list of used runtime dependencies */
             dependencies?: components["schemas"]["Dependency"][];
         };
-        /** @description A state of a certificate at a given time */
-        State: {
-            id?: string;
-            /** @description An EUCS-defined state, e.g. `new`, `suspended` or `withdrawn` */
-            state?: string;
-            treeId?: string;
-            timestamp?: string;
-            /** @description Reference to the certificate */
-            certificateId?: string;
-        };
         /** @description The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
         Status: {
             /**
@@ -999,12 +962,51 @@ export interface components {
             /** @description A list of messages that carry the error details.  There is a common set of message types for APIs to use. */
             details?: components["schemas"]["GoogleProtobufAny"][];
         };
-        /**
-         * @description StoreAssessmentResultReponse belongs to StoreAssessmentResult, which uses a
+        /** @description StoreAssessmentResultReponse belongs to StoreAssessmentResult, which uses a
          *      custom unary RPC and therefore requires a response message according to the
-         *      style convention. Since no return values are required, this is empty.
-         */
+         *      style convention. Since no return values are required, this is empty. */
         StoreAssessmentResultResponse: Record<string, never>;
+        TargetOfEvaluation: {
+            id: string;
+            name: string;
+            description?: string;
+            configuredMetrics: components["schemas"]["Metric"][];
+            /**
+             * Format: date-time
+             * @description creation time of the target_of_evaluation
+             */
+            createdAt?: string;
+            /**
+             * Format: date-time
+             * @description last update time of the target_of_evaluation
+             */
+            updatedAt?: string;
+            /** @description additional metadata of the target of evaluation, mostly used for the UI */
+            metadata?: components["schemas"]["TargetOfEvaluation_Metadata"];
+            /**
+             * Format: enum
+             * @description type of the target to be evaluated: cloud, product or organization
+             * @enum {string}
+             */
+            targetType: "TARGET_TYPE_UNSPECIFIED" | "TARGET_TYPE_CLOUD" | "TARGET_TYPE_PRODUCT" | "TARGET_TYPE_ORGANIZATION";
+        };
+        TargetOfEvaluation_Metadata: {
+            /** @description a map of key/value pairs, e.g., env:prod */
+            labels?: {
+                [key: string]: string;
+            };
+            /** @description an icon for the target of evaluation used by the UI */
+            icon?: string;
+        };
+        /** @description UsageStatistics is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        UsageStatistics: {
+            /** Format: int32 */
+            apiHitsPerMonth?: number;
+        };
+        /** @description ZoneRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces. */
+        ZoneRedundancy: {
+            geoLocations?: components["schemas"]["GeoLocation"][];
+        };
     };
     responses: never;
     parameters: never;
@@ -1012,19 +1014,21 @@ export interface components {
     headers: never;
     pathItems: never;
 }
-export type SchemaAllowedValues = components['schemas']['AllowedValues'];
+export type SchemaActivityLogging = components['schemas']['ActivityLogging'];
+export type SchemaApplicationLogging = components['schemas']['ApplicationLogging'];
 export type SchemaAssessmentResult = components['schemas']['AssessmentResult'];
 export type SchemaAssessmentTool = components['schemas']['AssessmentTool'];
 export type SchemaAuditScope = components['schemas']['AuditScope'];
+export type SchemaBootLogging = components['schemas']['BootLogging'];
 export type SchemaCatalog = components['schemas']['Catalog'];
 export type SchemaCatalogMetadata = components['schemas']['Catalog_Metadata'];
 export type SchemaCategory = components['schemas']['Category'];
 export type SchemaCertificate = components['schemas']['Certificate'];
-export type SchemaTargetOfEvaluation = components['schemas']['TargetOfEvaluation'];
-export type SchemaTargetOfEvaluationMetadata = components['schemas']['TargetOfEvaluation_Metadata'];
 export type SchemaComparisonResult = components['schemas']['ComparisonResult'];
 export type SchemaControl = components['schemas']['Control'];
 export type SchemaDependency = components['schemas']['Dependency'];
+export type SchemaGeoLocation = components['schemas']['GeoLocation'];
+export type SchemaGeoRedundancy = components['schemas']['GeoRedundancy'];
 export type SchemaGetTargetOfEvaluationStatisticsResponse = components['schemas']['GetTargetOfEvaluationStatisticsResponse'];
 export type SchemaGoogleProtobufAny = components['schemas']['GoogleProtobufAny'];
 export type SchemaGoogleProtobufValue = components['schemas']['GoogleProtobufValue'];
@@ -1033,21 +1037,27 @@ export type SchemaListAssessmentToolsResponse = components['schemas']['ListAsses
 export type SchemaListAuditScopesResponse = components['schemas']['ListAuditScopesResponse'];
 export type SchemaListCatalogsResponse = components['schemas']['ListCatalogsResponse'];
 export type SchemaListCertificatesResponse = components['schemas']['ListCertificatesResponse'];
-export type SchemaListTargetOfEvaluationsResponse = components['schemas']['ListTargetOfEvaluationsResponse'];
 export type SchemaListControlsResponse = components['schemas']['ListControlsResponse'];
 export type SchemaListMetricConfigurationResponse = components['schemas']['ListMetricConfigurationResponse'];
 export type SchemaListMetricsResponse = components['schemas']['ListMetricsResponse'];
 export type SchemaListPublicCertificatesResponse = components['schemas']['ListPublicCertificatesResponse'];
+export type SchemaListTargetsOfEvaluationResponse = components['schemas']['ListTargetsOfEvaluationResponse'];
+export type SchemaLocalRedundancy = components['schemas']['LocalRedundancy'];
+export type SchemaLogging = components['schemas']['Logging'];
 export type SchemaMetric = components['schemas']['Metric'];
 export type SchemaMetricConfiguration = components['schemas']['MetricConfiguration'];
 export type SchemaMetricImplementation = components['schemas']['MetricImplementation'];
-export type SchemaMinMax = components['schemas']['MinMax'];
-export type SchemaOrder = components['schemas']['Order'];
-export type SchemaRange = components['schemas']['Range'];
+export type SchemaOsLogging = components['schemas']['OSLogging'];
+export type SchemaRecord = components['schemas']['Record'];
+export type SchemaRedundancy = components['schemas']['Redundancy'];
+export type SchemaResourceLogging = components['schemas']['ResourceLogging'];
 export type SchemaRuntime = components['schemas']['Runtime'];
-export type SchemaState = components['schemas']['State'];
 export type SchemaStatus = components['schemas']['Status'];
 export type SchemaStoreAssessmentResultResponse = components['schemas']['StoreAssessmentResultResponse'];
+export type SchemaTargetOfEvaluation = components['schemas']['TargetOfEvaluation'];
+export type SchemaTargetOfEvaluationMetadata = components['schemas']['TargetOfEvaluation_Metadata'];
+export type SchemaUsageStatistics = components['schemas']['UsageStatistics'];
+export type SchemaZoneRedundancy = components['schemas']['ZoneRedundancy'];
 export type $defs = Record<string, never>;
 export interface operations {
     Orchestrator_ListAssessmentResults: {
@@ -1925,334 +1935,6 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListTargetOfEvaluations: {
-        parameters: {
-            query?: {
-                pageSize?: number;
-                pageToken?: string;
-                orderBy?: string;
-                asc?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListTargetOfEvaluationsResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_CreateTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TargetOfEvaluation"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_GetTargetOfEvaluationStatistics: {
-        parameters: {
-            query?: {
-                targetOfEvaluationId?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["GetTargetOfEvaluationStatisticsResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_UpdateAuditScope: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                "audit_scope.target_of_evaluation_id": string;
-                "audit_scope.catalog_id": string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AuditScope"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AuditScope"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_GetTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                targetOfEvaluationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_RemoveTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                targetOfEvaluationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_ListMetricConfigurations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                targetOfEvaluationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ListMetricConfigurationResponse"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_GetMetricConfiguration: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                targetOfEvaluationId: string;
-                metricId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MetricConfiguration"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_UpdateMetricConfiguration: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                targetOfEvaluationId: string;
-                metricId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MetricConfiguration"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MetricConfiguration"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
-    Orchestrator_UpdateTargetOfEvaluation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                "target_of_evaluation.id": string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TargetOfEvaluation"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TargetOfEvaluation"];
-                };
-            };
-            /** @description Default error response */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Status"];
-                };
-            };
-        };
-    };
     Orchestrator_ListControls: {
         parameters: {
             query?: {
@@ -2571,6 +2253,334 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Runtime"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_ListTargetsOfEvaluation: {
+        parameters: {
+            query?: {
+                pageSize?: number;
+                pageToken?: string;
+                orderBy?: string;
+                asc?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListTargetsOfEvaluationResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_CreateTargetOfEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TargetOfEvaluation"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetTargetOfEvaluationStatistics: {
+        parameters: {
+            query?: {
+                targetOfEvaluationId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetTargetOfEvaluationStatisticsResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_UpdateAuditScope: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                "audit_scope.target_of_evaluation_id": string;
+                "audit_scope.catalog_id": string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AuditScope"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuditScope"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetTargetOfEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                targetOfEvaluationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_RemoveTargetOfEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                targetOfEvaluationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_ListMetricConfigurations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                targetOfEvaluationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListMetricConfigurationResponse"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_GetMetricConfiguration: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                targetOfEvaluationId: string;
+                metricId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MetricConfiguration"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_UpdateMetricConfiguration: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                targetOfEvaluationId: string;
+                metricId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MetricConfiguration"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MetricConfiguration"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_UpdateTargetOfEvaluation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                "target_of_evaluation.id": string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TargetOfEvaluation"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
                 };
             };
             /** @description Default error response */

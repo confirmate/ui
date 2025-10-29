@@ -1,5 +1,5 @@
 import DiscoveryGraph from "@/components/discovery-graph";
-import discoveryClient from "@/lib/api/discovery";
+import evidenceClient from "@/lib/api/evidence";
 import orchestratorClient, {
   listMetrics,
   SchemaMetric,
@@ -33,8 +33,8 @@ export default async function Page({ params }: PageProps) {
   const assessmentResults = resResults.data?.results ?? [];
 
   // ...and the graph edges
-  const resEdges = await discoveryClient.GET(
-    "/v1experimental/discovery/graph/edges",
+  const resEdges = await evidenceClient.GET(
+    "/v1experimental/evidence/graph/edges",
     {
       params: {
         query: {
@@ -51,7 +51,7 @@ export default async function Page({ params }: PageProps) {
       } satisfies EdgeDefinition;
     }) ?? [];
 
-  const resResources = await discoveryClient.GET("/v1/discovery/resources", {
+  const resResources = await evidenceClient.GET("/v1/evidence_store/resources", {
     params: {
       query: {
         pageSize: 1500,

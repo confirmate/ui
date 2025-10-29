@@ -861,300 +861,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation:
-        get:
-            tags:
-                - Orchestrator
-            description: Lists all target targets of evaluation
-            operationId: Orchestrator_ListTargetOfEvaluations
-            parameters:
-                - name: pageSize
-                  in: query
-                  schema:
-                    type: integer
-                    format: int32
-                - name: pageToken
-                  in: query
-                  schema:
-                    type: string
-                - name: orderBy
-                  in: query
-                  schema:
-                    type: string
-                - name: asc
-                  in: query
-                  schema:
-                    type: boolean
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ListTargetOfEvaluationsResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        post:
-            tags:
-                - Orchestrator
-            description: Registers a new target target of evaluation
-            operationId: Orchestrator_CreateTargetOfEvaluation
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/TargetOfEvaluation'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/TargetOfEvaluation'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/statistics:
-        get:
-            tags:
-                - Orchestrator
-            description: Retrieves target target of evaluation statistics
-            operationId: Orchestrator_GetTargetOfEvaluationStatistics
-            parameters:
-                - name: targetOfEvaluationId
-                  in: query
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/GetTargetOfEvaluationStatisticsResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/{audit_scope.target_of_evaluation_id}/audit_scopes/{audit_scope.catalog_id}:
-        put:
-            tags:
-                - Orchestrator
-            description: Updates an existing Audit Scope
-            operationId: Orchestrator_UpdateAuditScope
-            parameters:
-                - name: audit_scope.target_of_evaluation_id
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: audit_scope.catalog_id
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/AuditScope'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/AuditScope'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}:
-        get:
-            tags:
-                - Orchestrator
-            description: Retrieves a target target of evaluation
-            operationId: Orchestrator_GetTargetOfEvaluation
-            parameters:
-                - name: targetOfEvaluationId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/TargetOfEvaluation'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        delete:
-            tags:
-                - Orchestrator
-            description: Removes a target target of evaluation
-            operationId: Orchestrator_RemoveTargetOfEvaluation
-            parameters:
-                - name: targetOfEvaluationId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations:
-        get:
-            tags:
-                - Orchestrator
-            description: |-
-                Lists all metric configurations (target value and operator) for a
-                 specific target of evaluation ID
-            operationId: Orchestrator_ListMetricConfigurations
-            parameters:
-                - name: targetOfEvaluationId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ListMetricConfigurationResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations/{metricId}:
-        get:
-            tags:
-                - Orchestrator
-            description: |-
-                Retrieves a metric configuration (target value and operator) for a specific
-                 target of evaluation and metric ID.
-            operationId: Orchestrator_GetMetricConfiguration
-            parameters:
-                - name: targetOfEvaluationId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: metricId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MetricConfiguration'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        put:
-            tags:
-                - Orchestrator
-            description: |-
-                Updates a metric configuration (target value and operator) for a specific
-                 target of evaluation and metric ID
-            operationId: Orchestrator_UpdateMetricConfiguration
-            parameters:
-                - name: targetOfEvaluationId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: metricId
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/MetricConfiguration'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MetricConfiguration'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/orchestrator/targets_of_evaluation/{target_of_evaluation.id}:
-        put:
-            tags:
-                - Orchestrator
-            description: Registers a new target target of evaluation
-            operationId: Orchestrator_UpdateTargetOfEvaluation
-            parameters:
-                - name: target_of_evaluation.id
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/TargetOfEvaluation'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/TargetOfEvaluation'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
     /v1/orchestrator/controls:
         get:
             tags:
@@ -1465,20 +1171,340 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation:
+        get:
+            tags:
+                - Orchestrator
+            description: Lists all targets of evaluations
+            operationId: Orchestrator_ListTargetsOfEvaluation
+            parameters:
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageToken
+                  in: query
+                  schema:
+                    type: string
+                - name: orderBy
+                  in: query
+                  schema:
+                    type: string
+                - name: asc
+                  in: query
+                  schema:
+                    type: boolean
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListTargetsOfEvaluationResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - Orchestrator
+            description: Registers a new target of evaluation
+            operationId: Orchestrator_CreateTargetOfEvaluation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/TargetOfEvaluation'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TargetOfEvaluation'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/statistics:
+        get:
+            tags:
+                - Orchestrator
+            description: Retrieves target of evaluation statistics
+            operationId: Orchestrator_GetTargetOfEvaluationStatistics
+            parameters:
+                - name: targetOfEvaluationId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetTargetOfEvaluationStatisticsResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/{audit_scope.target_of_evaluation_id}/audit_scopes/{audit_scope.catalog_id}:
+        put:
+            tags:
+                - Orchestrator
+            description: Updates an existing Audit Scope
+            operationId: Orchestrator_UpdateAuditScope
+            parameters:
+                - name: audit_scope.target_of_evaluation_id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: audit_scope.catalog_id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/AuditScope'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AuditScope'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}:
+        get:
+            tags:
+                - Orchestrator
+            description: Retrieves a target of evaluation
+            operationId: Orchestrator_GetTargetOfEvaluation
+            parameters:
+                - name: targetOfEvaluationId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TargetOfEvaluation'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        delete:
+            tags:
+                - Orchestrator
+            description: Removes a target of evaluation
+            operationId: Orchestrator_RemoveTargetOfEvaluation
+            parameters:
+                - name: targetOfEvaluationId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content: {}
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations:
+        get:
+            tags:
+                - Orchestrator
+            description: |-
+                Lists all metric configurations (target value and operator) for a
+                 specific target of evaluation ID
+            operationId: Orchestrator_ListMetricConfigurations
+            parameters:
+                - name: targetOfEvaluationId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListMetricConfigurationResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations/{metricId}:
+        get:
+            tags:
+                - Orchestrator
+            description: |-
+                Retrieves a metric configuration (target value and operator) for a specific
+                 target of evaluation and metric ID.
+            operationId: Orchestrator_GetMetricConfiguration
+            parameters:
+                - name: targetOfEvaluationId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: metricId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MetricConfiguration'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        put:
+            tags:
+                - Orchestrator
+            description: |-
+                Updates a metric configuration (target value and operator) for a specific
+                 target of evaluation and metric ID
+            operationId: Orchestrator_UpdateMetricConfiguration
+            parameters:
+                - name: targetOfEvaluationId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: metricId
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MetricConfiguration'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MetricConfiguration'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/orchestrator/targets_of_evaluation/{target_of_evaluation.id}:
+        put:
+            tags:
+                - Orchestrator
+            description: Registers a new target of evaluation
+            operationId: Orchestrator_UpdateTargetOfEvaluation
+            parameters:
+                - name: target_of_evaluation.id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/TargetOfEvaluation'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TargetOfEvaluation'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
 components:
     schemas:
-        AllowedValues:
+        ActivityLogging:
             type: object
             properties:
-                values:
+                enabled:
+                    type: boolean
+                monitoringLogDataEnabled:
+                    type: boolean
+                retentionPeriod:
+                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
+                    type: string
+                securityAlertsEnabled:
+                    type: boolean
+                loggingServiceIds:
                     type: array
                     items:
-                        $ref: '#/components/schemas/GoogleProtobufValue'
-            description: Defines a range
+                        type: string
+            description: ActivityLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
+        ApplicationLogging:
+            type: object
+            properties:
+                enabled:
+                    type: boolean
+                monitoringLogDataEnabled:
+                    type: boolean
+                retentionPeriod:
+                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
+                    type: string
+                securityAlertsEnabled:
+                    type: boolean
+                loggingServiceIds:
+                    type: array
+                    items:
+                        type: string
+            description: ApplicationLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
         AssessmentResult:
             required:
                 - id
-                - timestamp
+                - createdAt
                 - metricId
                 - metricConfiguration
                 - evidenceId
@@ -1487,12 +1513,14 @@ components:
                 - complianceComment
                 - targetOfEvaluationId
                 - toolId
+                - historyUpdatedAt
+                - history
             type: object
             properties:
                 id:
                     type: string
                     description: Assessment result id
-                timestamp:
+                createdAt:
                     type: string
                     description: Time of assessment
                     format: date-time
@@ -1508,7 +1536,7 @@ components:
                     description: 'Compliant case: true or false'
                 evidenceId:
                     type: string
-                    description: Reference to the assessed evidence
+                    description: Reference to the last assessed evidence
                 resourceId:
                     type: string
                     description: Reference to the resource of the assessed evidence
@@ -1531,6 +1559,15 @@ components:
                 toolId:
                     type: string
                     description: Reference to the tool which provided the assessment result
+                historyUpdatedAt:
+                    type: string
+                    description: The time of the last update of the assessment result history field
+                    format: date-time
+                history:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Record'
+                    description: Stores the history of evidence IDs and timestamps for evidence that have the same content as the evidence used for this assessment result.
             description: |-
                 A result resource, representing the result after assessing the cloud resource
                  with id resource_id.
@@ -1557,6 +1594,7 @@ components:
         AuditScope:
             required:
                 - id
+                - name
                 - targetOfEvaluationId
                 - catalogId
             type: object
@@ -1564,6 +1602,8 @@ components:
                 id:
                     type: string
                     description: Audit Scope ID
+                name:
+                    type: string
                 targetOfEvaluationId:
                     type: string
                 catalogId:
@@ -1576,6 +1616,23 @@ components:
             description: |-
                 A Audit Scope binds a target of evaluation to a catalog, so the target of evaluation is
                  evaluated regarding this catalog's controls
+        BootLogging:
+            type: object
+            properties:
+                enabled:
+                    type: boolean
+                monitoringLogDataEnabled:
+                    type: boolean
+                retentionPeriod:
+                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
+                    type: string
+                securityAlertsEnabled:
+                    type: boolean
+                loggingServiceIds:
+                    type: array
+                    items:
+                        type: string
+            description: BootLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
         Catalog:
             required:
                 - id
@@ -1639,86 +1696,53 @@ components:
                     items:
                         $ref: '#/components/schemas/Control'
         Certificate:
-            required:
-                - id
-                - name
-                - targetOfEvaluationId
             type: object
             properties:
-                id:
+                creationTime:
                     type: string
-                name:
+                    format: date-time
+                description:
                     type: string
-                targetOfEvaluationId:
-                    type: string
-                issueDate:
-                    type: string
+                enabled:
+                    type: boolean
                 expirationDate:
                     type: string
-                standard:
-                    type: string
-                assuranceLevel:
-                    type: string
-                cab:
-                    type: string
-                description:
-                    type: string
-                states:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/State'
-                    description: A list of states at specific times
-            description: An ISO17021-based certificate
-        TargetOfEvaluation:
-            required:
-                - id
-                - name
-                - configuredMetrics
-                - targetType
-            type: object
-            properties:
+                    format: date-time
                 id:
                     type: string
-                name:
-                    type: string
-                description:
-                    type: string
-                configuredMetrics:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/Metric'
-                createdAt:
-                    type: string
-                    description: creation time of the target_of_evaluation
-                    format: date-time
-                updatedAt:
-                    type: string
-                    description: last update time of the target_of_evaluation
-                    format: date-time
-                metadata:
-                    allOf:
-                        - $ref: '#/components/schemas/TargetOfEvaluation_Metadata'
-                    description: additional metadata of the target of evaluation, mostly used for the UI
-                targetType:
-                    enum:
-                        - TARGET_TYPE_UNSPECIFIED
-                        - TARGET_TYPE_CLOUD
-                        - TARGET_TYPE_PRODUCT
-                        - TARGET_TYPE_ORGANIZATION
-                    type: string
-                    description: 'type of the target to be evaluated: cloud, product or organization'
-                    format: enum
-        TargetOfEvaluation_Metadata:
-            type: object
-            properties:
+                internetAccessibleEndpoint:
+                    type: boolean
+                isManaged:
+                    type: boolean
                 labels:
                     type: object
                     additionalProperties:
                         type: string
-                    description: a map of key/value pairs, e.g., env:prod
-                icon:
+                name:
                     type: string
-                    description: an icon for the target of evaluation used by the UI
+                notBeforeDate:
+                    type: string
+                    format: date-time
+                raw:
+                    type: string
+                    description: The raw field contains the raw information that is used to fill in the fields of the ontology.
+                geoLocation:
+                    $ref: '#/components/schemas/GeoLocation'
+                infrastructureId:
+                    type: string
+                loggings:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Logging'
+                redundancies:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Redundancy'
+                parentId:
+                    type: string
+                usageStatistics:
+                    $ref: '#/components/schemas/UsageStatistics'
+            description: Certificate is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
         ComparisonResult:
             required:
                 - property
@@ -1810,6 +1834,20 @@ components:
                     type: string
                 version:
                     type: string
+        GeoLocation:
+            type: object
+            properties:
+                region:
+                    type: string
+            description: GeoLocation is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
+        GeoRedundancy:
+            type: object
+            properties:
+                geoLocations:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GeoLocation'
+            description: GeoRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
         GetTargetOfEvaluationStatisticsResponse:
             type: object
             properties:
@@ -1880,18 +1918,6 @@ components:
                         $ref: '#/components/schemas/Certificate'
                 nextPageToken:
                     type: string
-        ListTargetOfEvaluationsResponse:
-            required:
-                - targets
-                - targets
-            type: object
-            properties:
-                targets:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/TargetOfEvaluation'
-                nextPageToken:
-                    type: string
         ListControlsResponse:
             type: object
             properties:
@@ -1929,43 +1955,62 @@ components:
                         $ref: '#/components/schemas/Certificate'
                 nextPageToken:
                     type: string
+        ListTargetsOfEvaluationResponse:
+            required:
+                - targets
+            type: object
+            properties:
+                targets:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TargetOfEvaluation'
+                nextPageToken:
+                    type: string
+        LocalRedundancy:
+            type: object
+            properties:
+                geoLocations:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GeoLocation'
+            description: LocalRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
+        Logging:
+            type: object
+            properties:
+                activityLogging:
+                    $ref: '#/components/schemas/ActivityLogging'
+                applicationLogging:
+                    $ref: '#/components/schemas/ApplicationLogging'
+                bootLogging:
+                    $ref: '#/components/schemas/BootLogging'
+                osLogging:
+                    $ref: '#/components/schemas/OSLogging'
+                resourceLogging:
+                    $ref: '#/components/schemas/ResourceLogging'
+            description: Logging is an abstract class in our ontology, it cannot be instantiated but acts as an "interface".
         Metric:
             required:
                 - id
-                - name
+                - description
+                - version
+                - category
             type: object
             properties:
                 id:
                     type: string
                     description: Required. The unique identifier of the metric.
-                name:
-                    type: string
-                    description: Required. The human readable name of the metric.
                 description:
                     type: string
                     description: The description of the metric
+                version:
+                    type: string
+                    description: The version of this metric
+                comments:
+                    type: string
+                    description: Optional comments that describe the purpose of this metric. They may also describe a scenario in which the metric can be useful.
                 category:
                     type: string
-                    description: The reference to control catalog category or domain
-                scale:
-                    enum:
-                        - SCALE_UNSPECIFIED
-                        - NOMINAL
-                        - ORDINAL
-                        - METRIC
-                    type: string
-                    description: The scale of this metric, e.g. categories, ranked data or metric values.
-                    format: enum
-                range:
-                    allOf:
-                        - $ref: '#/components/schemas/Range'
-                    description: The range of this metric. Depending on the scale.
-                interval:
-                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
-                    type: string
-                    description: |-
-                        The interval in seconds the evidences must be collected for the respective
-                         metric.
+                    description: Semantically, the reference to control catalog category or domain; it must conform to the directory structure of the security-metrics respository
                 implementation:
                     allOf:
                         - $ref: '#/components/schemas/MetricImplementation'
@@ -2033,42 +2078,61 @@ components:
                     description: The last time of update
                     format: date-time
             description: MetricImplementation defines the implementation of an individual metric.
-        MinMax:
+        OSLogging:
             type: object
             properties:
-                min:
+                enabled:
+                    type: boolean
+                monitoringLogDataEnabled:
+                    type: boolean
+                retentionPeriod:
+                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
                     type: string
-                    description: Required.
-                max:
-                    type: string
-                    description: Required.
-            description: Defines a range of values through a (inclusive) minimum and a maximum
-        Order:
-            type: object
-            properties:
-                values:
+                securityAlertsEnabled:
+                    type: boolean
+                loggingServiceIds:
                     type: array
                     items:
-                        $ref: '#/components/schemas/GoogleProtobufValue'
-            description: |-
-                Defines a range of values in a pre-defined order from the lowest to the
-                 highest.
-        Range:
+                        type: string
+            description: OSLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
+        Record:
+            required:
+                - evidenceId
+                - evidenceRecordedAt
             type: object
             properties:
-                allowedValues:
-                    allOf:
-                        - $ref: '#/components/schemas/AllowedValues'
-                    description: used for nominal scale
-                order:
-                    allOf:
-                        - $ref: '#/components/schemas/Order'
-                    description: used for ordinal scale
-                minMax:
-                    allOf:
-                        - $ref: '#/components/schemas/MinMax'
-                    description: used for metric scale
-            description: A range resource representing the range of values
+                evidenceId:
+                    type: string
+                evidenceRecordedAt:
+                    type: string
+                    format: date-time
+        Redundancy:
+            type: object
+            properties:
+                geoRedundancy:
+                    $ref: '#/components/schemas/GeoRedundancy'
+                localRedundancy:
+                    $ref: '#/components/schemas/LocalRedundancy'
+                zoneRedundancy:
+                    $ref: '#/components/schemas/ZoneRedundancy'
+            description: Redundancy is an abstract class in our ontology, it cannot be instantiated but acts as an "interface".
+        ResourceLogging:
+            type: object
+            properties:
+                enabled:
+                    type: boolean
+                monitoringLogDataEnabled:
+                    type: boolean
+                retentionPeriod:
+                    pattern: ^-?(?:0|[1-9][0-9]{0,11})(?:\.[0-9]{1,9})?s$
+                    type: string
+                securityAlertsEnabled:
+                    type: boolean
+                loggingServiceIds:
+                    type: array
+                    items:
+                        type: string
+            description: ResourceLogging is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
         Runtime:
             type: object
             properties:
@@ -2093,22 +2157,6 @@ components:
                     items:
                         $ref: '#/components/schemas/Dependency'
                     description: dependency is a list of used runtime dependencies
-        State:
-            type: object
-            properties:
-                id:
-                    type: string
-                state:
-                    type: string
-                    description: An EUCS-defined state, e.g. `new`, `suspended` or `withdrawn`
-                treeId:
-                    type: string
-                timestamp:
-                    type: string
-                certificateId:
-                    type: string
-                    description: Reference to the certificate
-            description: A state of a certificate at a given time
         Status:
             type: object
             properties:
@@ -2132,5 +2180,70 @@ components:
                 StoreAssessmentResultReponse belongs to StoreAssessmentResult, which uses a
                  custom unary RPC and therefore requires a response message according to the
                  style convention. Since no return values are required, this is empty.
+        TargetOfEvaluation:
+            required:
+                - id
+                - name
+                - configuredMetrics
+                - targetType
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                description:
+                    type: string
+                configuredMetrics:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Metric'
+                createdAt:
+                    type: string
+                    description: creation time of the target_of_evaluation
+                    format: date-time
+                updatedAt:
+                    type: string
+                    description: last update time of the target_of_evaluation
+                    format: date-time
+                metadata:
+                    allOf:
+                        - $ref: '#/components/schemas/TargetOfEvaluation_Metadata'
+                    description: additional metadata of the target of evaluation, mostly used for the UI
+                targetType:
+                    enum:
+                        - TARGET_TYPE_UNSPECIFIED
+                        - TARGET_TYPE_CLOUD
+                        - TARGET_TYPE_PRODUCT
+                        - TARGET_TYPE_ORGANIZATION
+                    type: string
+                    description: 'type of the target to be evaluated: cloud, product or organization'
+                    format: enum
+        TargetOfEvaluation_Metadata:
+            type: object
+            properties:
+                labels:
+                    type: object
+                    additionalProperties:
+                        type: string
+                    description: a map of key/value pairs, e.g., env:prod
+                icon:
+                    type: string
+                    description: an icon for the target of evaluation used by the UI
+        UsageStatistics:
+            type: object
+            properties:
+                apiHitsPerMonth:
+                    type: integer
+                    format: int32
+            description: UsageStatistics is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
+        ZoneRedundancy:
+            type: object
+            properties:
+                geoLocations:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GeoLocation'
+            description: ZoneRedundancy is an entity class in our ontology. It can be instantiated and contains all of its properties as well of its implemented interfaces.
 tags:
     - name: Orchestrator
