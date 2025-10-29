@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "openapi-typescript openapi/orchestrator.yaml -o lib/api/orchestrator/orchestrator.ts --root-types && openapi-typescript openapi/discovery.yaml -o lib/api/discovery/discovery.ts --root-types && openapi-typescript openapi/evaluation.yaml -o lib/api/evaluation/evaluation.ts --root-types",
+    "generate:types": "openapi-typescript openapi/orchestrator.yaml -o lib/api/orchestrator/orchestrator.ts --root-types && openapi-typescript openapi/discovery.yaml -o lib/api/discovery/discovery.ts --root-types && openapi-typescript openapi/evaluation.yaml -o lib/api/evaluation/evaluation.ts --root-types && openapi-typescript openapi/evidence.yaml -o lib/api/evidence/evidence.ts --root-types",
     "predev": "npm run generate:types",
     "prebuild": "npm run generate:types"
   },
@@ -38,6 +38,7 @@
     "winston": "^3.15.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

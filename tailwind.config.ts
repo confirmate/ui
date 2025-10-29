@@ -23,8 +23,37 @@ const config: Config = {
           },
         ],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            pre: {
+              backgroundColor: "transparent",
+              padding: 0,
+              margin: 0,
+            },
+            code: {
+              backgroundColor: "transparent",
+              padding: 0,
+              fontWeight: "400",
+            },
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
+            a: {
+              color: "#007FC3",
+              textDecoration: "underline",
+              "&:hover": {
+                color: "#008CD7",
+              },
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };
 export default config;

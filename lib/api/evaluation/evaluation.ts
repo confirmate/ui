@@ -13,10 +13,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * @description Evaluates periodically all assessment results of a target of evaluation id based
-         *      on the given catalog id. Part of the public API, also exposed as REST.
-         */
+        /** @description Evaluates periodically all assessment results of a target of evaluation id based
+         *      on the given catalog id. Part of the public API, also exposed as REST. */
         post: operations["Evaluation_StartEvaluation"];
         delete?: never;
         options?: never;
@@ -33,10 +31,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * @description StopEvaluation stops the evaluation for the given audit scope.
-         *      Part of the public API, also exposed as REST.
-         */
+        /** @description StopEvaluation stops the evaluation for the given audit scope.
+         *      Part of the public API, also exposed as REST. */
         post: operations["Evaluation_StopEvaluation"];
         delete?: never;
         options?: never;
@@ -51,11 +47,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * @description List all evaluation results that the user can access. It can further be
+        /** @description List all evaluation results that the user can access. It can further be
          *      restricted by various filtering options. Part of the public API, also
-         *      exposed as REST.
-         */
+         *      exposed as REST. */
         get: operations["Evaluation_ListEvaluationResults"];
         put?: never;
         /** @description Creates an evaluation result */
@@ -70,11 +64,9 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /**
-         * @description A evaluation result resource, representing the result after evaluating the
+        /** @description A evaluation result resource, representing the result after evaluating the
          *      target of evaluation with a specific control target_of_evaluation_id, category_name and
-         *      catalog_id are necessary to get the corresponding AuditScope
-         */
+         *      catalog_id are necessary to get the corresponding AuditScope */
         EvaluationResult: {
             /** @description Evaluation result id */
             id: string;
@@ -157,10 +149,8 @@ export interface operations {
     Evaluation_StartEvaluation: {
         parameters: {
             query?: {
-                /**
-                 * @description The interval time in minutes the evaluation executes periodically. The
-                 *      default interval is set to 5 minutes.
-                 */
+                /** @description The interval time in minutes the evaluation executes periodically. The
+                 *      default interval is set to 5 minutes. */
                 interval?: number;
             };
             header?: never;
@@ -231,11 +221,9 @@ export interface operations {
                 "filter.catalogId"?: string;
                 /** @description Optional. Lists only evaluation results for a specific control id. */
                 "filter.controlId"?: string;
-                /**
-                 * @description Optional. Lists all evaluation results for the given initial control id
+                /** @description Optional. Lists all evaluation results for the given initial control id
                  *      substring, e.g., if the substring 'CMK-01.' is given it returns the
-                 *      controls CMK-01.1B, CMK-01.1S, CMK-01.1H.
-                 */
+                 *      controls CMK-01.1B, CMK-01.1S, CMK-01.1H. */
                 "filter.subControls"?: string;
                 /** @description Optional. Lists only results for parent controls */
                 "filter.parentsOnly"?: boolean;
