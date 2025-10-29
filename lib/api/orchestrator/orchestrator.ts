@@ -46,8 +46,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all assessment tools assessing evidences for the metric given by the
-         *      passed metric id */
+        /**
+         * @description Lists all assessment tools assessing evidences for the metric given by the
+         *      passed metric id
+         */
         get: operations["Orchestrator_ListAssessmentTools"];
         put?: never;
         /** @description Registers the passed assessment tool */
@@ -86,8 +88,10 @@ export interface paths {
         get: operations["Orchestrator_GetAssessmentTool"];
         put?: never;
         post?: never;
-        /** @description Remove assessment tool with passed id from the list of active assessment
-         *      tools */
+        /**
+         * @description Remove assessment tool with passed id from the list of active assessment
+         *      tools
+         */
         delete: operations["Orchestrator_DeregisterAssessmentTool"];
         options?: never;
         head?: never;
@@ -137,8 +141,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all security controls catalogs. Each catalog includes a list of its
-         *      categories but no additional sub-resources. */
+        /**
+         * @description Lists all security controls catalogs. Each catalog includes a list of its
+         *      categories but no additional sub-resources.
+         */
         get: operations["Orchestrator_ListCatalogs"];
         put?: never;
         /** @description Creates a new security controls catalog */
@@ -173,8 +179,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a specific catalog by it's ID. The catalog includes a list of all
-         *      of it categories as well as the first level of controls in each category. */
+        /**
+         * @description Retrieves a specific catalog by it's ID. The catalog includes a list of all
+         *      of it categories as well as the first level of controls in each category.
+         */
         get: operations["Orchestrator_GetCatalog"];
         put?: never;
         post?: never;
@@ -192,9 +200,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description If no additional parameters are specified, this lists all controls. If a
+        /**
+         * @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned. */
+         *      in this category are returned.
+         */
         get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
@@ -211,10 +221,12 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a control specified by the catalog ID, the control's category
+        /**
+         * @description Retrieves a control specified by the catalog ID, the control's category
          *      name and the control ID. If present, it also includes a list of
          *      sub-controls if present or a list of metrics if no sub-controls but metrics
-         *      are present. */
+         *      are present.
+         */
         get: operations["Orchestrator_GetControl"];
         put?: never;
         post?: never;
@@ -231,10 +243,33 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a category of a catalog specified by the catalog ID and the
+        /**
+         * @description Retrieves a category of a catalog specified by the catalog ID and the
          *      category name. It includes the first level of controls within each
-         *      category. */
+         *      category.
+         */
         get: operations["Orchestrator_GetCategory"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/orchestrator/catalogs/{catalogId}/controls": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description If no additional parameters are specified, this lists all controls. If a
+         *      catalog ID and a category name is specified, then only controls containing
+         *      in this category are returned.
+         */
+        get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
         delete?: never;
@@ -373,8 +408,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all metric configurations (target value and operator) for a
-         *      specific certification target ID */
+        /**
+         * @description Lists all metric configurations (target value and operator) for a
+         *      specific certification target ID
+         */
         get: operations["Orchestrator_ListMetricConfigurations"];
         put?: never;
         post?: never;
@@ -391,11 +428,15 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a metric configuration (target value and operator) for a specific
-         *      certification target and metric ID. */
+        /**
+         * @description Retrieves a metric configuration (target value and operator) for a specific
+         *      certification target and metric ID.
+         */
         get: operations["Orchestrator_GetMetricConfiguration"];
-        /** @description Updates a metric configuration (target value and operator) for a specific
-         *      certification target and metric ID */
+        /**
+         * @description Updates a metric configuration (target value and operator) for a specific
+         *      certification target and metric ID
+         */
         put: operations["Orchestrator_UpdateMetricConfiguration"];
         post?: never;
         delete?: never;
@@ -428,9 +469,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description If no additional parameters are specified, this lists all controls. If a
+        /**
+         * @description If no additional parameters are specified, this lists all controls. If a
          *      catalog ID and a category name is specified, then only controls containing
-         *      in this category are returned. */
+         *      in this category are returned.
+         */
         get: operations["Orchestrator_ListControls"];
         put?: never;
         post?: never;
@@ -569,38 +612,43 @@ export interface components {
         AllowedValues: {
             values?: components["schemas"]["GoogleProtobufValue"][];
         };
-        /** @description A result resource, representing the result after assessing the cloud resource
-         *      with id resource_id. */
+        /**
+         * @description A result resource, representing the result after assessing the cloud resource
+         *      with id resource_id.
+         */
         AssessmentResult: {
             /** @description Assessment result id */
-            id?: string;
+            id: string;
             /**
              * Format: date-time
              * @description Time of assessment
              */
-            timestamp?: string;
+            timestamp: string;
             /** @description Reference to the metric the assessment was based on */
-            metricId?: string;
+            metricId: string;
             /** @description Data corresponding to the metric by the given metric id */
-            metricConfiguration?: components["schemas"]["MetricConfiguration"];
+            metricConfiguration: components["schemas"]["MetricConfiguration"];
             /** @description Compliant case: true or false */
             compliant?: boolean;
             /** @description Reference to the assessed evidence */
-            evidenceId?: string;
+            evidenceId: string;
             /** @description Reference to the resource of the assessed evidence */
-            resourceId?: string;
+            resourceId: string;
             /** @description Resource types */
-            resourceTypes?: string[];
-            /** @description Some comments on the reason for non-compliance */
-            nonComplianceComments?: string;
-            nonComplianceDetails?: components["schemas"]["ComparisonResult"][];
+            resourceTypes: string[];
+            /** @description ComplianceComment contains a human readable description on the reason for (non)-compliance. */
+            complianceComment: string;
+            /** @description ComplianceDetails contains machine-readable details about which comparisons lead to a (non)-compliance. */
+            complianceDetails?: components["schemas"]["ComparisonResult"][];
             /** @description The certification target which this assessment result belongs to */
-            certificationTargetId?: string;
+            certificationTargetId: string;
             /** @description Reference to the tool which provided the assessment result */
-            toolId?: string;
+            toolId: string;
         };
-        /** @description Represents an external tool or service that offers assessments according to
-         *      certain metrics. */
+        /**
+         * @description Represents an external tool or service that offers assessments according to
+         *      certain metrics.
+         */
         AssessmentTool: {
             id?: string;
             name: string;
@@ -608,15 +656,19 @@ export interface components {
             /** @description a list of metrics that this tool can assess, referred by their ids */
             availableMetrics: string[];
         };
-        /** @description A Audit Scope binds a certification target to a catalog, so the certification target is
-         *      evaluated regarding this catalog's controls */
+        /**
+         * @description A Audit Scope binds a certification target to a catalog, so the certification target is
+         *      evaluated regarding this catalog's controls
+         */
         AuditScope: {
             /** @description Audit Scope ID */
             id: string;
             certificationTargetId: string;
             catalogId: string;
-            /** @description an assurance level is not offered by every catalog, therefore it is
-             *      optional */
+            /**
+             * @description an assurance level is not offered by every catalog, therefore it is
+             *      optional
+             */
             assuranceLevel?: string;
         };
         Catalog: {
@@ -624,12 +676,16 @@ export interface components {
             name: string;
             description?: string;
             categories: components["schemas"]["Category"][];
-            /** @description Certain security catalogs do not allow to select the scope of the controls,
+            /**
+             * @description Certain security catalogs do not allow to select the scope of the controls,
              *      but all controls are automatically "in scope", however they can be set to a
-             *      DELEGATED status. */
+             *      DELEGATED status.
+             */
             allInScope?: boolean;
-            /** @description A list of the assurance levels, e.g., basic, substantial and high for the
-             *      EUCS catalog. */
+            /**
+             * @description A list of the assurance levels, e.g., basic, substantial and high for the
+             *      EUCS catalog.
+             */
             assuranceLevels?: string[];
             /** @description Catalogs short name, e.g. EUCS */
             shortName: string;
@@ -693,26 +749,30 @@ export interface components {
             /** @description an icon for the certification target used by the UI */
             icon?: string;
         };
-        /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was succesful. */
+        /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was successful. */
         ComparisonResult: {
             /** @description Property is the property that was compared */
-            property?: string;
+            property: string;
             /** @description Value is the value in the property */
-            value?: string;
+            value: components["schemas"]["GoogleProtobufValue"];
             /** @description Operator is the operator used in the comparison */
-            operator?: string;
+            operator: string;
             /** @description TargetValue is the target value used in the comparison */
-            targetValue?: components["schemas"]["GoogleProtobufValue"];
+            targetValue: components["schemas"]["GoogleProtobufValue"];
             /** @description Success is true, if the comparison was sucessful */
-            success?: boolean;
+            success: boolean;
         };
-        /** @description Control represents a certain Control that needs to be fulfilled. It could be
+        /**
+         * @description Control represents a certain Control that needs to be fulfilled. It could be
          *      a Control in a certification catalog. It follows the OSCAL model. A
          *      requirement in the EUCS terminology, e.g., is represented as the lowest
-         *      sub-control. */
+         *      sub-control.
+         */
         Control: {
-            /** @description A short name of the control, e.g. OPS-01, as used in OSCAL; it is not a
-             *      unique ID! */
+            /**
+             * @description A short name of the control, e.g. OPS-01, as used in OSCAL; it is not a
+             *      unique ID!
+             */
             id: string;
             categoryName: string;
             categoryCatalogId: string;
@@ -720,19 +780,25 @@ export interface components {
             name: string;
             /** @description Description of the control */
             description?: string;
-            /** @description List of sub - controls -
-             *          this is in accordance with the OSCAL model. */
+            /**
+             * @description List of sub - controls -
+             *          this is in accordance with the OSCAL model.
+             */
             controls: components["schemas"]["Control"][];
-            /** @description metrics contains either a list of reference to metrics - in this case only
+            /**
+             * @description metrics contains either a list of reference to metrics - in this case only
              *      the id field of the metric is populated - or a list of populated metric
-             *      meta-data, most likely returned by the database. */
+             *      meta-data, most likely returned by the database.
+             */
             metrics: components["schemas"]["Metric"][];
             /** @description Reference to the parent category this control belongs to. */
             parentControlId?: string;
             parentControlCategoryName?: string;
             parentControlCategoryCatalogId?: string;
-            /** @description An assurance level is not offered by every catalog, therefore it is
-             *      optional. */
+            /**
+             * @description An assurance level is not offered by every catalog, therefore it is
+             *      optional.
+             */
             assuranceLevel?: string;
         };
         Dependency: {
@@ -803,9 +869,9 @@ export interface components {
         /** @description A metric resource */
         Metric: {
             /** @description Required. The unique identifier of the metric. */
-            id?: string;
+            id: string;
             /** @description Required. The human readable name of the metric. */
-            name?: string;
+            name: string;
             /** @description The description of the metric */
             description?: string;
             /** @description The reference to control catalog category or domain */
@@ -818,11 +884,15 @@ export interface components {
             scale?: "SCALE_UNSPECIFIED" | "NOMINAL" | "ORDINAL" | "METRIC";
             /** @description The range of this metric. Depending on the scale. */
             range?: components["schemas"]["Range"];
-            /** @description The interval in seconds the evidences must be collected for the respective
-             *      metric. */
+            /**
+             * @description The interval in seconds the evidences must be collected for the respective
+             *      metric.
+             */
             interval?: string;
-            /** @description The implementation of this metric. This ensures that we are modelling an
-             *      association between a Metric and its MetricImplementation. */
+            /**
+             * @description The implementation of this metric. This ensures that we are modelling an
+             *      association between a Metric and its MetricImplementation.
+             */
             implementation?: components["schemas"]["MetricImplementation"];
             /**
              * Format: date-time
@@ -834,25 +904,25 @@ export interface components {
         /** @description Defines the operator and a target value for an individual metric */
         MetricConfiguration: {
             /** @description The operator to compare the metric, such as == or > */
-            operator?: string;
+            operator: string;
             /** @description The target value */
-            targetValue?: components["schemas"]["GoogleProtobufValue"];
+            targetValue: components["schemas"]["GoogleProtobufValue"];
             /** @description Whether this configuration is a default configuration */
-            isDefault?: boolean;
+            isDefault: boolean;
             /**
              * Format: date-time
              * @description The last time of update
              */
             updatedAt?: string;
             /** @description The metric this configuration belongs to */
-            metricId?: string;
+            metricId: string;
             /** @description The certification target this configuration belongs to */
-            certificationTargetId?: string;
+            certificationTargetId: string;
         };
         /** @description MetricImplementation defines the implementation of an individual metric. */
         MetricImplementation: {
             /** @description The metric which is implemented */
-            metricId?: string;
+            metricId: string;
             /**
              * Format: enum
              * @description The language this metric is implemented in
@@ -860,7 +930,7 @@ export interface components {
              */
             lang?: "LANGUAGE_UNSPECIFIED" | "LANGUAGE_REGO";
             /** @description The actual implementation */
-            code?: string;
+            code: string;
             /**
              * Format: date-time
              * @description The last time of update
@@ -874,8 +944,10 @@ export interface components {
             /** @description Required. */
             max?: string;
         };
-        /** @description Defines a range of values in a pre-defined order from the lowest to the
-         *      highest. */
+        /**
+         * @description Defines a range of values in a pre-defined order from the lowest to the
+         *      highest.
+         */
         Order: {
             values?: components["schemas"]["GoogleProtobufValue"][];
         };
@@ -927,9 +999,11 @@ export interface components {
             /** @description A list of messages that carry the error details.  There is a common set of message types for APIs to use. */
             details?: components["schemas"]["GoogleProtobufAny"][];
         };
-        /** @description StoreAssessmentResultReponse belongs to StoreAssessmentResult, which uses a
+        /**
+         * @description StoreAssessmentResultReponse belongs to StoreAssessmentResult, which uses a
          *      custom unary RPC and therefore requires a response message according to the
-         *      style convention. Since no return values are required, this is empty. */
+         *      style convention. Since no return values are required, this is empty.
+         */
         StoreAssessmentResultResponse: Record<string, never>;
     };
     responses: never;
@@ -988,6 +1062,8 @@ export interface operations {
                 "filter.metricId"?: string;
                 /** @description Optional. List only assessment result from a specific assessment tool. */
                 "filter.toolId"?: string;
+                /** @description Optional. List only assessment result from a specific list of IDs. */
+                "filter.assessmentResultIds"?: string[];
                 /** @description Optional. Latest results grouped by resource_id and metric_id. */
                 latestByResourceId?: boolean;
                 pageSize?: number;
@@ -1634,6 +1710,46 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Category"];
+                };
+            };
+            /** @description Default error response */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Status"];
+                };
+            };
+        };
+    };
+    Orchestrator_ListControls: {
+        parameters: {
+            query?: {
+                categoryName?: string;
+                /** @description Optional. Lists only controls with the specified assurance levels. */
+                "filter.assuranceLevels"?: string[];
+                pageSize?: number;
+                pageToken?: string;
+                orderBy?: string;
+                asc?: boolean;
+            };
+            header?: never;
+            path: {
+                /** @description return either all controls or only the controls of the specified category */
+                catalogId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListControlsResponse"];
                 };
             };
             /** @description Default error response */

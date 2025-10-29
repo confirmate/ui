@@ -5,6 +5,8 @@ import { SchemaAssessmentResult } from "@/lib/api/orchestrator";
 import { truncate } from "@/lib/util";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import DisplayOperator from "./display-operator";
 
 interface AssessmentNonComplianceDetailsProps {
@@ -27,17 +29,25 @@ export default function AssessmentNonComplianceDetails({
   return (
     <>
       {isExpanded ? (
-        <p>{result.complianceComment}</p>
+        <div className="prose prose-sm max-w-none">
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            {result.complianceComment || ""}
+          </ReactMarkdown>
+        </div>
       ) : (
-        <p>
-          {truncatedComment}{" "}
+        <div className="flex items-start">
+          <div className="prose prose-sm max-w-none inline">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {truncatedComment}
+            </ReactMarkdown>
+          </div>{" "}
           <button
-            className="ml-2 text-sm font-medium text-white bg-gray-400 rounded hover:bg-gray-600 transition duration-300 ease-in-out"
+            className="ml-2 text-sm font-medium text-white bg-gray-400 rounded hover:bg-gray-600 transition duration-300 ease-in-out flex-shrink-0"
             onClick={() => setIsExpanded(true)}
           >
             <ChevronRightIcon className="w-4 h-4" />
           </button>
-        </p>
+        </div>
       )}
       {result.complianceDetails?.map((detail, idx) => (
         <div key={idx}>

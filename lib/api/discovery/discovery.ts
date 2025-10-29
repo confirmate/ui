@@ -45,10 +45,12 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description ListGraphEdges returns the edges (relationship) between resources in our
+        /**
+         * @description ListGraphEdges returns the edges (relationship) between resources in our
          *      resource graph.
          *
-         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE */
+         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE
+         */
         get: operations["ExperimentalDiscovery_ListGraphEdges"];
         put?: never;
         post?: never;
@@ -67,11 +69,13 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description UpdateResource updates a resource (or creates it, if it does not exist).
+        /**
+         * @description UpdateResource updates a resource (or creates it, if it does not exist).
          *      This is used to give third-party tools the possibility to add something to
          *      the resource graph.
          *
-         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE */
+         *      Note: THIS API IS EXPERIMENTAL AND SUBJECT TO CHANGE
+         */
         post: operations["ExperimentalDiscovery_UpdateResource"];
         delete?: never;
         options?: never;
@@ -104,23 +108,33 @@ export interface components {
             results: components["schemas"]["Resource"][];
             nextPageToken?: string;
         };
-        /** @description Resource is a wrapper around google.protobuf.Value that is needed for
-         *      persistence reasons. */
+        /**
+         * @description Resource is a wrapper around google.protobuf.Value that is needed for
+         *      persistence reasons.
+         */
         Resource: {
-            /** @description Id contains a unique ID for each resource. This is specific for the cloud
+            /**
+             * @description Id contains a unique ID for each resource. This is specific for the cloud
              *      provider this resource was gathered for and can for example be a resource
-             *      URL. */
+             *      URL.
+             */
             id: string;
-            /** @description CertificationTargetId is the UUID for the certification target to which this resource
-             *      belongs to. */
+            /**
+             * @description CertificationTargetId is the UUID for the certification target to which this resource
+             *      belongs to.
+             */
             certificationTargetId: string;
-            /** @description ResourceType contains a comma separated string of resource types according
-             *      to our ontology. */
+            /**
+             * @description ResourceType contains a comma separated string of resource types according
+             *      to our ontology.
+             */
             resourceType: string;
             /** @description Reference to the tool which provided the resource */
             toolId: string;
-            /** @description Properties contains a protobuf message that describe the resource in the
-             *      terms of our Clouditor ontology. */
+            /**
+             * @description Properties contains a protobuf message that describe the resource in the
+             *      terms of our Clouditor ontology.
+             */
             properties: components["schemas"]["GoogleProtobufAny"];
         };
         StartDiscoveryRequest: {

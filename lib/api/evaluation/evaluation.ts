@@ -13,8 +13,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description Evaluates periodically all assessment results of a certification target id based
-         *      on the given catalog id. Part of the public API, also exposed as REST. */
+        /**
+         * @description Evaluates periodically all assessment results of a certification target id based
+         *      on the given catalog id. Part of the public API, also exposed as REST.
+         */
         post: operations["Evaluation_StartEvaluation"];
         delete?: never;
         options?: never;
@@ -31,8 +33,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description StopEvaluation stops the evaluation for the given audit scope.
-         *      Part of the public API, also exposed as REST. */
+        /**
+         * @description StopEvaluation stops the evaluation for the given audit scope.
+         *      Part of the public API, also exposed as REST.
+         */
         post: operations["Evaluation_StopEvaluation"];
         delete?: never;
         options?: never;
@@ -47,9 +51,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description List all evaluation results that the user can access. It can further be
+        /**
+         * @description List all evaluation results that the user can access. It can further be
          *      restricted by various filtering options. Part of the public API, also
-         *      exposed as REST. */
+         *      exposed as REST.
+         */
         get: operations["Evaluation_ListEvaluationResults"];
         put?: never;
         /** @description Creates an evaluation result */
@@ -64,12 +70,14 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** @description A evaluation result resource, representing the result after evaluating the
+        /**
+         * @description A evaluation result resource, representing the result after evaluating the
          *      certification target with a specific control certification_target_id, category_name and
-         *      catalog_id are necessary to get the corresponding AuditScope */
+         *      catalog_id are necessary to get the corresponding AuditScope
+         */
         EvaluationResult: {
             /** @description Evaluation result id */
-            id?: string;
+            id: string;
             /** @description The Certification Target ID the evaluation belongs to */
             certificationTargetId?: string;
             /** @description The Audit Scope ID the evaluation belongs to */
@@ -87,15 +95,14 @@ export interface components {
              * @description Evaluation status
              * @enum {string}
              */
-            status?: "EVALUATION_STATUS_UNSPECIFIED" | "EVALUATION_STATUS_COMPLIANT" | "EVALUATION_STATUS_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_NOT_COMPLIANT" | "EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_PENDING";
+            status: "EVALUATION_STATUS_UNSPECIFIED" | "EVALUATION_STATUS_COMPLIANT" | "EVALUATION_STATUS_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_NOT_COMPLIANT" | "EVALUATION_STATUS_NOT_COMPLIANT_MANUALLY" | "EVALUATION_STATUS_PENDING";
             /**
              * Format: date-time
              * @description Time of evaluation
              */
-            timestamp?: string;
-            /** @description List of assessment results because of which the evaluation status is not
-             *      'compliant' */
-            failingAssessmentResultIds?: string[];
+            timestamp: string;
+            /** @description List of assessment results because of which the evaluation status is compliant or not compliant */
+            assessmentResultIds: string[];
             comment?: string;
             /**
              * Format: date-time
@@ -150,8 +157,10 @@ export interface operations {
     Evaluation_StartEvaluation: {
         parameters: {
             query?: {
-                /** @description The interval time in minutes the evaluation executes periodically. The
-                 *      default interval is set to 5 minutes. */
+                /**
+                 * @description The interval time in minutes the evaluation executes periodically. The
+                 *      default interval is set to 5 minutes.
+                 */
                 interval?: number;
             };
             header?: never;
@@ -222,9 +231,11 @@ export interface operations {
                 "filter.catalogId"?: string;
                 /** @description Optional. Lists only evaluation results for a specific control id. */
                 "filter.controlId"?: string;
-                /** @description Optional. Lists all evaluation results for the given initial control id
+                /**
+                 * @description Optional. Lists all evaluation results for the given initial control id
                  *      substring, e.g., if the substring 'CMK-01.' is given it returns the
-                 *      controls CMK-01.1B, CMK-01.1S, CMK-01.1H. */
+                 *      controls CMK-01.1B, CMK-01.1S, CMK-01.1H.
+                 */
                 "filter.subControls"?: string;
                 /** @description Optional. Lists only results for parent controls */
                 "filter.parentsOnly"?: boolean;
