@@ -6,11 +6,11 @@ import { redirect } from "next/navigation";
 
 export async function createSecurityAdvisory(result: SchemaAssessmentResult) {
   const { data: target } = await client.GET(
-    "/v1/orchestrator/certification_targets/{certificationTargetId}",
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}",
     {
       params: {
         path: {
-          certificationTargetId: result.certificationTargetId!!,
+          targetOfEvaluationId: result.targetOfEvaluationId!!,
         },
       },
     },
@@ -20,7 +20,7 @@ export async function createSecurityAdvisory(result: SchemaAssessmentResult) {
     metricId: result.metricId,
     assessmentId: result.id,
     compliant: result.compliant ?? false,
-    certificationTargetId: result.certificationTargetId,
+    targetOfEvaluationId: result.targetOfEvaluationId,
     complianceComment: result.complianceComment,
     complianceDetails: result.complianceDetails,
     productId: target?.name!!,
@@ -37,5 +37,5 @@ export async function createSecurityAdvisory(result: SchemaAssessmentResult) {
     },
   );
 
-  redirect(`/certification-targets/${result.certificationTargetId}/advisories`);
+  redirect(`/targets-of-evaluation/${result.targetOfEvaluationId}/advisories`);
 }

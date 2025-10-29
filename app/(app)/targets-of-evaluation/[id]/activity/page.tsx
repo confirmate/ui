@@ -1,7 +1,7 @@
 import ActivityItem, { ActivityItemData } from "@/components/activity-item";
 import client, {
   SchemaAssessmentResult,
-  SchemaCertificationTarget,
+  SchemaTargetOfEvaluation,
 } from "@/lib/api/orchestrator";
 import { shortResourceId } from "@/lib/util";
 
@@ -14,11 +14,11 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const p = (await params);
   const { data: target } = await client.GET(
-    "/v1/orchestrator/certification_targets/{certificationTargetId}",
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}",
     {
       params: {
         path: {
-          certificationTargetId: p.id,
+          targetOfEvaluationId: p.id,
         },
       },
     },
@@ -27,7 +27,7 @@ export default async function Page({ params }: PageProps) {
   const { data } = await client.GET("/v1/orchestrator/assessment_results", {
     params: {
       query: {
-        "filter.certificationTargetId": p.id,
+        "filter.targetOfEvaluationId": p.id,
       },
     },
   });
@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
 
 function buildTimeline(
   results: SchemaAssessmentResult[],
-  target: SchemaCertificationTarget,
+  target: SchemaTargetOfEvaluation,
 ): ActivityItemData[] {
   const timeline: ActivityItemData[] = [];
   let groupedResult = new Map<string, SchemaAssessmentResult[]>();
@@ -75,7 +75,7 @@ function buildTimeline(
       content: `Assessed ${group.length} metrics for ${(group[0].resourceTypes ?? "")[0]}`,
       target: shortResourceId(group[0].resourceId ?? ""),
       href:
-        "/certification-targets/" +
+        "/targets-of-evaluation/" +
         target.id +
         "/resources/" +
         group[0].resourceId,
@@ -91,7 +91,7 @@ function buildTimeline(
   timeline.push({
     content: "Created cloud service",
     target: target.name,
-    href: "/certification-targets/" + target.id,
+    href: "/targets-of-evaluation/" + target.id,
     date: formatDate(date),
     datetime: target.createdAt ?? "",
     icon: "cloud",

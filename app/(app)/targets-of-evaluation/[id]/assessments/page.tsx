@@ -85,7 +85,7 @@ export default async function Page({ searchParams }: PageProps) {
           </h1>
           <p className="mt-2 text-sm text-gray-700">
             The following table lists all assessment results that are present
-            for the given certification target. An <i>assessment Result</i>{" "}
+            for the given target of evaluation. An <i>assessment Result</i>{" "}
             represents the measurement of a particular <i>metric</i> on a{" "}
             <i>resource</i>.
           </p>
@@ -144,7 +144,7 @@ export default async function Page({ searchParams }: PageProps) {
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 align-top">
                 <div className="text-gray-900">
                   <Link
-                    href={`/certification-targets/${result.certificationTargetId}/resources/${result.resourceId}`}
+                    href={`/targets-of-evaluation/${result.targetOfEvaluationId}/resources/${result.resourceId}`}
                   >
                     {truncate(result.resourceId, 30)}
                   </Link>

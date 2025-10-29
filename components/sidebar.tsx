@@ -11,7 +11,7 @@ interface SidebarProps {
 }
 
 export default async function Sidebar({ isMobile = false }: SidebarProps) {
-  const { data } = await client.GET("/v1/orchestrator/certification_targets");
+  const { data } = await client.GET("/v1/orchestrator/targets_of_evaluation");
   const targets = data?.targets ?? [];
 
   const navigation = [
@@ -22,20 +22,20 @@ export default async function Sidebar({ isMobile = false }: SidebarProps) {
       disabled: true,
     },
     {
-      name: "Certification Targets",
-      href: "/certification-targets",
+      name: "Targets of Evaluation",
+      href: "/targets-of-evaluation",
       icon: "rectangle-group",
       children: [
         ...targets.map((s) => {
           return {
             name: s.name,
-            href: "/certification-targets/" + s.id,
+            href: "/targets-of-evaluation/" + s.id,
             isSub: true,
           };
         }),
         {
           name: "New...",
-          href: "/certification-targets/new",
+          href: "/targets-of-evaluation/new",
           isSub: true,
           isNew: true,
         },

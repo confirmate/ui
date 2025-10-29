@@ -14,11 +14,11 @@ export default async function Page({ params }: PageProps) {
   const p = await params;
   const { error, data: auditScopes } = await client
     .GET(
-      "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
+      "/v1/orchestrator/audit_scopes",
       {
         params: {
           path: {
-            certificationTargetId: p.id,
+            targetOfEvaluationId: p.id,
           },
         },
       },
@@ -51,6 +51,7 @@ export default async function Page({ params }: PageProps) {
 
   const compliance = await buildCompliance(p.id);
 
+  console.log('Enabled Catalogs:', enabledCatalogs);
   return (
     <ul className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
       {enabledCatalogs?.map(({ catalog, auditScope: scope }) => (
@@ -63,7 +64,7 @@ export default async function Page({ params }: PageProps) {
       ))}
       {leftOverCatalogs.length > 0 ? (
         <EnableCatalogButton
-          certificationTargetId={p.id}
+          targetOfEvaluationId={p.id}
           leftOverCatalogs={leftOverCatalogs}
         />
       ) : (

@@ -18,11 +18,11 @@ export async function generateMetadata(
 ) {
   const p = await params;
   const { data: target } = await client.GET(
-    "/v1/orchestrator/certification_targets/{certificationTargetId}",
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}",
     {
       params: {
         path: {
-          certificationTargetId: p.id,
+          targetOfEvaluationId: p.id,
         },
       },
     },
@@ -36,22 +36,22 @@ export async function generateMetadata(
 export default async function Layout({ params, children }: LayoutProps) {
   const p = await params;
   const { data: target } = await client.GET(
-    "/v1/orchestrator/certification_targets/{certificationTargetId}",
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}",
     {
       params: {
         path: {
-          certificationTargetId: p.id,
+          targetOfEvaluationId: p.id,
         },
       },
     },
   );
 
   const { data: statistics } = await client.GET(
-    "/v1/orchestrator/certification_targets/statistics",
+    "/v1/orchestrator/targets_of_evaluation/statistics",
     {
       params: {
         query: {
-          certificationTargetId: p.id,
+          targetOfEvaluationId: p.id,
         },
       },
     },
@@ -61,19 +61,19 @@ export default async function Layout({ params, children }: LayoutProps) {
     const tabs = [
       {
         name: "Compliance",
-        href: "/certification-targets/" + target.id + "/compliance",
+        href: "/targets-of-evaluation/" + target.id + "/compliance",
         icon: "check-badge",
       },
       {
         name: "Security Assessment",
-        href: "/certification-targets/" + target.id + "/assessments",
+        href: "/targets-of-evaluation/" + target.id + "/assessments",
         icon: "queue-list",
       },
       ...(process.env.PLUGIN_CSAF_ENABLE == "true"
         ? [
           {
             name: "Security Advisories",
-            href: "/certification-targets/" + target.id + "/advisories",
+            href: "/targets-of-evaluation/" + target.id + "/advisories",
             icon: "document-text",
             current: false,
           },
@@ -81,18 +81,18 @@ export default async function Layout({ params, children }: LayoutProps) {
         : []),
       {
         name: "Discovered Resources",
-        href: "/certification-targets/" + target.id + "/resources",
+        href: "/targets-of-evaluation/" + target.id + "/resources",
         icon: "squares2x2",
       },
       {
         name: "Activity",
-        href: "/certification-targets/" + target.id + "/activity",
+        href: "/targets-of-evaluation/" + target.id + "/activity",
         icon: "user",
         current: false,
       },
       {
         name: "Settings",
-        href: "/certification-targets/" + target.id + "/settings",
+        href: "/targets-of-evaluation/" + target.id + "/settings",
         icon: "cog6-tooth",
         disabled: true,
       },

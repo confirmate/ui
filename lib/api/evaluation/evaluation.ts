@@ -14,7 +14,7 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description Evaluates periodically all assessment results of a certification target id based
+         * @description Evaluates periodically all assessment results of a target of evaluation id based
          *      on the given catalog id. Part of the public API, also exposed as REST.
          */
         post: operations["Evaluation_StartEvaluation"];
@@ -72,14 +72,14 @@ export interface components {
     schemas: {
         /**
          * @description A evaluation result resource, representing the result after evaluating the
-         *      certification target with a specific control certification_target_id, category_name and
+         *      target of evaluation with a specific control target_of_evaluation_id, category_name and
          *      catalog_id are necessary to get the corresponding AuditScope
          */
         EvaluationResult: {
             /** @description Evaluation result id */
             id: string;
-            /** @description The Certification Target ID the evaluation belongs to */
-            certificationTargetId?: string;
+            /** @description The Target of Evaluation ID the evaluation belongs to */
+            targetOfEvaluationId?: string;
             /** @description The Audit Scope ID the evaluation belongs to */
             auditScopeId?: string;
             /** @description The control id the evaluation was based on */
@@ -225,8 +225,8 @@ export interface operations {
     Evaluation_ListEvaluationResults: {
         parameters: {
             query?: {
-                /** @description Optional. Lists only evaluation results for a specific certification target. */
-                "filter.certificationTargetId"?: string;
+                /** @description Optional. Lists only evaluation results for a specific target of evaluation. */
+                "filter.targetOfEvaluationId"?: string;
                 /** @description Optional. Lists only evaluation results for a specific catalog. */
                 "filter.catalogId"?: string;
                 /** @description Optional. Lists only evaluation results for a specific control id. */

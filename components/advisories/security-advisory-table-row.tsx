@@ -17,7 +17,7 @@ export default function SecurityAdvisoryTableRow({
     <tr>
       <td className="text-wrap px-4 py-4 text-sm text-gray-900 max-w-xl align-top">
         <Link
-          href={`/certification-targets/${response.certificationTargetId}/advisories/${response.id}`}
+          href={`/targets-of-evaluation/${response.targetOfEvaluationId}/advisories/${response.id}`}
         >
           {response.title}
         </Link>
@@ -30,7 +30,7 @@ export default function SecurityAdvisoryTableRow({
           </div>
           <div>
             <Link
-              href={`/certification-targets/${response.certificationTargetId}/assessments?filter.id=${response.assessmentId}`}
+              href={`/targets-of-evaluation/${response.targetOfEvaluationId}/assessments?filter.id=${response.assessmentId}`}
             >
               View Assessment Result
             </Link>

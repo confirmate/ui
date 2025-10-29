@@ -120,10 +120,10 @@ export interface components {
              */
             id: string;
             /**
-             * @description CertificationTargetId is the UUID for the certification target to which this resource
+             * @description TargetOfEvaluationId is the UUID for the target of evaluation to which this resource
              *      belongs to.
              */
-            certificationTargetId: string;
+            targetOfEvaluationId: string;
             /**
              * @description ResourceType contains a comma separated string of resource types according
              *      to our ontology.
@@ -181,7 +181,7 @@ export interface operations {
         parameters: {
             query?: {
                 "filter.type"?: string;
-                "filter.certificationTargetId"?: string;
+                "filter.targetOfEvaluationId"?: string;
                 "filter.toolId"?: string;
                 pageSize?: number;
                 pageToken?: string;

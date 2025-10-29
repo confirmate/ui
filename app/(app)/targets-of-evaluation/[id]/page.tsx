@@ -8,5 +8,5 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const p = await params;
-  redirect(`/certification-targets/${p.id}/compliance`);
+  redirect(`/targets-of-evaluation/${p.id}/compliance`);
 }

@@ -26,7 +26,7 @@ export default function AdvisoryHelper({
     <div className="space-x-2">
       {advisory !== undefined ? (
         <Link
-          href={`/certification-targets/${result.certificationTargetId}/advisories/${advisory.id}`}
+          href={`/targets-of-evaluation/${result.targetOfEvaluationId}/advisories/${advisory.id}`}
         >
           <Button className="bg-gray-800 hover:bg-gray-600 text-xs">
             Advisory Exists

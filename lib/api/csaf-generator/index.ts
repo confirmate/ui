@@ -3,7 +3,7 @@ import { SchemaComparisonResult } from "../orchestrator";
 export interface GenerationRequest {
   metricId: string;
   assessmentId: string;
-  certificationTargetId: string;
+  targetOfEvaluationId: string;
   compliant: boolean;
   productId: string;
   productName: string;
@@ -22,7 +22,7 @@ export interface GenerationRequestResponse {
   id: string;
   metricId: string;
   assessmentId: string;
-  certificationTargetId: string;
+  targetOfEvaluationId: string;
   status: "pending" | "done" | "error";
   /**
    * Contains the title. This might be set to 'Pending' or an error, if the status is error or pending.

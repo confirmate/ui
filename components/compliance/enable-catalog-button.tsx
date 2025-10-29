@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import Button from "../button";
 
 interface EnableCatalogButtonProps {
-  certificationTargetId: string;
+  targetOfEvaluationId: string;
   leftOverCatalogs: SchemaCatalog[];
 }
 
 export default function EnableCatalogButton({
-  certificationTargetId,
+  targetOfEvaluationId,
   leftOverCatalogs,
 }: EnableCatalogButtonProps) {
   const [catalog, setCatalog] = useState(leftOverCatalogs[0]);
@@ -76,7 +76,7 @@ export default function EnableCatalogButton({
       <div>
         <Button
           onClick={() =>
-            createAuditScope(certificationTargetId, catalog.id, assuranceLevel)
+            createAuditScope(targetOfEvaluationId, catalog.id, assuranceLevel)
           }
         >
           Add

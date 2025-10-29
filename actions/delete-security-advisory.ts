@@ -14,6 +14,6 @@ export async function deleteSecurityAdvisory(
   );
 
   revalidatePath(
-    `/certification-targets/${response.certificationTargetId}/advisories`,
+    `/targets-of-evaluation/${response.targetOfEvaluationId}/advisories`,
   );
 }

@@ -19,12 +19,12 @@ client.use(authMiddleware);
 
 export default client;
 
-async function listTopLevelControlResults(certificationTargetId: string) {
+async function listTopLevelControlResults(targetOfEvaluationId: string) {
   const { results: topControlResults } = await client
     .GET("/v1/evaluation/results", {
       params: {
         query: {
-          "filter.certificationTargetId": certificationTargetId,
+          "filter.targetOfEvaluationId": targetOfEvaluationId,
           "filter.parentsOnly": true,
           latestByControlId: true,
         },
@@ -44,13 +44,13 @@ async function listTopLevelControlResults(certificationTargetId: string) {
  *
  * TODO: This should be done in the backend
  *
- * @param certificationTargetId
+ * @param targetOfEvaluationId
  * @returns
  */
 export async function buildCompliance(
-  certificationTargetId: string,
+  targetOfEvaluationId: string,
 ): Promise<Map<string, Map<string, ComplianceStatus>>> {
-  const results = await listTopLevelControlResults(certificationTargetId);
+  const results = await listTopLevelControlResults(targetOfEvaluationId);
 
   let all = new Map();
   let compliance: Map<string, ComplianceStatus>;

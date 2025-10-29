@@ -12,11 +12,11 @@ export default async function Page({ params }: PageProps) {
   const p = await params;
   const { auditScopes } = await client
     .GET(
-      "/v1/orchestrator/certification_targets/{certificationTargetId}/audit_scopes",
+      "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/audit_scopes",
       {
         params: {
           path: {
-            certificationTargetId: p.id,
+            targetOfEvaluationId: p.id,
           },
         },
       },

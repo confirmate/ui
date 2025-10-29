@@ -331,33 +331,33 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets": {
+    "/v1/orchestrator/targets_of_evaluation": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Lists all target certification targets */
-        get: operations["Orchestrator_ListCertificationTargets"];
+        /** @description Lists all target targets of evaluation */
+        get: operations["Orchestrator_ListTargetOfEvaluations"];
         put?: never;
-        /** @description Registers a new target certification target */
-        post: operations["Orchestrator_CreateCertificationTarget"];
+        /** @description Registers a new target target of evaluation */
+        post: operations["Orchestrator_CreateTargetOfEvaluation"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/statistics": {
+    "/v1/orchestrator/targets_of_evaluation/statistics": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves target certification target statistics */
-        get: operations["Orchestrator_GetCertificationTargetStatistics"];
+        /** @description Retrieves target target of evaluation statistics */
+        get: operations["Orchestrator_GetTargetOfEvaluationStatistics"];
         put?: never;
         post?: never;
         delete?: never;
@@ -366,7 +366,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{audit_scope.certification_target_id}/audit_scopes/{audit_scope.catalog_id}": {
+    "/v1/orchestrator/targets_of_evaluation/{audit_scope.target_of_evaluation_id}/audit_scopes/{audit_scope.catalog_id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -383,25 +383,25 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}": {
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieves a target certification target */
-        get: operations["Orchestrator_GetCertificationTarget"];
+        /** @description Retrieves a target target of evaluation */
+        get: operations["Orchestrator_GetTargetOfEvaluation"];
         put?: never;
         post?: never;
-        /** @description Removes a target certification target */
-        delete: operations["Orchestrator_RemoveCertificationTarget"];
+        /** @description Removes a target target of evaluation */
+        delete: operations["Orchestrator_RemoveTargetOfEvaluation"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations": {
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations": {
         parameters: {
             query?: never;
             header?: never;
@@ -410,7 +410,7 @@ export interface paths {
         };
         /**
          * @description Lists all metric configurations (target value and operator) for a
-         *      specific certification target ID
+         *      specific target of evaluation ID
          */
         get: operations["Orchestrator_ListMetricConfigurations"];
         put?: never;
@@ -421,7 +421,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certificationTargetId}/metric_configurations/{metricId}": {
+    "/v1/orchestrator/targets_of_evaluation/{targetOfEvaluationId}/metric_configurations/{metricId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -430,12 +430,12 @@ export interface paths {
         };
         /**
          * @description Retrieves a metric configuration (target value and operator) for a specific
-         *      certification target and metric ID.
+         *      target of evaluation and metric ID.
          */
         get: operations["Orchestrator_GetMetricConfiguration"];
         /**
          * @description Updates a metric configuration (target value and operator) for a specific
-         *      certification target and metric ID
+         *      target of evaluation and metric ID
          */
         put: operations["Orchestrator_UpdateMetricConfiguration"];
         post?: never;
@@ -445,7 +445,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/orchestrator/certification_targets/{certification_target.id}": {
+    "/v1/orchestrator/targets_of_evaluation/{target_of_evaluation.id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -453,8 +453,8 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** @description Registers a new target certification target */
-        put: operations["Orchestrator_UpdateCertificationTarget"];
+        /** @description Registers a new target target of evaluation */
+        put: operations["Orchestrator_UpdateTargetOfEvaluation"];
         post?: never;
         delete?: never;
         options?: never;
@@ -640,8 +640,8 @@ export interface components {
             complianceComment: string;
             /** @description ComplianceDetails contains machine-readable details about which comparisons lead to a (non)-compliance. */
             complianceDetails?: components["schemas"]["ComparisonResult"][];
-            /** @description The certification target which this assessment result belongs to */
-            certificationTargetId: string;
+            /** @description The target of evaluation which this assessment result belongs to */
+            targetOfEvaluationId: string;
             /** @description Reference to the tool which provided the assessment result */
             toolId: string;
         };
@@ -657,13 +657,13 @@ export interface components {
             availableMetrics: string[];
         };
         /**
-         * @description A Audit Scope binds a certification target to a catalog, so the certification target is
+         * @description A Audit Scope binds a target of evaluation to a catalog, so the target of evaluation is
          *      evaluated regarding this catalog's controls
          */
         AuditScope: {
             /** @description Audit Scope ID */
             id: string;
-            certificationTargetId: string;
+            targetOfEvaluationId: string;
             catalogId: string;
             /**
              * @description an assurance level is not offered by every catalog, therefore it is
@@ -693,7 +693,7 @@ export interface components {
             metadata?: components["schemas"]["Catalog_Metadata"];
         };
         Catalog_Metadata: {
-            /** @description a color for the certification target used by the UI */
+            /** @description a color for the target of evaluation used by the UI */
             color?: string;
         };
         Category: {
@@ -707,7 +707,7 @@ export interface components {
         Certificate: {
             id: string;
             name: string;
-            certificationTargetId: string;
+            targetOfEvaluationId: string;
             issueDate?: string;
             expirationDate?: string;
             standard?: string;
@@ -717,23 +717,23 @@ export interface components {
             /** @description A list of states at specific times */
             states?: components["schemas"]["State"][];
         };
-        CertificationTarget: {
+        TargetOfEvaluation: {
             id: string;
             name: string;
             description?: string;
             configuredMetrics: components["schemas"]["Metric"][];
             /**
              * Format: date-time
-             * @description creation time of the certification_target
+             * @description creation time of the target_of_evaluation
              */
             createdAt?: string;
             /**
              * Format: date-time
-             * @description last update time of the certification_target
+             * @description last update time of the target_of_evaluation
              */
             updatedAt?: string;
-            /** @description additional metadata of the certification target, mostly used for the UI */
-            metadata?: components["schemas"]["CertificationTarget_Metadata"];
+            /** @description additional metadata of the target of evaluation, mostly used for the UI */
+            metadata?: components["schemas"]["TargetOfEvaluation_Metadata"];
             /**
              * Format: enum
              * @description type of the target to be evaluated: cloud, product or organization
@@ -741,12 +741,12 @@ export interface components {
              */
             targetType: "TARGET_TYPE_UNSPECIFIED" | "TARGET_TYPE_CLOUD" | "TARGET_TYPE_PRODUCT" | "TARGET_TYPE_ORGANIZATION";
         };
-        CertificationTarget_Metadata: {
+        TargetOfEvaluation_Metadata: {
             /** @description a map of key/value pairs, e.g., env:prod */
             labels?: {
                 [key: string]: string;
             };
-            /** @description an icon for the certification target used by the UI */
+            /** @description an icon for the target of evaluation used by the UI */
             icon?: string;
         };
         /** @description An optional structure containing more details how a comparison inside an assessment result was done and if it was successful. */
@@ -805,14 +805,14 @@ export interface components {
             path?: string;
             version?: string;
         };
-        GetCertificationTargetStatisticsResponse: {
-            /** @description number of discovered resources per certification target */
+        GetTargetOfEvaluationStatisticsResponse: {
+            /** @description number of discovered resources per target of evaluation */
             numberOfDiscoveredResources?: string;
-            /** @description number of assessment results per certification target */
+            /** @description number of assessment results per target of evaluation */
             numberOfAssessmentResults?: string;
-            /** @description number of evidences per certification target */
+            /** @description number of evidences per target of evaluation */
             numberOfEvidences?: string;
-            /** @description number of selected catalogs per certification target */
+            /** @description number of selected catalogs per target of evaluation */
             numberOfSelectedCatalogs?: string;
         };
         /** @description Contains an arbitrary serialized message along with a @type that describes the type of the serialized message. */
@@ -844,8 +844,8 @@ export interface components {
             certificates?: components["schemas"]["Certificate"][];
             nextPageToken?: string;
         };
-        ListCertificationTargetsResponse: {
-            targets: components["schemas"]["CertificationTarget"][];
+        ListTargetOfEvaluationsResponse: {
+            targets: components["schemas"]["TargetOfEvaluation"][];
             nextPageToken?: string;
         };
         ListControlsResponse: {
@@ -916,8 +916,8 @@ export interface components {
             updatedAt?: string;
             /** @description The metric this configuration belongs to */
             metricId: string;
-            /** @description The certification target this configuration belongs to */
-            certificationTargetId: string;
+            /** @description The target of evaluation this configuration belongs to */
+            targetOfEvaluationId: string;
         };
         /** @description MetricImplementation defines the implementation of an individual metric. */
         MetricImplementation: {
@@ -1020,12 +1020,12 @@ export type SchemaCatalog = components['schemas']['Catalog'];
 export type SchemaCatalogMetadata = components['schemas']['Catalog_Metadata'];
 export type SchemaCategory = components['schemas']['Category'];
 export type SchemaCertificate = components['schemas']['Certificate'];
-export type SchemaCertificationTarget = components['schemas']['CertificationTarget'];
-export type SchemaCertificationTargetMetadata = components['schemas']['CertificationTarget_Metadata'];
+export type SchemaTargetOfEvaluation = components['schemas']['TargetOfEvaluation'];
+export type SchemaTargetOfEvaluationMetadata = components['schemas']['TargetOfEvaluation_Metadata'];
 export type SchemaComparisonResult = components['schemas']['ComparisonResult'];
 export type SchemaControl = components['schemas']['Control'];
 export type SchemaDependency = components['schemas']['Dependency'];
-export type SchemaGetCertificationTargetStatisticsResponse = components['schemas']['GetCertificationTargetStatisticsResponse'];
+export type SchemaGetTargetOfEvaluationStatisticsResponse = components['schemas']['GetTargetOfEvaluationStatisticsResponse'];
 export type SchemaGoogleProtobufAny = components['schemas']['GoogleProtobufAny'];
 export type SchemaGoogleProtobufValue = components['schemas']['GoogleProtobufValue'];
 export type SchemaListAssessmentResultsResponse = components['schemas']['ListAssessmentResultsResponse'];
@@ -1033,7 +1033,7 @@ export type SchemaListAssessmentToolsResponse = components['schemas']['ListAsses
 export type SchemaListAuditScopesResponse = components['schemas']['ListAuditScopesResponse'];
 export type SchemaListCatalogsResponse = components['schemas']['ListCatalogsResponse'];
 export type SchemaListCertificatesResponse = components['schemas']['ListCertificatesResponse'];
-export type SchemaListCertificationTargetsResponse = components['schemas']['ListCertificationTargetsResponse'];
+export type SchemaListTargetOfEvaluationsResponse = components['schemas']['ListTargetOfEvaluationsResponse'];
 export type SchemaListControlsResponse = components['schemas']['ListControlsResponse'];
 export type SchemaListMetricConfigurationResponse = components['schemas']['ListMetricConfigurationResponse'];
 export type SchemaListMetricsResponse = components['schemas']['ListMetricsResponse'];
@@ -1053,8 +1053,8 @@ export interface operations {
     Orchestrator_ListAssessmentResults: {
         parameters: {
             query?: {
-                /** @description Optional. List only assessment results of a specific certification target. */
-                "filter.certificationTargetId"?: string;
+                /** @description Optional. List only assessment results of a specific target of evaluation. */
+                "filter.targetOfEvaluationId"?: string;
                 /** @description Optional. List only compliant assessment results. */
                 "filter.compliant"?: boolean;
                 /** @description Optional. List only assessment results of a specific metric id. */
@@ -1326,9 +1326,9 @@ export interface operations {
     Orchestrator_ListAuditScopes: {
         parameters: {
             query?: {
-                /** @description Optional. List only audit scopes of a specific certification target */
-                "filter.certificationTargetId"?: string;
-                /** @description Optional. List only audit scopes that evaluate the given catalog for any certification target */
+                /** @description Optional. List only audit scopes of a specific target of evaluation */
+                "filter.targetOfEvaluationId"?: string;
+                /** @description Optional. List only audit scopes that evaluate the given catalog for any target of evaluation */
                 "filter.catalogId"?: string;
                 pageSize?: number;
                 pageToken?: string;
@@ -1925,7 +1925,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_ListCertificationTargets: {
+    Orchestrator_ListTargetOfEvaluations: {
         parameters: {
             query?: {
                 pageSize?: number;
@@ -1945,7 +1945,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListCertificationTargetsResponse"];
+                    "application/json": components["schemas"]["ListTargetOfEvaluationsResponse"];
                 };
             };
             /** @description Default error response */
@@ -1959,7 +1959,7 @@ export interface operations {
             };
         };
     };
-    Orchestrator_CreateCertificationTarget: {
+    Orchestrator_CreateTargetOfEvaluation: {
         parameters: {
             query?: never;
             header?: never;
@@ -1968,7 +1968,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CertificationTarget"];
+                "application/json": components["schemas"]["TargetOfEvaluation"];
             };
         };
         responses: {
@@ -1978,7 +1978,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CertificationTarget"];
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
                 };
             };
             /** @description Default error response */
@@ -1992,10 +1992,10 @@ export interface operations {
             };
         };
     };
-    Orchestrator_GetCertificationTargetStatistics: {
+    Orchestrator_GetTargetOfEvaluationStatistics: {
         parameters: {
             query?: {
-                certificationTargetId?: string;
+                targetOfEvaluationId?: string;
             };
             header?: never;
             path?: never;
@@ -2009,7 +2009,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetCertificationTargetStatisticsResponse"];
+                    "application/json": components["schemas"]["GetTargetOfEvaluationStatisticsResponse"];
                 };
             };
             /** @description Default error response */
@@ -2028,7 +2028,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                "audit_scope.certification_target_id": string;
+                "audit_scope.target_of_evaluation_id": string;
                 "audit_scope.catalog_id": string;
             };
             cookie?: never;
@@ -2059,12 +2059,12 @@ export interface operations {
             };
         };
     };
-    Orchestrator_GetCertificationTarget: {
+    Orchestrator_GetTargetOfEvaluation: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
+                targetOfEvaluationId: string;
             };
             cookie?: never;
         };
@@ -2076,7 +2076,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CertificationTarget"];
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
                 };
             };
             /** @description Default error response */
@@ -2090,12 +2090,12 @@ export interface operations {
             };
         };
     };
-    Orchestrator_RemoveCertificationTarget: {
+    Orchestrator_RemoveTargetOfEvaluation: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
+                targetOfEvaluationId: string;
             };
             cookie?: never;
         };
@@ -2124,7 +2124,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
+                targetOfEvaluationId: string;
             };
             cookie?: never;
         };
@@ -2155,7 +2155,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
+                targetOfEvaluationId: string;
                 metricId: string;
             };
             cookie?: never;
@@ -2187,7 +2187,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                certificationTargetId: string;
+                targetOfEvaluationId: string;
                 metricId: string;
             };
             cookie?: never;
@@ -2218,18 +2218,18 @@ export interface operations {
             };
         };
     };
-    Orchestrator_UpdateCertificationTarget: {
+    Orchestrator_UpdateTargetOfEvaluation: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                "certification_target.id": string;
+                "target_of_evaluation.id": string;
             };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CertificationTarget"];
+                "application/json": components["schemas"]["TargetOfEvaluation"];
             };
         };
         responses: {
@@ -2239,7 +2239,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CertificationTarget"];
+                    "application/json": components["schemas"]["TargetOfEvaluation"];
                 };
             };
             /** @description Default error response */

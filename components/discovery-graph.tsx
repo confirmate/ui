@@ -107,7 +107,7 @@ export default function DiscoveryGraph({
         <div className="flex items-center justify-between gap-x-4 border-b border-gray-900/5 bg-gray-50 p-4">
           <div className="text-sm text-gray-500">
             This graph provides an overview over all discovered resources of the
-            certification target, infrastructure as well as application
+            target of evaluation, infrastructure as well as application
             source-code.
             <div className="mt-2">
               <CheckboxInput
@@ -174,7 +174,7 @@ export default function DiscoveryGraph({
                       window.history.replaceState(
                         null,
                         "",
-                        `/certification-targets/${resource.certificationTargetId}/resources/${resource.id}`,
+                        `/targets-of-evaluation/${resource.targetOfEvaluationId}/resources/${resource.id}`,
                       );
                     }
                   }

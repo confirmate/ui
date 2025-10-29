@@ -106,7 +106,7 @@ export default function ComplianceChart({
       }
 
       router.push(
-        `/certification-targets/${scope.certificationTargetId}/compliance/${scope.catalogId}?${params.toString()}`,
+        `/targets-of-evaluation/${scope.targetOfEvaluationId}/compliance/${scope.catalogId}?${params.toString()}`,
       );
     }
   }
