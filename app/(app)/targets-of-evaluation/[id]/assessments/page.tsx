@@ -125,10 +125,10 @@ export default async function Page({ searchParams }: PageProps) {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">
-                      {metrics.get(result.metricId ?? "")?.name}
+                      {result.metricId}
                     </div>
                     <div className="mt-1 text-gray-500">
-                      {metrics.get(result.metricId ?? "")?.description}
+                      {/*{metrics.get(result.metricId ?? "")?.description}*/}
                     </div>
                   </div>
                 </div>
